@@ -29,11 +29,11 @@ Two-dimensional linear equations are commonly represented in different forms:
 
 1. General form
 
-$Ax + By = C$
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/7c13e5e90c7908cacad9eaf243508935906621fe)
 
 or
 
-$Ax + By - c = 0$
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/9f49e4113c4334c1b196d30f59e52ebf690aea71)
 
 2. Slope-intercept form
 
