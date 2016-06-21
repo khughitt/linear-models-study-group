@@ -1,5 +1,8 @@
-Linear Algebra Review
----------------------
+Linear Algebra Review I
+=======================
+
+- Keith Hughitt
+- June 22, 2016
 
 ## Linear equations
 
@@ -37,14 +40,26 @@ or
 
 2. Slope-intercept form
 
-$y = mx + b$
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/753facd3de6ab64fa1cefd9a176437ed977e2979)
 
 3. Point-slope form
 
-$y - y1 = m(x - x1)$
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/6b2be8b9932f9656b8f3dca57cb4832653d10331)
 
 where (x1, y1) is any point on the line.
 
+4. Parametric form
+
+Simultaneous equations:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/d19f316585d11d422d808b377b17d7f627570e2e)
+
+and
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/3c2b75dc06a35310bf2a8512b0d120a1d53765af)
+
+(See [Wikipedia](https://en.wikipedia.org/wiki/Linear_equation#Forms_for_two-dimensional_linear_equations)
+for a more exhaustive list of the ways lines can be represented.)
 
 ### Linear in the parameters
 
