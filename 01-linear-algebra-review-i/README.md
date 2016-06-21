@@ -56,3 +56,4 @@ References
 
 1. [Linear Equation - Wikipedia](https://en.wikipedia.org/wiki/Linear_equation)
 2. [Linear Regression - Wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
+3. [What Is the Difference between Linear and Nonlinear Equations in Regression Analysis?](http://blog.minitab.com/blog/adventures-in-statistics/what-is-the-difference-between-linear-and-nonlinear-equations-in-regression-analysis)
