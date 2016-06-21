@@ -23,6 +23,29 @@ or a plane in three-dimensional space:
 In higher dimensions, this generalizes to a n-1 dimensional hyperplane in
 n-dimensional space.
 
+### Equations for a line
+
+Two-dimensional linear equations are commonly represented in different forms:
+
+1. General form
+
+$Ax + By = C$
+
+or
+
+$Ax + By - c = 0$
+
+2. Slope-intercept form
+
+$y = mx + b$
+
+3. Point-slope form
+
+$y - y1 = m(x - x1)$
+
+where (x1, y1) is any point on the line.
+
+
 ### Linear in the parameters
 
 While our review of linear algebra will primarily focus on the simple types of
