@@ -6,6 +6,22 @@ Linear Algebra Review I
 
 ## 1.1 Linear Equations in Linear Algebra
 
+First off, from the venerable [Wikipedia](https://en.wikipedia.org/wiki/Linear_algebra):
+
+> Linear algebra is the branch of mathematics concerning vector spaces and
+> linear mappings between such spaces. It includes the study of lines, planes,
+> and subspaces, but is also concerned with properties common to all vector
+> spaces.
+
+![https://upload.wikimedia.org/wikipedia/commons/6/6a/Gottfried_Wilhelm_von_Leibniz.jpg](https://upload.wikimedia.org/wikipedia/commons/6/6a/Gottfried_Wilhelm_von_Leibniz.jpg)
+
+Figure: Portrait of [Gottfried Wilhelm
+Leibniz](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz) by Christoph
+Bernhard Francke. Leibniz was one of the earliest contributors to the study of
+linear algebra with his study of [determinants](https://en.wikipedia.org/wiki/Determinant).
+
+(Source: [Wikipedia](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz#/media/File:Gottfried_Wilhelm_von_Leibniz.jpg))
+
 ### Linear equations
 
 #### Overview
@@ -134,6 +150,13 @@ three dimensional space, e.g. for two equations:
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Intersecting_Planes_2.svg/480px-Intersecting_Planes_2.svg.png)
 (source: [Wikipedia](https://en.wikipedia.org/wiki/File:Intersecting_Planes_2.svg))
 
+and for three equations in three variables:
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Secretsharing_3-point.svg/480px-Secretsharing_3-point.svg.png)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/System_of_linear_equations#/media/File:Secretsharing_3-point.svg))
+
+
+
 #### Possible solutions
 
 A system of linear equations has either:
@@ -169,6 +192,18 @@ Dimension (rows x columns):
 - _m_ x _n_ (Lay)
 - _n_ x _p_ (Commonly used in machine learning)
 
+### Matrix applications
+
+While we are on the topic, here are some of the many interpretations and
+applications of matrices:
+
+1. Systems of linear equations
+2. Planes in three dimensional space
+3. Data matrices (e.g. with rows = observations and columns = features)
+4. Images (2d matrices representing intensity across spatial dimensions)
+5. Covariance matrices
+6. Linear maps
+
 ### Solving a linear system
 
 To solve a linear set of equations, we use **elementary row operations** to
@@ -200,9 +235,12 @@ A couple important questions to consider about a set of equations:
 - Does a system of equations have at least one solution (is is **consistent**?)
 - If a solution exists, is it unique?
 
+##
+
 ## References
 
 1. [Linear Algebra and its applications (Lay 3e)](http://www.laylinalgebra.com/)
 2. [Linear Equation - Wikipedia](https://en.wikipedia.org/wiki/Linear_equation)
 3. [Linear Regression - Wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
 4. [What Is the Difference between Linear and Nonlinear Equations in Regression Analysis?](http://blog.minitab.com/blog/adventures-in-statistics/what-is-the-difference-between-linear-and-nonlinear-equations-in-regression-analysis)
+
