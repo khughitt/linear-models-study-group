@@ -298,6 +298,16 @@ The first part (forward phase) produced an echelon matrix form; the second part
 
 (Source: http://people.math.aau.dk/~ottosen/MMA2011/rralg.html)
 
+### Free variables
+
+- **basic variables**: variables associated with pivot columns
+- **free variables**: variables which can be reduced rows of all zeros.
+
+When a system of equations contains a free variable, the variable is "free" to
+be assigned any value. Each value chosen is then associated with a different
+solution to the system of equations.
+
+
 ### Row reduction in R
 
 #### pracma
