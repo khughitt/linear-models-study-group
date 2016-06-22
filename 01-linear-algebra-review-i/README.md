@@ -121,8 +121,28 @@ A example of this is [polynomial regression](https://en.wikipedia.org/wiki/Polyn
 For two variables, the solution set represents the intersection (if it occurs)
 of two lines:
 
-![](https://en.wikipedia.org/wiki/Linear_equation#/media/File:Linear_Function_Graph.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Linear_Function_Graph.svg/600px-Linear_Function_Graph.svg.png)
 (source: [Wikipedia](https://en.wikipedia.org/wiki/Linear_equation#/media/File:Linear_Function_Graph.svg))
+
+A point (x1,x2) is a solution (satisfies both equations) iff it lies on both lines.
+
+For three variables, the solution set represents the intersection of planes in
+three dimensional space, e.g. for two equations:
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Intersecting_planes.svg/360px-Intersecting_planes.svg.png)
+(source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Intersecting_planes.svg))
+
+### Possible solutions
+
+A system of linear equations has either:
+
+1. No solutions (e.g. two linear that don't intersect)
+2. One solution (e.g. lines intersecting at a single point)
+3. Infinitely many solutions (e.g. two equations describing the same line)
+
+This makes sense because we are talking about equations of _lines_. Unlike
+parabolas, etc., a line can't intersect another line multiple times, unless
+they are the same.
 
 ## Matrix notation
 
