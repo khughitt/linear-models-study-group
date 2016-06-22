@@ -19,7 +19,6 @@ Figure: Portrait of [Gottfried Wilhelm
 Leibniz](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz) by Christoph
 Bernhard Francke. Leibniz was one of the earliest contributors to the study of
 linear algebra with his study of [determinants](https://en.wikipedia.org/wiki/Determinant).
-
 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz#/media/File:Gottfried_Wilhelm_von_Leibniz.jpg))
 
 ### Linear equations
@@ -235,7 +234,188 @@ A couple important questions to consider about a set of equations:
 - Does a system of equations have at least one solution (is is **consistent**?)
 - If a solution exists, is it unique?
 
-##
+## 1.2 Row Reduction and Echelon Forms
+
+To solve a linear system of equations, we would like to use elementary row
+operations to transform our matrix into **echelon form** or **reduced echelon
+form**.
+
+### Echelon Form
+
+Three requirements for a rectangular matrix to be in echelon form:
+
+1. non-zero rows above rows of all zeros
+2. each leading entry is in a column to the right of that of the row above
+    - **leading entry**: left-most non-zero value in a matrix row.
+3. all entries in columns below leading entries are zero.
+
+### Reduced Echelon Form
+
+If it satisfies two additional requirements, then it is considered to be in
+**_reduced_** echelon form:
+
+4. Each leading entry is 1.
+5. For each row, the only non-zero value is the leading entry.
+
+_For each matrix, there is only a single reduced echelon form matrix associated
+with it._
+
+In the context of systems of linear equations, this is nice because it 
+corresponds directly with the solution for the system:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/d829fa7a9862dd6a11878142ed5715e56316ecb6)
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/0ea019e91c276aaa69dad94d1b373f2338000ae0)
+
+(source: [Wikipedia](https://en.wikipedia.org/wiki/Gaussian_elimination))
+
+### Pivot positions
+
+- **pivot position**: position in a matrix where a leading entry is found in 
+the matrix's reduced echelon form.
+- **pivot column**: column in matrix containing a pivot position
+- **pivot**: number in a pivot position.
+
+### Row reduction algorithm (Gaussian Elimination)
+
+The first part (forward phase) produced an echelon matrix form; the second part
+(backward phase) results in a _reduced_ echelon form.
+
+**The forward phase**
+
+- Begin with the leftmost nonzero column. This is a pivot column. The pivot
+  position is at the top.
+- Select a nonzero entry in the pivot column as a pivot. If necessary,
+  interchange rows to move this entry into the pivot position.
+- Use row addition operations to create zeros in all positions below the pivot.
+- Cover (or ignore) the row containing the pivot position and cover all rows,
+  if any, above it. apply steps 1-3 to the submatrix that remains. Repeat the
+  process until there are no more nonzero rows to modify.
+
+**The backward phase**
+
+- Beginning with the rightmost pivot and working upward and to the left, create
+  zeros above each pivot. If a pivot is not 1, make it 1 by a scaling operation.
+
+(Source: http://people.math.aau.dk/~ottosen/MMA2011/rralg.html)
+
+### Row reduction in R
+
+#### pracma
+
+The [rref](http://www.inside-r.org/packages/cran/pracma/docs/rref) function in 
+the [pracma](http://www.inside-r.org/packages/cran/pracma) package has a
+function for determining the reduced echelon form of a matrix.
+
+Example from documentation:
+
+```r
+A <- matrix(c(1, 2, 3, 1, 3, 2, 3, 2, 1), 3, 3, byrow = TRUE)
+rref(A)       
+#      [,1] [,2] [,3]
+# [1,]    1    0    0
+# [2,]    0    1    0
+# [3,]    0    0    1
+```
+
+#### matlib
+
+The `echelon` function in the
+[matlib](https://cran.r-project.org/web/packages/matlib/index.html) package (a
+library designed for _teaching_ linear algebra) is also capable of determining
+the reduced echelon form of a matrix, but goes one step further in showing all
+of the intervening steps:
+
+```r
+> library('matlib')
+> A <- matrix(c(2, 1, -1,
+... -3, -1, 2,
+... -2, 1, 2), 3, 3, byrow=TRUE)
+> b <- c(8, -11, -3)
+> echelon(A, b, verbose=TRUE, fractions=TRUE)
+
+Initial matrix:
+     [,1] [,2] [,3] [,4]
+[1,]   2    1   -1    8 
+[2,]  -3   -1    2  -11 
+[3,]  -2    1    2   -3 
+
+row: 1 
+
+ exchange rows 1 and 2 
+     [,1] [,2] [,3] [,4]
+[1,]  -3   -1    2  -11 
+[2,]   2    1   -1    8 
+[3,]  -2    1    2   -3 
+
+ multiply row 1 by -1/3 
+     [,1] [,2] [,3] [,4]
+[1,]    1  1/3 -2/3 11/3
+[2,]    2    1   -1    8
+[3,]   -2    1    2   -3
+
+ multiply row 1 by 2 and subtract from row 2 
+     [,1] [,2] [,3] [,4]
+[1,]    1  1/3 -2/3 11/3
+[2,]    0  1/3  1/3  2/3
+[3,]   -2    1    2   -3
+
+ multiply row 1 by 2 and add to row 3 
+     [,1] [,2] [,3] [,4]
+[1,]    1  1/3 -2/3 11/3
+[2,]    0  1/3  1/3  2/3
+[3,]    0  5/3  2/3 13/3
+
+row: 2 
+
+ exchange rows 2 and 3 
+     [,1] [,2] [,3] [,4]
+[1,]    1  1/3 -2/3 11/3
+[2,]    0  5/3  2/3 13/3
+[3,]    0  1/3  1/3  2/3
+
+ multiply row 2 by 3/5 
+     [,1] [,2] [,3] [,4]
+[1,]    1  1/3 -2/3 11/3
+[2,]    0    1  2/5 13/5
+[3,]    0  1/3  1/3  2/3
+
+ multiply row 2 by 1/3 and subtract from row 1 
+     [,1] [,2] [,3] [,4]
+[1,]    1    0 -4/5 14/5
+[2,]    0    1  2/5 13/5
+[3,]    0  1/3  1/3  2/3
+
+ multiply row 2 by 1/3 and subtract from row 3 
+     [,1] [,2] [,3] [,4]
+[1,]    1    0 -4/5 14/5
+[2,]    0    1  2/5 13/5
+[3,]    0    0  1/5 -1/5
+
+row: 3 
+
+ multiply row 3 by 5 
+     [,1] [,2] [,3] [,4]
+[1,]    1    0 -4/5 14/5
+[2,]    0    1  2/5 13/5
+[3,]    0    0    1   -1
+
+ multiply row 3 by 4/5 and add to row 1 
+     [,1] [,2] [,3] [,4]
+[1,]    1    0    0    2
+[2,]    0    1  2/5 13/5
+[3,]    0    0    1   -1
+
+ multiply row 3 by 2/5 and subtract from row 2 
+     [,1] [,2] [,3] [,4]
+[1,]  1    0    0    2  
+[2,]  0    1    0    3  
+[3,]  0    0    1   -1  
+> 
+```
+
+
+
+
 
 ## References
 
@@ -243,4 +423,5 @@ A couple important questions to consider about a set of equations:
 2. [Linear Equation - Wikipedia](https://en.wikipedia.org/wiki/Linear_equation)
 3. [Linear Regression - Wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
 4. [What Is the Difference between Linear and Nonlinear Equations in Regression Analysis?](http://blog.minitab.com/blog/adventures-in-statistics/what-is-the-difference-between-linear-and-nonlinear-equations-in-regression-analysis)
+5. [The Row Reduction Algorithm](http://people.math.aau.dk/~ottosen/MMA2011/rralg.html)
 
