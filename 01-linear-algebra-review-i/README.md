@@ -8,6 +8,14 @@ Linear Algebra Review I
 
 ### Overview
 
+> A **linear equation** in the variables x1,...,xn is an equation that can be
+> written in the form:
+
+![linear equation](img/linear_eqn.png)
+
+> where b and the **coefficients** a1,...,1n are real or complex numbers,
+> usually known in advance.
+
 Most of what we will encounter during our review of linear algebra will be
 simple linear equations:
 
@@ -75,6 +83,13 @@ y = \beta_0 + \beta_1 X_1 + \beta_2 X_2^2 + \beta_3 X_1 X_2
 -->
 ![linear in the parameters](img/linear_in_the_parameters_example.png)
 
+> A model is linear when each term is either a constant or the product of a
+> parameter and a predictor variable. A linear equation is constructed by
+> adding the results for each term. (Minitab blog [4])
+
+- This allows for the introduction of curviture into the regression fit.
+- Thus, a _linear_ model can be used to fit a _nonlinear_ relationship.
+
 A example of this is [polynomial regression](https://en.wikipedia.org/wiki/Polynomial_regression):
 
 > ...The mean of the response variable is a linear combination of the parameters 
@@ -89,9 +104,31 @@ A example of this is [polynomial regression](https://en.wikipedia.org/wiki/Polyn
 > (up to a given rank) of a predictor variable.
 > -Wikipedia
 
-References
-----------
+## Systems of Linear equations
 
-1. [Linear Equation - Wikipedia](https://en.wikipedia.org/wiki/Linear_equation)
-2. [Linear Regression - Wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
-3. [What Is the Difference between Linear and Nonlinear Equations in Regression Analysis?](http://blog.minitab.com/blog/adventures-in-statistics/what-is-the-difference-between-linear-and-nonlinear-equations-in-regression-analysis)
+### Some definitions
+
+- **system of linear equations** (aka **linear system**): collection of one or
+  more linear equations using the same variables.
+- **solution**: List of numbers that makes each equation evaluate to a true
+  statement when substituted for the variables in a linear system.
+- **solution set**: The set of all possible solutions for a linear system.
+- **equivalence**: Two linear systems are said to be equivalent if they share
+  the same solution set.
+
+### Geometric interpretation
+
+For two variables, the solution set represents the intersection (if it occurs)
+of two lines:
+
+![](https://en.wikipedia.org/wiki/Linear_equation#/media/File:Linear_Function_Graph.svg)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/Linear_equation#/media/File:Linear_Function_Graph.svg))
+
+## Matrix notation
+
+## References
+
+1. [Linear Algebra and its applications (Lay 3e)](http://www.laylinalgebra.com/)
+2. [Linear Equation - Wikipedia](https://en.wikipedia.org/wiki/Linear_equation)
+3. [Linear Regression - Wikipedia](https://en.wikipedia.org/wiki/Linear_regression)
+4. [What Is the Difference between Linear and Nonlinear Equations in Regression Analysis?](http://blog.minitab.com/blog/adventures-in-statistics/what-is-the-difference-between-linear-and-nonlinear-equations-in-regression-analysis)
