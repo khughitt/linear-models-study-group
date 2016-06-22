@@ -4,9 +4,11 @@ Linear Algebra Review I
 - Keith Hughitt
 - June 22, 2016
 
-## Linear equations
+## 1.1 Linear Equations in Linear Algebra
 
-### Overview
+### Linear equations
+
+#### Overview
 
 > A **linear equation** in the variables x1,...,xn is an equation that can be
 > written in the form:
@@ -34,7 +36,7 @@ or a plane in three-dimensional space:
 In higher dimensions, this generalizes to a n-1 dimensional hyperplane in
 n-dimensional space.
 
-### Equations for a line
+#### Equations for a line
 
 Two-dimensional linear equations are commonly represented in different forms:
 
@@ -69,7 +71,7 @@ and
 (See [Wikipedia](https://en.wikipedia.org/wiki/Linear_equation#Forms_for_two-dimensional_linear_equations)
 for a more exhaustive list of the ways lines can be represented.)
 
-### Linear in the parameters
+#### Linear in the parameters
 
 While our review of linear algebra will primarily focus on the simple types of
 linear equations described above. For these equations, each term in the
@@ -104,9 +106,9 @@ A example of this is [polynomial regression](https://en.wikipedia.org/wiki/Polyn
 > (up to a given rank) of a predictor variable.
 > -Wikipedia
 
-## Systems of Linear equations
+### Systems of Linear equations
 
-### Some definitions
+#### Some definitions
 
 - **system of linear equations** (aka **linear system**): collection of one or
   more linear equations using the same variables.
@@ -116,7 +118,7 @@ A example of this is [polynomial regression](https://en.wikipedia.org/wiki/Polyn
 - **equivalence**: Two linear systems are said to be equivalent if they share
   the same solution set.
 
-### Geometric interpretation
+#### Geometric interpretation
 
 For two variables, the solution set represents the intersection (if it occurs)
 of two lines:
@@ -129,10 +131,10 @@ A point (x1,x2) is a solution (satisfies both equations) iff it lies on both lin
 For three variables, the solution set represents the intersection of planes in
 three dimensional space, e.g. for two equations:
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Intersecting_planes.svg/360px-Intersecting_planes.svg.png)
-(source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Intersecting_planes.svg))
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Intersecting_Planes_2.svg/480px-Intersecting_Planes_2.svg.png)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/File:Intersecting_Planes_2.svg))
 
-### Possible solutions
+#### Possible solutions
 
 A system of linear equations has either:
 
@@ -144,7 +146,59 @@ This makes sense because we are talking about equations of _lines_. Unlike
 parabolas, etc., a line can't intersect another line multiple times, unless
 they are the same.
 
-## Matrix notation
+### Matrix notation
+
+A linear system can be represented using a single matrix:
+
+- **coefficient matrix**: values represent variable coefficients
+- **augmented matrix**: same thing but with the RHS constant part of the linear
+  equations.
+
+Example (Wikipedia):
+
+System of linear equations:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/6ec576274d4b6ff0127ce52790ad9f71c4c2e2bc)
+
+Augmented matrix for that system:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/6d99c79eb45b325d779be9693c613d9aec07b6d4)
+
+Dimension (rows x columns):
+
+- _m_ x _n_ (Lay)
+- _n_ x _p_ (Commonly used in machine learning)
+
+### Solving a linear system
+
+To solve a linear set of equations, we use **elementary row operations** to
+iteratively replace our system of equations with a simpler _equivalent_ system.
+
+#### Elementary row operations
+
+1. **Replacement** - Replace one row by the sum of itself with a multiple of
+   another row.
+2. **Interchange** - Swap two rows.
+3. **Scaling** - Replace a row my the product of itself with a non-zero
+   constant.
+
+- Two matrices are said to be **row equivalent** if you can switch between them
+using only elementary row operations.
+- If two augmented matrices are row equivalent, the the two systems have the
+  same solution set.
+
+Example:
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/5f6367f306a7947555dd25f9b3b29a5903efdabb)
+
+(Source: [Wikpedia](https://en.wikipedia.org/wiki/System_of_linear_equations); Thank you Wikipedia for saving me from so much typing!)
+
+#### Existence and Uniqueness
+
+A couple important questions to consider about a set of equations:
+
+- Does a system of equations have at least one solution (is is **consistent**?)
+- If a solution exists, is it unique?
 
 ## References
 
