@@ -110,25 +110,18 @@ $\mathbf{A} is a $m \ times n$ matrix. The following are all true or false.
 1. $\mathbf{A}$ has a pivot position in every row.
 
 ### Computation of $A\mathbf{x}$
+Introduction of the identity matrix concept - the identity matrix is key to finding inverse of a matrix
+
+![https://tfetimes.com/c-identity-matrix/](http://rosettacode.org/mw/images/math/f/e/1/fe1a9857fd0a471baec6c538220e1bc9.png)
 
 ### Theorem 5
+Assuming the following,  
 
-## 1.5 Solution Sets of Linear Systems
-__Definitions__:  
+- $\mathbf{A}$ is a $m\times n$ matrix
+- $\mathbf{u}$ and $\mathbf{v}$ are real vectors
+- $c$ is a scalar
 
-* homogeneous -   
-* trivial solution -   
-* nontrivial solution -   
-* parametric vector equation - 
-* parametric vector form - 
+Then  
 
-### Theorem 6
-
-### Writing a solution set
-
-## 1.6 Applications of Linear Systems
-### Economics
-
-### Chemical Equations
-
-### Network Flow
+- $\mathbf{A}(\mathbf{u} + \mathbf{v}) = \mathbf{A}\mathbf{u} + \mathbf{A}\mathbf{v}$  
+- $\mathbf{A}(c\mathbf{u}) = c(\mathbf{A}\mathbf{u})$  

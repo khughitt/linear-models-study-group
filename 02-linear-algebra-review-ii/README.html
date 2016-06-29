@@ -249,41 +249,26 @@ x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + \dots + x_n\mathbf{a}_n\]</span></p>
 </div>
 <div id="computation-of-amathbfx" class="section level3">
 <h3>Computation of <span class="math inline">\(A\mathbf{x}\)</span></h3>
+<p>Introduction of the identity matrix concept - the identity matrix is key to finding inverse of a matrix</p>
+<div class="figure">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMUAAACFBAMAAAAZTiGvAAAAMFBMVEX///8AAABQUFAiIiIEBAQwMDCKioq2trZiYmLm5uYMDAxAQEDMzMx0dHSenp4WFhY1GSYuAAAEnUlEQVRoBe1bv2sUQRR+p4lmkxyy4A8EhaCljektthGENCeChTaBYMBOW0HIgYJgY5HKNNcKEcTKRjB1mogWWgRT2QlC/gDN7Mzbed/szs7sZRMCt4Ew87335n07b+Y2H++UyPfzNU2v+Hzx9rtpmvmjh7u7P/3eWM+f3W81HC9i0wTiZiaGY0NUYvvVgkUArFnOdEiwVvP7dlHyjlYKBKCwwsSEhDiSh4Lj1ICmnnAWAGzE0YSEOIju2XWza3TuA0MAbMTRhDTi6C3T9F9OA4CNOJqQRhxbyzQ34jQA2IijCWnMkXEalaAAbMTRhJxIjhE/KtZqa0A0f0H/cgSNU6vejjxzCWj94L4lS/q34DDxjWo1uyDvrgRFWpiY+EYc6jO1x1kAsBFHE9KII9mU7xIJMDcjEx/kuJF+fMNraPvHQjFHYM1ypuODHHLJmPOOI75wXa26WskKHJtORBXlFVvy2ew8Tl+hivKKLZtWziL1lZFIeqVfbMnMdm4Whz6DjoryiS2bV84i9VVPSioQdI5H5ua5CQntw/zZ51ViH46HI+RoQuo4fh3Eq7DMrnM4hMfG2JlZ3C+0pXXxTH0+2uCo2wdzjJgUzsMUwvgOo69AUgEHeg6jr0BSAYfjsXu1s0h95agoceaOx2a2MxMSOg+QVLAPx2Mz21msvgJJ5RdbNrGcdfpKViNmHjrzmByhmDqO76HFkf5+5g88tr/n/keI9tTVqtsHljFYK9BXAEiKLczKaAx95RdbnBTHcfSV0Us6EYgtzM3IxIdqBfoKALzoOSuOUl9dP38fnRqpu9uT+gpABIeJz/dx9mIVBZU0A8oE2aGrXA89mZnLlTHqfaXSZuwFELEPE5+/r06POAuMvI+MrWNy5LXqHTSGKn6YY8Q+xVEA3EdQXz1d5iww5mcuu1QoqeA8gvpqWHRd5v6pn31NpThARQHAfcDDMZD66gEbcVQcoKIARHCY+Pw8bmNuRooDVBSACA6hr+avclYcFQd2qfxiC1cysvqqb78RKp0HRx9mVLWazih5+fx1KU2+j5K1uUFxTA2oP7vWKy1ukWNjcelLsk7PjpIjz71C10ocbeurT7S545K0WKs89S36vHfUHG5+hdveR8dRVQG05e9ENBWoO4+iFPlkEmrV9vsKK6hRfq+S98IFgN6W3nAiNJ/q+OB5JHfEQgC0viZd8lnYruODHBweGpEeolvjgKwIJoYDrhKA8r0qXbSW75U6ArhoytDyvVIpPT+TcOZjva9K505U17+y/ybGU+gqc+ncic7crArUthP3Tqx81O7uVpalxjgJn8FOJ+IFmJgzh5auH2B1CpS3gEO1gpauHxRJcaK/bw9xmBatXuoHmJqRaQGHOKCl6wec1R3z7xNDHD1vfxc8bm7GURzQpvQDzumO0RwZr1Qc1YAj3PFEcYz46WpqVdnfNS3H4Jl7+7vY7K3s70ZyQEvXD3in7hh1HtDS9QM3N+MoDmjp+gHndMcojpr+LjR73eQa6+/bQ2devbaZteOIr1dXq3ZqNVxdfRyfyRf5e/VR5vMRDdP0kt8b61ms/b8ysVnCcf8Bo+64MIFTsIcAAAAASUVORK5CYII=" alt="https://tfetimes.com/c-identity-matrix/" />
+<p class="caption"><a href="https://tfetimes.com/c-identity-matrix/" class="uri">https://tfetimes.com/c-identity-matrix/</a></p>
+</div>
 </div>
 <div id="theorem-5" class="section level3">
 <h3>Theorem 5</h3>
-</div>
-</div>
-<div id="solution-sets-of-linear-systems" class="section level2">
-<h2>1.5 Solution Sets of Linear Systems</h2>
-<p><strong>Definitions</strong>:</p>
+<p>Assuming the following,</p>
 <ul>
-<li>homogeneous -<br />
-</li>
-<li>trivial solution -<br />
-</li>
-<li>nontrivial solution -<br />
-</li>
-<li>parametric vector equation -</li>
-<li>parametric vector form -</li>
+<li><span class="math inline">\(\mathbf{A}\)</span> is a <span class="math inline">\(m\times n\)</span> matrix</li>
+<li><span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> are real vectors</li>
+<li><span class="math inline">\(c\)</span> is a scalar</li>
 </ul>
-<div id="theorem-6" class="section level3">
-<h3>Theorem 6</h3>
-</div>
-<div id="writing-a-solution-set" class="section level3">
-<h3>Writing a solution set</h3>
-</div>
-</div>
-<div id="applications-of-linear-systems" class="section level2">
-<h2>1.6 Applications of Linear Systems</h2>
-<div id="economics" class="section level3">
-<h3>Economics</h3>
-</div>
-<div id="chemical-equations" class="section level3">
-<h3>Chemical Equations</h3>
-</div>
-<div id="network-flow" class="section level3">
-<h3>Network Flow</h3>
+<p>Then</p>
+<ul>
+<li><span class="math inline">\(\mathbf{A}(\mathbf{u} + \mathbf{v}) = \mathbf{A}\mathbf{u} + \mathbf{A}\mathbf{v}\)</span><br />
+</li>
+<li><span class="math inline">\(\mathbf{A}(c\mathbf{u}) = c(\mathbf{A}\mathbf{u})\)</span></li>
+</ul>
 </div>
 </div>
 </div>
