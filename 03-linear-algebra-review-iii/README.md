@@ -12,7 +12,7 @@ A homogeneous equation always has one solution, the zero vector.
 
 The homogeneous equation has a nontrivial solution if and only if the equation has at least one free variable.
 
-![geometric example](img/geometric_homogeneous)
+![geometric example](img/geometric_homogeneous.png)
 
 #### Parametric Vector Form
 
@@ -32,9 +32,9 @@ The solution to *A***x**=**0** can be written as
 
 ![Solution to Ax=0](img/solution2.png)
 
-![Geometric example](img/geometric_parallel)
+![Geometric example](img/geometric_parallel.png)
 
 #### Theorem 6
 
-Suppose the equation ![Nonhomogeneous](img/nonhomogeneous.png) is consistent for some given **b**, and let **p** be a solution. Then the solution set of ![Nonhomogeneous](img/nonhomogeneous.png) is the set of all vectors of the form ![Solution to nonhoogeneous](img/nonhomo_soltion.png), where ![v_h](img/v_h.png) is any solution of the homogenous equation ![homogeneous](img/homogeneous.png).
+Suppose the equation ![Nonhomogeneous](img/nonhomogeneous.png) is consistent for some given **b**, and let **p** be a solution. Then the solution set of ![Nonhomogeneous](img/nonhomogeneous.png) is the set of all vectors of the form ![Solution to nonhoogeneous](img/nonhomo_solution.png), where ![v_h](img/v_h.png) is any solution of the homogenous equation ![homogeneous](img/homogeneous.png).
 
