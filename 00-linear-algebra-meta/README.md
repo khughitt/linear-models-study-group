@@ -4,6 +4,32 @@ Linear Algebra Review - Miscellaneous Topics
 - Keith Hughitt
 - July 07, 2016
 
+Vector dimension vs. Number of variables
+----------------------------------------
+
+Suppose you have two vectors, **u** and **v** in R^3, e.g.:
+
+<!-- v = \left(\begin{smallmatrix}2\\7\\9\end{smallmatrix}\right) -->
+![](img/vector_dim_u.png) and ![](img/vector_dim_v.png).
+
+The corresponding system of linear equations would be:
+
+![](img/vector_dim_eqns.png)
+
+Here we have more rows than columns: there are only two variables (x1 and x2)
+in our system of equations, and as such, we would visualize these _constraints_
+as three lines in 2-dimensional space.
+
+However, when considering the linear (in)depedence of the _vectors_, we would
+plot each of the two vectors as a point in 3-dimensional space, with a line
+coming from the origin. **Span{u, v}** would be the plane spanned by all linear
+combinations of u and v.
+
+So, the important thing to keep in mind is that the geometric interpretation of
+a system of equations is different from the geometric interpretation of vectors
+for that same system, and indeed, may even reside in spaces of different
+dimension.
+
 Relationship between coefficient matrices and empirical data matrices
 ---------------------------------------------------------------------
 
