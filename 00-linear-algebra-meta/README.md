@@ -105,8 +105,8 @@ Notice, however, that there is no direct correspondance between the variables
 in our original coefficient matrix, and those in the data matrix -- the lines
 corresponding to the constraints in our original system of linear equations. 
 
-Bottom line: when working with matrices, keep in mind that matrices of systems
-of equations and empirical data matrices, while both referring to related 
-variables, have very different interpretations.
+**Bottom line**: when working with matrices, keep in mind that matrices of
+systems of equations and empirical data matrices, while both referring to
+related variables, have very different interpretations.
 
 
