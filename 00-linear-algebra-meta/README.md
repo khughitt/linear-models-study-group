@@ -89,6 +89,8 @@ The first five entries in our _data_ matrix are:
 
 Visualizing the data and underlying relationship, we have:
 
+![](img/data_relation_plot.png)
+
 ```r
 plot(height, weight, xlab='height', ylab='weight')
 abline(0, 1/3, col='red')
