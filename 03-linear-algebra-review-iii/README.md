@@ -42,13 +42,22 @@ Suppose the equation ![Nonhomogeneous](img/nonhomogeneous.png) is consistent for
 
 #### Definition of Linear Independence
 
-An indexed set of vectors ![{v_1,...,v_p}](img/vectors.png) in ![R^n](img/reals.png) is said to be linearly independent if the vector equation 
-![x_1v_1+x_2v_2+...+x_pv_p=0](img/independent.png)
-has only the trivial solution. The set ![{v_1,...,v_p}](img/vectors.png) is said to be linearly dependent if there exists weights ![c_1,...,c_p](img/weights.png), not all zero, such that
-![c_1v_1+c_2v_2+...+c_pv_p=0](img/dependent.png)
+An indexed set of vectors ![{v_1,...,v_p}](img/vectors.png) in
+![R^n](img/reals.png) is said to be linearly independent if the vector equation
+![x_1v_1+x_2v_2+...+x_pv_p=0](img/independent.png) has only the trivial
+solution. The set ![{v_1,...,v_p}](img/vectors.png) is said to be linearly
+dependent if there exists weights ![c_1,...,c_p](img/weights.png), not all
+zero, such that ![c_1v_1+c_2v_2+...+c_pv_p=0](img/dependent.png)
 
+Therefore by section 1.5, the vectors are dependent if the equation
+![Ax=0](img/homogeneous.png) has at least one free variable. If there are no
+free variables then the vectors are independent.
 
-Therefore by section 1.5, the vectors are dependent if the equation ![Ax=0](img/homogeneous.png) has at least one free variable. If there are no free variables then the vectors are independent.
+**note**: Linear dependence of _vectors_ (columns) should not be confused with
+equivalent linear equations (row/constraints).
+
+- **p** > **n** -> more variables than equations, therefor there must be at
+  least one free variable.
 
 #### Special cases
 
