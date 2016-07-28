@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 Linear Algebra Review II
 =======================
 
@@ -77,7 +80,8 @@ $\mathbf{u}$, $\mathbf{v}$, and $\mathbf{w}$ are vectors, where $c$ and $d$ are 
 ## 1.4 The Matrix Equation $A\mathbf{x} = \mathbf{b}$
 $A$ is a $m\times n$ matrix, with columns $\mathbf{a}_1$, ..., $\mathbf{a}_n$, and if $\mathbf{x}$ is in ${\rm I\!R}^n$,  
 
-$$A\mathbf{x} = 
+$$
+A\mathbf{x} = 
 \begin{bmatrix}
       \mathbf{a}_1 & \mathbf{a}_2 & \dots & \mathbf{a}_n
 \end{bmatrix} 
@@ -102,14 +106,15 @@ The solutions of $x$ (and solution set for the augmented matrix) are all the sam
 Only solution if and only if $\mathbf{b}$ is a linear combination of the columns of $A$
 
 ### Theorem 4
-$\mathbf{A} is a $m \ times n$ matrix. The following are all true or false.  
+$\mathbf{A}$ is a $m \times n$ matrix. The following are all true or false.  
 
 1. for all real $\mathbf{b}$, $\mathbf{A}x=\mathbf{b}$ has a solution  
 1. for all real $\mathbf{b}$, $\mathbf{b}$ is a linear combination of columns in $\mathbf{A}$
 1. column of $\mathbf{A}$ span ${\rm I\!R}^m$ - I think this means the columns are real as well  
 1. $\mathbf{A}$ has a pivot position in every row.
 
-### Computation of $A\mathbf{x}$
+### Computation of $A\mathbf{x}$  
+
 Introduction of the identity matrix concept - the identity matrix is key to finding inverse of a matrix
 
 ![https://tfetimes.com/c-identity-matrix/](http://rosettacode.org/mw/images/math/f/e/1/fe1a9857fd0a471baec6c538220e1bc9.png)
