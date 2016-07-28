@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 Linear Algebra Review II
 =======================
 
