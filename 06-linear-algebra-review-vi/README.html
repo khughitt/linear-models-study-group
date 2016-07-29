@@ -135,8 +135,8 @@ $(document).ready(function () {
 <p>Definition of the inverse matrix <span class="math inline">\(\mathbf{A}^{-1}\)</span> when <span class="math inline">\(\mathbf{A}\)</span>. <span class="math inline">\(\mathbf{A}\mathbf{A}^{-1}=I\)</span><br />
 <span class="math inline">\(\mathbf{A}^{-1}\mathbf{A}=I\)</span></p>
 <p>Where <span class="math inline">\(I\)</span> is the identity matrix.</p>
-<p><strong>Terminology</strong> singular matrix: non-invertible matrix<br />
-nonsingular matrix: invertible matrix</p>
+<p><em>singular matrix</em> non-invertible matrix<br />
+<em>nonsingular matrix</em> invertible matrix</p>
 <div id="theorem-4" class="section level2">
 <h2>Theorem 4</h2>
 <p>Formula for calculating the inverse of a <span class="math inline">\(2 \times 2\)</span> matrix.</p>
@@ -148,7 +148,7 @@ d &amp; -b\\
 -c &amp; a
 \end{bmatrix}\]</span></p>
 <p>If <span class="math inline">\(ab-bc=0\)</span>, then <span class="math inline">\(\mathbf{A}\)</span> is not invertible.</p>
-<p><span class="math inline">\(ad-bc\)</span> is the <strong>determinant</strong>, chapter 3 focuses on determinants.</p>
+<p><span class="math inline">\(ad-bc\)</span> is the <em>determinant</em>, chapter 3 focuses on determinants.</p>
 </div>
 <div id="theorem-5" class="section level2">
 <h2>Theorem 5</h2>
@@ -164,17 +164,16 @@ d &amp; -b\\
 </li>
 <li>If <span class="math inline">\(A\)</span> is an inversible matrix, then so is <span class="math inline">\(A^T\)</span>, and the inverse of <span class="math inline">\(A^T\)</span> is the transpose of <span class="math inline">\(A^{-1}\)</span>. That is <span class="math inline">\((A^T)^{-1}=(A^{-1})^T\)</span></li>
 </ol>
-<p><strong>Elementary matrix</strong> - obtianed by performing a single elementary row operation on an identity matrix.</p>
-<p>Three kinds of elementary matricies<br />
-<strong>TODO</strong></p>
-<p><strong>TODO</strong> Definition of <span class="math inline">\(E\)</span> and <span class="math inline">\(EA\)</span></p>
+<p><strong>Elementary matrix</strong> (<span class="math inline">\(E\)</span>) - obtianed by performing a single elementary row operation on an identity matrix.</p>
+<p>Three kinds of elementary matricies, thoes that are products of the three elementary row operations replacement, interchange, and scaling (p. 7).</p>
+<p><span class="math inline">\(EA\)</span> is the product of an elementary matrix and matrix <span class="math inline">\(A\)</span>.</p>
 </div>
 <div id="theorem-7" class="section level2">
 <h2>Theorem 7</h2>
 <p>An <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(A\)</span> is invertible if and only if <span class="math inline">\(A\)</span> is row equibalent to <span class="math inline">\(I_n\)</span>, and in this case, any sequence of elementary row operations that reduces <span class="math inline">\(A\)</span> to <span class="math inline">\(I_n\)</span> also transforms <span class="math inline">\(I_n\)</span> into <span class="math inline">\(A^{-1}\)</span>.</p>
 </div>
 <div id="algorithm-for-finding-a-1" class="section level2">
-<h2>Algorithm for finding <span class="math inline">\(A^-1\)</span></h2>
+<h2>Algorithm for finding <span class="math inline">\(A^{-1}\)</span></h2>
 <p>Row reduce the augmented matrix <span class="math inline">\(\begin{bmatrix} A &amp; I \end{bmatrix}\)</span>. IF <span class="math inline">\(A\)</span> is row equivalent to <span class="math inline">\(I\)</span>, then <span class="math inline">\(\begin{bmatrix} A &amp; I \end{bmatrix}\)</span> is row equivalent to <span class="math inline">\(\begin{bmatrix} I &amp; A^{-1} \end{bmatrix}\)</span>. Otherwise, <span class="math inline">\(A\)</span> is not invertible.</p>
 </div>
 </div>
@@ -209,6 +208,47 @@ Let <span class="math inline">\(A\)</span> be a square <span class="math inline"
 <li><span class="math inline">\(A^T\)</span> is an invertible matrix.</li>
 </ol>
 <p>Continued thoughout the book, p. 179 (parts m - r), 312 (s &amp; t), 479 (u - x)</p>
+<div id="proof" class="section level3">
+<h3>Proof</h3>
+<p>See figure 1 page 129 for relationships between individual parts used in proof.</p>
+<ul>
+<li>Circular relationship between a, j, d, c, and b
+<ul>
+<li><span class="math inline">\(a \mapsto j\)</span> - by definition of an invertible matrix as <span class="math inline">\(C=A^{-1}\)</span><br />
+</li>
+<li><span class="math inline">\(j \mapsto d\)</span> - from exercise 23 section 2.1<br />
++ <span class="math inline">\(CA=I\)</span> and <span class="math inline">\(Ax=0\)</span> only has a singular solution.<br />
++ <span class="math inline">\(CAx=C0=0\)</span> therefore <span class="math inline">\(I_nx=0\)</span> and <span class="math inline">\(x=0\)</span>, <span class="math inline">\(Ax=0\)</span> has not free variables and therefore only has the trivial solution. Trivial solution is <span class="math inline">\(x=0\)</span>, <span class="math inline">\(Ax=0\)</span> has a nontrivial solution if there is a nonzero vector <span class="math inline">\(x\)</span> that satisfies the equation.<br />
+</li>
+<li><span class="math inline">\(d \mapsto c\)</span> - there are no free variables therefore <span class="math inline">\(A\)</span> has <span class="math inline">\(n\)</span> pivot columns.<br />
+</li>
+<li><span class="math inline">\(c \mapsto b\)</span> - for a square <span class="math inline">\(n \times n\)</span> matrix with <span class="math inline">\(n\)</span> pivot positions the pivot positions must lie on the diagonal and therefore <span class="math inline">\(I_n\)</span> is the reduced echelon form of <span class="math inline">\(A\)</span>.<br />
+</li>
+<li><span class="math inline">\(b \mapsto a\)</span> - by theorem 7 (see above).</li>
+</ul></li>
+<li>Circular relationship between a,k, and g
+<ul>
+<li><span class="math inline">\(a \mapsto k\)</span> - same as <span class="math inline">\(a \mapsto j\)</span><br />
+</li>
+<li><span class="math inline">\(k \mapsto g\)</span> - exercise 24 section 2.1</li>
+<li><span class="math inline">\(g \mapsto a\)</span> - exercise 24 section 2.2<br />
+</li>
+</ul></li>
+<li>Equivalence g, h, and i (applies for all matrices)
+<ul>
+<li>Theorem 4 (section 1.4) and theorem 12 (a) section 1.9<br />
+</li>
+</ul></li>
+<li>Equivalence d, e, and f (applies for all matrices)
+<ul>
+<li>Section 1.7 and Theorem 12 (b) section 1.9<br />
+</li>
+</ul></li>
+<li>Parts g and d link h, i and e, f to the rest of IMT<br />
+</li>
+<li><span class="math inline">\(a \Leftrightarrow a\)</span> Theorem 6 (c) section 2.2.</li>
+</ul>
+</div>
 </div>
 <div id="theorem-9" class="section level2">
 <h2>Theorem 9</h2>
@@ -218,12 +258,6 @@ Let <span class="math inline">\(A\)</span> be a square <span class="math inline"
 <li><span class="math inline">\(T(S)(\mathbf{x})=\mathbf{x}\)</span> for all <span class="math inline">\(\mathbf{x}\)</span> in <span class="math inline">\({\rm I\!R}^n\)</span></li>
 </ol>
 </div>
-</div>
-<div id="questions" class="section level1">
-<h1>Questions</h1>
-<ul>
-<li>Are only square matricies invertible?</li>
-</ul>
 </div>
 
 
