@@ -1,0 +1,20 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+    md_extensions: +tex_math_dollars
+    pandoc_args: ['--webtex']
+---
+
+Linear Algebra Review VII
+=========================
+
+- Keith Hughitt
+- August 05, 2016
+
+## 2.4 Partitioned Matrices
+
+testing...
+
+$y  = 3x^2$
+

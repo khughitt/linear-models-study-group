@@ -1,13 +1,13 @@
 Linear Algebra Review VI
-=======================
+========================
 
 - Nate Olson
 - July 28, 2016
 
-# Overview
+## Overview
 Covering sections 2.2 and 2.3, which focus on inverse matricies
 
-# Section 2.2
+## Section 2.2
 Definition of the inverse matrix $\mathbf{A}^{-1}$ when $\mathbf{A}$.
 $\mathbf{A}\mathbf{A}^{-1}=I$  
 $\mathbf{A}^{-1}\mathbf{A}=I$  
@@ -17,7 +17,7 @@ Where $I$ is the identity matrix.
 _singular matrix_ non-invertible matrix  
 _nonsingular matrix_ invertible matrix  
 
-## Theorem 4
+### Theorem 4
 Formula for calculating the inverse of a $2 \times 2$ matrix.  
 
 Let $\mathbf{A}=\begin{bmatrix} a & b\\ c & d \end{bmatrix}$.
@@ -34,10 +34,10 @@ If $ab-bc=0$, then $\mathbf{A}$ is not invertible.
 
 $ad-bc$ is the _determinant_, chapter 3 focuses on determinants.  
 
-## Theorem 5
+### Theorem 5
 If $A$ is an invertible $n \times n$ matrix, then for each $\mathbf{b}$ in ${\rm I\!R}^n$, the equation $A\mathbf{x}=\mathbf{b}$ has the unique solution $\mathbf{x}=A^{-1}\mathbf{b}$
 
-## Theorem 6
+### Theorem 6
 Three parts  
 
 1. If $A$ is an invertible matrix, then $A^{-1}$ is invertible and $(A^{-1})^{-1}=A$  
@@ -50,14 +50,14 @@ Three kinds of elementary matricies, thoes that are products of the three elemen
 
 $EA$ is the product of an elementary matrix and matrix $A$. 
 
-## Theorem 7
+### Theorem 7
 An $n \times n$ matrix $A$ is invertible if and only if $A$ is row equibalent to $I_n$, and in this case, any sequence of elementary row operations that reduces $A$ to $I_n$ also transforms $I_n$ into $A^{-1}$.  
 
-## Algorithm for finding $A^{-1}$  
+### Algorithm for finding $A^{-1}$  
 Row reduce the augmented matrix $\begin{bmatrix} A & I \end{bmatrix}$. IF $A$ is row equivalent to $I$, then $\begin{bmatrix} A & I \end{bmatrix}$ is row equivalent to $\begin{bmatrix} I & A^{-1} \end{bmatrix}$. Otherwise, $A$ is not invertible.
 
-# Section 2.3 
-## Theorem 8
+## Section 2.3 
+### Theorem 8
 
 __The Invertible Matrix Theorem__  
 Let $A$ be a square $n \times n$ matrix. Then the following statements are equivalent, all statements are _TRUE_ or all are _FALSE_.  
@@ -77,7 +77,7 @@ l. $A^T$ is an invertible matrix.
 
 Continued thoughout the book, p. 179 (parts m - r), 312 (s & t), 479 (u - x)  
 
-### Proof
+#### Proof
 See figure 1 page 129 for relationships between individual parts used in proof.
 
 * Circular relationship between a, j, d, c, and b  
@@ -98,11 +98,9 @@ See figure 1 page 129 for relationships between individual parts used in proof.
 * Equivalence d, e, and f (applies for all matrices)  
       - Section 1.7 and Theorem 12 (b) section 1.9  
 * Parts g and d link h, i and e, f to the rest of IMT  
-* $a \Leftrightarrow a$ Theorem 6 (c) section 2.2.
-            
-      
+* $a \Leftrightarrow a$ Theorem 6 (c) section 2.2.   
 
-## Theorem 9
+### Theorem 9
 Let $T: {\rm I\!R}^n \mapsto {\rm I\!R}^n$ be a linear transformation and let $A$ be the standard matrix for $T$. Then $T$ is invertible if and only if $A$ is an invertible matrix. In that case, the linear transfromation $S$ given by $S(\mathbf{x})=A^{-1}\mathbf{x}$ is the unqiue function satisfying (1) and (2).
  
 (1) $S(T)(\mathbf{x})=\mathbf{x}$ for all $\mathbf{x}$ in ${\rm I\!R}^n$
