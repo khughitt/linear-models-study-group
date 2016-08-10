@@ -26,6 +26,7 @@ submatrices.
 Example from Wikipedia: suppose we have a $4 \times 4$ matrix, $P$:
 
 ![](img/partitioned-matrices-1.png)
+
 <!--
 $$
 \mathbf{P} = \begin{bmatrix}
@@ -51,6 +52,7 @@ $$
 4 & 4\end{bmatrix}.
 $$
 -->
+
 ![](img/partitioned-matrices-2.png)
 
 We could then rewrite the partitioned or **block matrix** as:
@@ -62,6 +64,7 @@ $$
 \mathbf{P}_{21} & \mathbf{P}_{22}\end{bmatrix}.
 $$
 -->
+
 ![](img/partitioned-matrices-3.png)
 
 So far, we have already considered one type of partitioned matrix: the division 
@@ -107,6 +110,7 @@ A_{21}B_1 + A_{22}B_2\\
 \end{bmatrix}
 $$
 -->
+
 ![](img/partitioned-matrices-4.png)
 
 ### Views of matrix products
@@ -140,6 +144,7 @@ AB = [\text{col}_1(A) \text{col}_2(A)  \dots \text{col}_n(A)]
 = \text{col}_1(A)\text{row}_1(B) + \dots + \text{col}_n(A)\text{row}_n(B)
 $$
 -->
+
 ![](img/partitioned-matrices-5.png)
 
 ### Inverses of partitioned matrices
@@ -151,6 +156,7 @@ $$
 \begin{bmatrix} \mathbf{A} & \mathbf{B} \\ \mathbf{C} & \mathbf{D} \end{bmatrix}^{-1} = \begin{bmatrix} \mathbf{A}^{-1}+\mathbf{A}^{-1}\mathbf{B}(\mathbf{D}-\mathbf{CA}^{-1}\mathbf{B})^{-1}\mathbf{CA}^{-1} & -\mathbf{A}^{-1}\mathbf{B}(\mathbf{D}-\mathbf{CA}^{-1}\mathbf{B})^{-1} \\ -(\mathbf{D}-\mathbf{CA}^{-1}\mathbf{B})^{-1}\mathbf{CA}^{-1} & (\mathbf{D}-\mathbf{CA}^{-1}\mathbf{B})^{-1} \end{bmatrix}
 $$
 -->
+
 ![](img/partitioned-matrices-6.png)
 
 where $A$, $B$, $C$ and $D$ are matrix sub-blocks of arbitrary size.
@@ -183,19 +189,20 @@ we will revisit it later after we review eigenvectors and eigenvalues (chapter 5
 - The L and U matrices effectively "encode" the row reduction steps needed to
   solve a system of linear equations.
 - Formulated by Alan Turing in 1948.
-- Example aplications:
-    - Solving systems of equations
-    - Matrix inversion
-    - Computing determinants
+
+![LU decomposition](img/lu-decomp.png)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition))
+
+#### Aplications
+
+- Solving systems of equations
+- Matrix inversion
+- Computing determinants
 - Especially useful when you want to solve multiple systems of equations 
   involving the same Matrix-vector $Ax$.
 	- Up-front computational cost
 	- Much faster solutions for subsequent systems
  	- Used by many computational solvers.
-
-![LU decomposition](img/lu-decomp.png)
-(source: [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition))
-
 
 ### Non-negative matrix factorization
 
@@ -241,7 +248,17 @@ Here, the information contained in $V$ is split into the $r$ columns of $W$.
 
 (Source: `citep("10.1038/44565")`)
 
-### Example: Leukemia expression analysis
+### Applications in Computational Biology (Devarajan, 2008)
+
+The next few sections summarise some of the key ideas from a 2008 review paper
+by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and
+interpretive tool in computational biology".
+
+#### A. Clustering of expression data (Brunet et al. 2004)
+
+![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
+
+### R code example: Leukemia expression analysis
 
 Here, we will use the [NMF package](https://cran.r-project.org/web/packages/NMF/index.html) 
 for R (`r citep('10.1186/1471-2105-11-367')`)...
@@ -257,11 +274,14 @@ bibliography()
 1. Lee,D.D. and Seung,H.S. (1999) Learning the parts of objects by non-negative
    matrix factorization. Nature, 401, 788–91.
 
-2. R. Gaujoux and C. Seoighe. “A flexible R package for nonnegative matrix
-   factorization”. In: _BMC Bioinformatics_ 11.1 (2010), p. 367. DOI:
+2. R. Gaujoux and C. Seoighe. "A flexible R package for nonnegative matrix
+   factorization". In: _BMC Bioinformatics_ 11.1 (2010), p. 367. DOI:
    10.1186/1471-2105-11-367. <URL: http://dx.doi.org/10.1186/1471-2105-11-367>.
 
-3. https://en.wikipedia.org/wiki/LU_decomposition
+3. Devarajan,K. (2008) Nonnegative matrix factorization: An analytical and
+   interpretive tool in computational biology. PLoS Comput. Biol., 4.
+
+4. https://en.wikipedia.org/wiki/LU_decomposition
 
 See Also
 --------
