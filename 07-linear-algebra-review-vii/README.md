@@ -229,7 +229,7 @@ As an example, Lee & Seung, (1999) demonstrated the use of NMF for image and tex
 -   right matrix = weights
 -   final image = linear combination of basis images, using the weights from the right matrix.
 
-The main difference between the three approaches has to do with the constraint of each of them:
+The main difference between the three approaches has to do with the constraints imposed on each of them:
 
 #### Vector Quantization
 
@@ -248,6 +248,10 @@ The main difference between the three approaches has to do with the constraint o
 -   Similar to PCA in that *V* is approximated by a linear combination of the basis images, however,
 -   Basis images are required to be non-negative.
 -   Summing basis images (with corresponding weights), thus builds up the final approximated image "piece-by-piece"
+
+Finally, another notable property of NMF which differs it from both VQ and PCA is it's **sparsity** in both *W* *and* *H* (VQ is sparse in *H*, but is very dense in *W*). This is due to NMF's ability to capture *local* parts of a dataset.
+
+This sparsity can be induces during the generation of the matrices *W* and *H* by adding a penalty component to the objective function to be minimized (i.e. regularization).
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
@@ -281,7 +285,7 @@ Where:
 
 **Interpretation**
 
--   *W*<sub>*i**a*</sub> = The influence of the *a*<sup>*t**h*</sup> metagene expression pattern ($h\_{aj}) on the gene expression of the *i*<sup>*t**h*</sup> sample.
+-   *W*<sub>*i**a*</sub> = The influence of the *a*<sup>*t**h*</sup> metagene expression pattern (*h*<sub>*a**j*</sub>) on the gene expression of the *i*<sup>*t**h*</sup> sample.
 -   In other words, it's the contribute of metagene *a* to the expression profile for sample *i*.
 
 **Clustering samples vs. genes**
@@ -292,7 +296,148 @@ Note that for the problem frame above, we are clustering *samples*. NMF can just
 
 ### R package for NMF
 
-Here, we will use the [NMF package](https://cran.r-project.org/web/packages/NMF/index.html) for R (Gaujoux & Seoighe, 2010).
+The [NMF package for R](https://cran.r-project.org/web/packages/NMF/index.html) (Gaujoux & Seoighe, 2010) provides implementations for several different algorithms for NMF, along with a general framework for implementing and testing new algorithms.
+
+Note that the notation for the dimensions of the matrix to be approximated, *X* (*V*) in the `NMF` vignette is precisely reversed from that used in the review text above (*n* × *p* in the former vs. *p* × *n* in the later).
+
+To see which algorithms are available, you can use the `nmfAlgorithm()` function:
+
+``` r
+library('NMF')
+```
+
+    ## Loading required package: pkgmaker
+
+    ## Loading required package: registry
+
+    ## 
+    ## Attaching package: 'pkgmaker'
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     isNamespaceLoaded
+
+    ## Loading required package: rngtools
+
+    ## Loading required package: cluster
+
+    ## NMF - BioConductor layer [OK] | Shared memory capabilities [NO: bigmemory] | Cores 11/12
+
+    ##   To enable shared memory capabilities, try: install.extras('
+    ## NMF
+    ## ')
+
+    ## 
+    ## Attaching package: 'NMF'
+
+    ## The following object is masked from 'package:rmarkdown':
+    ## 
+    ##     run
+
+``` r
+nmfAlgorithm()
+```
+
+    ##  [1] "brunet"    "KL"        "lee"       "Frobenius" "offset"   
+    ##  [6] "nsNMF"     "ls-nmf"    "pe-nmf"    "siNMF"     "snmf/r"   
+    ## [11] "snmf/l"
+
+``` r
+# retrieve a specific algorithm by passing its name to the function
+nmfAlgorithm("brunet")
+```
+
+    ## <object of class: NMFStrategyIterative>
+    ##  name: brunet [NMF]
+    ##  objective: 'KL' 
+    ##  model: NMFstd 
+    ##  <Iterative schema>
+    ##   onInit: none
+    ##   Update: function (i, v, x, copy = FALSE, eps = .Machine$double.eps, ...)
+    ##   Stop: 'connectivity'
+    ##   onReturn: none
+
+To perform the NMF on our data, we use the `nmf()` function:
+
+``` r
+args(nmf)
+```
+
+    ## function (x, rank, method, ...) 
+    ## NULL
+
+`x` is our data, `rank` is the number of latent factors (metagenes) to detect, method is the algorithm we wish to use.
+
+Further, a `seed` parameter can also be used to specify a seeding method to use for *W* and *H*, which turns out to be quite important for NMF (see vignettes for details).
+
+Next, we will use NMF to cluster an example dataset containing expression profiles for 5000 genes across 38 leukemia samples of two different types:
+
+-   lymphoblastic leukemia (ALL)
+-   myeloid leukemia (AML)
+
+From the description for the dataset (`?esGolub`):
+
+> This data comes originally from the gene expression data from Golub et al. (1999). The version included in the package is the one used and referenced in Brunet et al. (2004). The samples are from 27 patients with acute lymphoblastic leukemia (ALL) and 11 patients with acute myeloid leukemia (AML).
+
+``` r
+data(esGolub)
+esGolub
+```
+
+    ## ExpressionSet (storageMode: lockedEnvironment)
+    ## assayData: 5000 features, 38 samples 
+    ##   element names: exprs 
+    ## protocolData: none
+    ## phenoData
+    ##   sampleNames: ALL_19769_B-cell ALL_23953_B-cell ... AML_7 (38
+    ##     total)
+    ##   varLabels: Sample ALL.AML Cell
+    ##   varMetadata: labelDescription
+    ## featureData
+    ##   featureNames: M12759_at U46006_s_at ... D86976_at (5000 total)
+    ##   fvarLabels: Description
+    ##   fvarMetadata: labelDescription
+    ## experimentData: use 'experimentData(object)'
+    ## Annotation:
+
+``` r
+table(pData(esGolub)$ALL.AML)
+```
+
+    ## 
+    ## ALL AML 
+    ##  27  11
+
+``` r
+# only the ALL samples have a cell type specified
+table(pData(esGolub)$Cell)
+```
+
+    ## 
+    ##        B-cell T-cell 
+    ##     11     19      8
+
+Let's first see how things look using PCA:
+
+``` r
+library('ggplot2')
+
+pca <- prcomp(t(exprs(esGolub)))
+
+df <- data.frame(sample_id=colnames(esGolub),
+                    pc1=pca$x[,1], pc2=pca$x[,2],
+                    type=pData(esGolub)$ALL.AML,
+                    cell=pData(esGolub)$Cell)
+
+ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('PC1') + ylab('PC2') +
+    ggtitle("PCA: esGolub") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
+
+![](img/esGolub_PCA_plot-1.png)
 
 References
 ==========
@@ -335,8 +480,8 @@ if (opts_knit$get("rmarkdown.pandoc.to") == 'latex') {
 
 **locale:** *LC\_CTYPE=en\_US.UTF-8*, *LC\_NUMERIC=C*, *LC\_TIME=en\_US.UTF-8*, *LC\_COLLATE=en\_US.UTF-8*, *LC\_MONETARY=en\_US.UTF-8*, *LC\_MESSAGES=en\_US.UTF-8*, *LC\_PAPER=en\_US.UTF-8*, *LC\_NAME=C*, *LC\_ADDRESS=C*, *LC\_TELEPHONE=C*, *LC\_MEASUREMENT=en\_US.UTF-8* and *LC\_IDENTIFICATION=C*
 
-**attached base packages:** *stats*, *graphics*, *grDevices*, *utils*, *datasets*, *methods* and *base*
+**attached base packages:** *parallel*, *stats*, *graphics*, *grDevices*, *utils*, *datasets*, *methods* and *base*
 
-**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13)*, *knitcitations(v.1.0.7.1)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-1)*
+**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13)*, *ggplot2(v.2.1.0)*, *NMF(v.0.20.6)*, *Biobase(v.2.32.0)*, *BiocGenerics(v.0.18.0)*, *cluster(v.2.0.4)*, *rngtools(v.1.2.4)*, *pkgmaker(v.0.22)*, *registry(v.0.3)*, *knitcitations(v.1.0.7.1)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-1)*
 
-**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *lubridate(v.1.5.6)*, *XML(v.3.98-1.4)*, *digest(v.0.6.10)*, *bitops(v.1.0-6)*, *plyr(v.1.8.4)*, *R6(v.2.1.2)*, *formatR(v.1.4)*, *magrittr(v.1.5)*, *evaluate(v.0.9)*, *httr(v.1.2.1)*, *bibtex(v.0.4.0)*, *stringi(v.1.1.1)*, *RJSONIO(v.1.3-0)*, *tools(v.3.3.1)*, *stringr(v.1.0.0)*, *RefManageR(v.0.10.17)*, *RCurl(v.1.95-4.8)*, *yaml(v.2.1.13)* and *htmltools(v.0.3.5)*
+**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *formatR(v.1.4)*, *RColorBrewer(v.1.1-2)*, *plyr(v.1.8.4)*, *bitops(v.1.0-6)*, *iterators(v.1.0.8)*, *tools(v.3.3.1)*, *digest(v.0.6.10)*, *gtable(v.0.2.0)*, *lubridate(v.1.5.6)*, *evaluate(v.0.9)*, *gridBase(v.0.4-7)*, *bibtex(v.0.4.0)*, *foreach(v.1.4.3)*, *yaml(v.2.1.13)*, *RefManageR(v.0.10.17)*, *httr(v.1.2.1)*, *stringr(v.1.0.0)*, *grid(v.3.3.1)*, *R6(v.2.1.2)*, *XML(v.3.98-1.4)*, *RJSONIO(v.1.3-0)*, *reshape2(v.1.4.1)*, *magrittr(v.1.5)*, *scales(v.0.4.0)*, *codetools(v.0.2-14)*, *htmltools(v.0.3.5)*, *xtable(v.1.8-2)*, *colorspace(v.1.2-6)*, *labeling(v.0.3)*, *stringi(v.1.1.1)*, *munsell(v.0.4.3)*, *RCurl(v.1.95-4.8)* and *doParallel(v.1.0.10)*

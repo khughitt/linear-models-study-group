@@ -268,8 +268,8 @@ decomposition approaches: VQ and PCA.
 - final image = linear combination of basis images, using the weights from the
   right matrix.
 
-The main difference between the three approaches has to do with the constraint
-of each of them:
+The main difference between the three approaches has to do with the constraints
+imposed on each of them:
 
 #### Vector Quantization 
 
@@ -293,6 +293,15 @@ of each of them:
 - Basis images are required to be non-negative.
 - Summing basis images (with corresponding weights), thus builds up the final
   approximated image "piece-by-piece"
+
+Finally, another notable property of NMF which differs it from both VQ and PCA
+is it's **sparsity** in both $W$ _and_ $H$ (VQ is sparse in $H$, but is very
+dense in $W$). This is due to NMF's ability to capture _local_ parts of a
+dataset.
+
+This sparsity can be induces during the generation of the matrices $W$ and $H$
+by adding a penalty component to the objective function to be minimized (i.e.
+regularization).
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
@@ -332,7 +341,7 @@ Where:
 **Interpretation**
 
 - $W_{ia}$ = The influence of the $a^{th}$ metagene expression pattern
-  ($h_{aj}) on the gene expression of the $i^{th}$ sample.
+  ($h_{aj}$) on the gene expression of the $i^{th}$ sample.
   - In other words, it's the contribute of metagene $a$ to the expression
     profile for sample $i$.
 
@@ -345,8 +354,82 @@ just as easily be used to _cluster_ the genes (just take the transpose of $V$).
 
 ### R package for NMF
 
-Here, we will use the [NMF package](https://cran.r-project.org/web/packages/NMF/index.html) 
-for R (Gaujoux & Seoighe, 2010).
+The [NMF package for R](https://cran.r-project.org/web/packages/NMF/index.html) 
+(Gaujoux & Seoighe, 2010) provides implementations for several different
+algorithms for NMF, along with a general framework for implementing and testing
+new algorithms.
+
+Note that the notation for the dimensions of the matrix to be approximated, $X$
+($V$) in the `NMF` vignette is precisely reversed from that used in the review
+text above ($n \times p$ in the former vs. $p \times n$ in the later).
+
+To see which algorithms are available, you can use the `nmfAlgorithm()`
+function:
+
+```{r}
+library('NMF')
+nmfAlgorithm()
+
+# retrieve a specific algorithm by passing its name to the function
+nmfAlgorithm("brunet")
+```
+
+To perform the NMF on our data, we use the `nmf()` function:
+
+```{r}
+args(nmf)
+```
+
+`x` is our data, `rank` is the number of latent factors (metagenes) to detect,
+method is the algorithm we wish to use.
+
+Further, a `seed` parameter can also be used to specify a seeding method to use
+for $W$ and $H$, which turns out to be quite important for NMF (see vignettes
+for details).
+
+Next, we will use NMF to cluster an example dataset containing expression
+profiles for 5000 genes across 38 leukemia samples of two different types:
+
+- lymphoblastic leukemia (ALL)
+- myeloid leukemia (AML)
+
+From the description for the dataset (`?esGolub`):
+
+> This data comes originally from the gene expression data from Golub et al.
+> (1999). The version included in the package is the one used and referenced in
+> Brunet et al. (2004). The samples are from 27 patients with acute
+> lymphoblastic leukemia (ALL) and 11 patients with acute myeloid leukemia
+> (AML).
+
+```{r}
+data(esGolub)
+esGolub
+
+table(pData(esGolub)$ALL.AML)
+
+# only the ALL samples have a cell type specified
+table(pData(esGolub)$Cell)
+```
+
+Let's first see how things look using PCA:
+
+```{r esGolub_PCA_plot, fig.path='img/'}
+library('ggplot2')
+
+pca <- prcomp(t(exprs(esGolub)))
+
+df <- data.frame(sample_id=colnames(esGolub),
+                    pc1=pca$x[,1], pc2=pca$x[,2],
+                    type=pData(esGolub)$ALL.AML,
+                    cell=pData(esGolub)$Cell)
+
+ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('PC1') + ylab('PC2') +
+    ggtitle("PCA: esGolub") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
 
 References
 ==========
