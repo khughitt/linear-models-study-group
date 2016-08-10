@@ -13,7 +13,9 @@ Matrix partitioning takes a single matrix and breaks it up into multiple submatr
 
 Example from Wikipedia: suppose we have a ![4 \\times 4](http://chart.apis.google.com/chart?cht=tx&chl=4%20%5Ctimes%204 "4 \times 4") matrix, ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P"):
 
-![](img/partitioned-matrices-1.png) <!--
+![](img/partitioned-matrices-1.png)
+
+<!--
 $$
 \mathbf{P} = \begin{bmatrix}
 1 & 1 & 2 & 2\\
@@ -22,7 +24,6 @@ $$
 3 & 3 & 4 & 4\end{bmatrix}
 $$
 -->
-
 This matrix could be partitioned into four submatrices:
 
 <!--
@@ -157,16 +158,18 @@ Below, we discuss the *LU* factorization and NMF. SVD is extremely useful and we
 -   LU decomposition (factorization) involves the decomposition of a matrix into a lower triangular matrix (L) and and upper triangular matrix (U).
 -   The L and U matrices effectively "encode" the row reduction steps needed to solve a system of linear equations.
 -   Formulated by Alan Turing in 1948.
--   Example aplications:
-    -   Solving systems of equations
-    -   Matrix inversion
-    -   Computing determinants
+
+![LU decomposition](img/lu-decomp.png) (source: [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition))
+
+#### Aplications
+
+-   Solving systems of equations
+-   Matrix inversion
+-   Computing determinants
 -   Especially useful when you want to solve multiple systems of equations involving the same Matrix-vector ![Ax](http://chart.apis.google.com/chart?cht=tx&chl=Ax "Ax").
     -   Up-front computational cost
     -   Much faster solutions for subsequent systems
     -   Used by many computational solvers.
-
-![LU decomposition](img/lu-decomp.png) (source: [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition))
 
 ### Non-negative matrix factorization
 
@@ -198,7 +201,15 @@ Here, the information contained in ![V](http://chart.apis.google.com/chart?cht=t
 
 (Source: `citep("10.1038/44565")`)
 
-### Example: Leukemia expression analysis
+### Applications in Computational Biology (Devarajan, 2008)
+
+The next few sections summarise some of the key ideas from a 2008 review paper by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and interpretive tool in computational biology".
+
+#### A. Clustering of expression data (Brunet et al. 2004)
+
+![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
+
+### R code example: Leukemia expression analysis
 
 Here, we will use the [NMF package](https://cran.r-project.org/web/packages/NMF/index.html) for R ((Gaujoux and Seoighe, 2010))...
 
@@ -212,9 +223,11 @@ bibliography()
 
 1.  Lee,D.D. and Seung,H.S. (1999) Learning the parts of objects by non-negative matrix factorization. Nature, 401, 788–91.
 
-2.  R. Gaujoux and C. Seoighe. “A flexible R package for nonnegative matrix factorization”. In: *BMC Bioinformatics* 11.1 (2010), p. 367. DOI: 10.1186/1471-2105-11-367. &lt;URL: <http://dx.doi.org/10.1186/1471-2105-11-367>&gt;.
+2.  R. Gaujoux and C. Seoighe. "A flexible R package for nonnegative matrix factorization". In: *BMC Bioinformatics* 11.1 (2010), p. 367. DOI: 10.1186/1471-2105-11-367. &lt;URL: <http://dx.doi.org/10.1186/1471-2105-11-367>&gt;.
 
-3.  <https://en.wikipedia.org/wiki/LU_decomposition>
+3.  Devarajan,K. (2008) Nonnegative matrix factorization: An analytical and interpretive tool in computational biology. PLoS Comput. Biol., 4.
+
+4.  <https://en.wikipedia.org/wiki/LU_decomposition>
 
 See Also
 --------
