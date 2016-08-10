@@ -11,7 +11,7 @@ Linear Algebra Review VII
 
 Matrix partitioning takes a single matrix and breaks it up into multiple submatrices.
 
-Example from Wikipedia: suppose we have a ![4 \\times 4](http://chart.apis.google.com/chart?cht=tx&chl=4%20%5Ctimes%204 "4 \times 4") matrix, ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P"):
+Example from Wikipedia: suppose we have a 4 × 4 matrix, *P*:
 
 ![](img/partitioned-matrices-1.png)
 
@@ -65,7 +65,7 @@ This can be useful, for example, for breaking up a very large matrix into smalle
 
 ### Multiplication of partitioned matrices
 
-For partitioned matrices ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B"), the matrix product ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") is defined if the column parition of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") matches the row partition of ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B").
+For partitioned matrices *A* and *B*, the matrix product *A**B* is defined if the column parition of *A* matches the row partition of *B*.
 
 Such compatible paritionings are said to be **conformable** for block multiplication.
 
@@ -94,18 +94,18 @@ $$
 
 So far, we have considered several different ways of viewing matrix-related products, using partitions:
 
-1.  The definition of ![A\\mathbf{x}](http://chart.apis.google.com/chart?cht=tx&chl=A%5Cmathbf%7Bx%7D "A\mathbf{x}") using the columns of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A")
-2.  The column definition of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
-3.  The row-column rule for computing ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
-4.  The rows of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") as the products of the rows of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and the matrix ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B")
+1.  The definition of *A***x** using the columns of *A*
+2.  The column definition of *A**B*
+3.  The row-column rule for computing *A**B*
+4.  The rows of *A**B* as the products of the rows of *A* and the matrix *B*
 
-Section 2.4 defines fifth way of viewing the matrix product ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") (columnr-row expansion), described below.
+Section 2.4 defines fifth way of viewing the matrix product *A**B* (columnr-row expansion), described below.
 
-### The column-row expansion of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
+### The column-row expansion of *A**B*
 
 **Theorem 10**
 
-If ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is ![m \\times n](http://chart.apis.google.com/chart?cht=tx&chl=m%20%5Ctimes%20n "m \times n") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") is ![n \\times p](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20p "n \times p"),then:
+If *A* is *m* × *n* and *B* is *n* × *p*,then:
 
 <!--
 $$
@@ -132,7 +132,7 @@ $$
 -->
 ![](img/partitioned-matrices-6.png)
 
-where ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B"), ![C](http://chart.apis.google.com/chart?cht=tx&chl=C "C") and ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D") are matrix sub-blocks of arbitrary size.
+where *A*, *B*, *C* and *D* are matrix sub-blocks of arbitrary size.
 
 2.5 Matrix Factorization (UNFINISHED)
 -------------------------------------
@@ -166,7 +166,7 @@ Below, we discuss the *LU* factorization and NMF. SVD is extremely useful and we
 -   Solving systems of equations
 -   Matrix inversion
 -   Computing determinants
--   Especially useful when you want to solve multiple systems of equations involving the same Matrix-vector ![Ax](http://chart.apis.google.com/chart?cht=tx&chl=Ax "Ax").
+-   Especially useful when you want to solve multiple systems of equations involving the same Matrix-vector *A**x*.
     -   Up-front computational cost
     -   Much faster solutions for subsequent systems
     -   Used by many computational solvers.
@@ -185,11 +185,11 @@ Another useful matrix factorization is the non-negative matrix factorization (NM
 
 #### Definition
 
-Let ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") be an ![n \\times p](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20p "n \times p") non-negative matrix. NMF attempts to find non-negative matrices ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") (![n \\times r](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20r "n \times r")) and ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") (![r \\times p](http://chart.apis.google.com/chart?cht=tx&chl=r%20%5Ctimes%20p "r \times p")), whose product approximates ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V"):
+Let *V* be an *p* × *n* *non-negative* matrix. NMF attempts to find *non-negative* matrices *W* (*p* × *k*) and *H* (*k* × *n*), whose product *approximates* *V*:
 
 *V* ≈ *W**H*
 
-Here, the information contained in ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") is split into the ![r](http://chart.apis.google.com/chart?cht=tx&chl=r "r") columns of ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W").
+Here, the information contained in *V* is split into the *k* columns of *W*, or, in other words, the *k* columns of *W* represent *latent factors* present in the original matrix *V*.
 
 ![](img/NMF.png) (Source: [Wikipedia](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization))
 
@@ -199,13 +199,19 @@ Here, the information contained in ![V](http://chart.apis.google.com/chart?cht=t
 
 > We have applied non-negative matrix factorization (NMF), together with principal components analysis (PCA) and vector quantization (VQ), to a database of facial images. As shown in Fig. 1, all three methods learn to represent a face as a linear combination of basis images, but with qualitatively different results. VQ discovers a basis consisting of prototypes, each of which is a whole face. The basis images for PCA are 'eigenfaces', some of which resemble distorted versions of whole faces6. The NMF basis is radically different: its images are localized features that correspond better with intuitive notions of the parts of faces.
 
-(Source: `citep("10.1038/44565")`)
+(Source: )
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
 The next few sections summarise some of the key ideas from a 2008 review paper by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and interpretive tool in computational biology".
 
 #### A. Clustering of expression data (Brunet et al. 2004)
+
+One common use of NMF is for clustering "molecular profile" (e.g. gene expression data).
+
+For example, we may wish to cluster samples based on their expression profiles:
+
+![NMF matrices for expression clustering](img/nmf-matrices.png)
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
@@ -256,6 +262,6 @@ if (opts_knit$get("rmarkdown.pandoc.to") == 'latex') {
 
 **attached base packages:** *stats*, *graphics*, *grDevices*, *utils*, *datasets*, *methods* and *base*
 
-**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13.1)*, *knitcitations(v.1.0.7)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-0)*
+**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13)*, *knitcitations(v.1.0.7.1)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-1)*
 
-**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *lubridate(v.1.5.6)*, *XML(v.3.98-1.4)*, *digest(v.0.6.10)*, *bitops(v.1.0-6)*, *plyr(v.1.8.4)*, *R6(v.2.1.2)*, *formatR(v.1.4)*, *magrittr(v.1.5)*, *evaluate(v.0.9)*, *httr(v.1.2.1)*, *bibtex(v.0.4.0)*, *stringi(v.1.1.1)*, *RJSONIO(v.1.3-0)*, *tools(v.3.3.1)*, *stringr(v.1.0.0)*, *RefManageR(v.0.10.13)*, *RCurl(v.1.95-4.8)*, *yaml(v.2.1.13)* and *htmltools(v.0.3.5)*
+**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *lubridate(v.1.5.6)*, *XML(v.3.98-1.4)*, *digest(v.0.6.10)*, *bitops(v.1.0-6)*, *plyr(v.1.8.4)*, *R6(v.2.1.2)*, *formatR(v.1.4)*, *magrittr(v.1.5)*, *evaluate(v.0.9)*, *httr(v.1.2.1)*, *bibtex(v.0.4.0)*, *stringi(v.1.1.1)*, *RJSONIO(v.1.3-0)*, *tools(v.3.3.1)*, *stringr(v.1.0.0)*, *RefManageR(v.0.10.17)*, *RCurl(v.1.95-4.8)*, *yaml(v.2.1.13)* and *htmltools(v.0.3.5)*
