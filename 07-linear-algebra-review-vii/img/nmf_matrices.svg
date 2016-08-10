@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="nmf_matrices.svg">
+   sodipodi:docname="nmf_matrices.svg"
+   inkscape:export-filename="/home/keith/Dropbox/School/linear-models-study-group/07-linear-algebra-review-vii/img/nmf_matrices.png"
+   inkscape:export-xdpi="153.88811"
+   inkscape:export-ydpi="153.88811">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="320.65215"
-     inkscape:cy="498.07579"
+     inkscape:zoom="2"
+     inkscape:cx="241.72622"
+     inkscape:cy="456.72211"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -176,16 +179,56 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="446.45471"
-       y="534.72693"
+       x="444.93948"
+       y="535.73706"
        id="text4187-3"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4189-3"
-         x="446.45471"
-         y="534.72693"
+         x="444.93948"
+         y="535.73706"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:sans-serif;-inkscape-font-specification:sans-serif">Metagenes (<tspan
    style="font-weight:bold"
    id="tspan4326">k</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="136.18198"
+       y="641.47424"
+       id="text4328"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4330"
+         x="136.18198"
+         y="641.47424"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35px;font-family:sans-serif;-inkscape-font-specification:sans-serif">V</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="256.80984"
+       y="641.47424"
+       id="text4328-4"
+       sodipodi:linespacing="125%"
+       inkscape:transform-center-x="82"
+       inkscape:transform-center-y="-21"><tspan
+         sodipodi:role="line"
+         id="tspan4330-9"
+         x="256.80984"
+         y="641.47424"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35px;font-family:sans-serif;-inkscape-font-specification:sans-serif">W</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="386.5672"
+       y="641.47424"
+       id="text4328-4-2"
+       sodipodi:linespacing="125%"
+       inkscape:transform-center-x="82"
+       inkscape:transform-center-y="-21"><tspan
+         sodipodi:role="line"
+         id="tspan4330-9-5"
+         x="386.5672"
+         y="641.47424"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:35px;font-family:sans-serif;-inkscape-font-specification:sans-serif">H</tspan></text>
   </g>
 </svg>
