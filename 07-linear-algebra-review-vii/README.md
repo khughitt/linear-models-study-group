@@ -1,5 +1,4 @@
 -   [Partitioned Matrices](#partitioned-matrices)
-    -   [Overview](#overview)
     -   [Addition and Scalar multiplication](#addition-and-scalar-multiplication)
     -   [Multiplication of partitioned matrices](#multiplication-of-partitioned-matrices)
     -   [Views of matrix products](#views-of-matrix-products)
@@ -8,8 +7,6 @@
 -   [Matrix Factorization](#matrix-factorization)
     -   [LU factorization](#lu-factorization)
     -   [Non-negative matrix factorization](#non-negative-matrix-factorization)
-    -   [Applications in Computational Biology (Devarajan, 2008)](#applications-in-computational-biology-devarajan-2008)
-    -   [R code example: Leukemia expression analysis](#r-code-example-leukemia-expression-analysis)
 -   [References](#references)
 -   [See Also](#see-also)
 -   [System Information](#system-information)
@@ -22,9 +19,6 @@ Linear Algebra Review VII
 
 Partitioned Matrices
 ====================
-
-Overview
---------
 
 Matrix partitioning takes a single matrix and breaks it up into multiple submatrices.
 
@@ -207,6 +201,8 @@ Another useful matrix factorization is the non-negative matrix factorization (NM
 -   latent feature detection
 -   recommendation systems
 
+One of the defining features of NMF compared with other similar techniques such as principal components analysis (PCA) and vector quantization (VQ) is that NMF is able to arrive at a **parts-based local representation** of an input matrix (see the figure from Lee & Seung below for a qualitative example of this).
+
 ### Definition
 
 Let *V* be an *p* × *n* *non-negative* matrix. NMF attempts to find *non-negative* matrices *W* (*p* × *k*) and *H* (*k* × *n*), whose product *approximates* *V*:
@@ -217,20 +213,47 @@ Here, the information contained in *V* is split into the *k* columns of *W*, or,
 
 ![](img/NMF.png) (Source: [Wikipedia](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization))
 
-### Image recognition (Lee & Seung, 1999)
+### NMF versus other matrix decomposition approaches
 
-![Fig1 from Lee & Seung, 1999](img/401788aa.eps.2.gif)
+As an example, Lee & Seung, (1999) demonstrated the use of NMF for image and text classification, and compared this with two other commonly used matrix decomposition approaches: VQ and PCA.
+
+![Fig 1 from Lee & Seung, 1999](img/401788aa.eps.2.gif)
 
 > We have applied non-negative matrix factorization (NMF), together with principal components analysis (PCA) and vector quantization (VQ), to a database of facial images. As shown in Fig. 1, all three methods learn to represent a face as a linear combination of basis images, but with qualitatively different results. VQ discovers a basis consisting of prototypes, each of which is a whole face. The basis images for PCA are 'eigenfaces', some of which resemble distorted versions of whole faces6. The NMF basis is radically different: its images are localized features that correspond better with intuitive notions of the parts of faces.
 
 (Source: Lee & Seung, 1999)
 
-Applications in Computational Biology (Devarajan, 2008)
--------------------------------------------------------
+**Matrices**
+
+-   left matrix = basis images
+-   right matrix = weights
+-   final image = linear combination of basis images, using the weights from the right matrix.
+
+The main difference between the three approaches has to do with the constraint of each of them:
+
+#### Vector Quantization
+
+-   Each column in *H* must be a unary vector (all zeros except for one position, set to 1).
+-   Each face (column in *V*) is approximated by a single basis image (column in *W*)
+
+#### Principal component analysis
+
+-   Unary constraint of VQ is relaxed
+-   Faces can be constructed from a linear combination of all basis images
+-   Basis images may contain positive and negative values
+-   Basis images (principal components or "eigenfaces") each capture some major component of the variance in the original image database.
+
+#### Non-negative matrix factorization
+
+-   Similar to PCA in that *V* is approximated by a linear combination of the basis images, however,
+-   Basis images are required to be non-negative.
+-   Summing basis images (with corresponding weights), thus builds up the final approximated image "piece-by-piece"
+
+### Applications in Computational Biology (Devarajan, 2008)
 
 The next few sections summarise some of the key ideas from a 2008 review paper by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and interpretive tool in computational biology".
 
-### A. Clustering of expression data (Brunet et al. 2004)
+#### A. Clustering of expression data (Brunet et al. 2004)
 
 One common use of NMF is for clustering "molecular profile" (e.g. gene expression data).
 
@@ -256,14 +279,18 @@ Where:
 -   Note that `len(metagene) == len(sample)`
     -   i.e. Each metagene is a ~10,000 long vector representing (hopefully) some specific subset of the samples.
 
+**Interpretation**
+
+-   *W*<sub>*i**a*</sub> = The influence of the *a*<sup>*t**h*</sup> metagene expression pattern ($h\_{aj}) on the gene expression of the *i*<sup>*t**h*</sup> sample.
+-   In other words, it's the contribute of metagene *a* to the expression profile for sample *i*.
+
 **Clustering samples vs. genes**
 
 Note that for the problem frame above, we are clustering *samples*. NMF can just as easily be used to *cluster* the genes (just take the transpose of *V*).
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
-R code example: Leukemia expression analysis
---------------------------------------------
+### R package for NMF
 
 Here, we will use the [NMF package](https://cran.r-project.org/web/packages/NMF/index.html) for R (Gaujoux & Seoighe, 2010).
 
