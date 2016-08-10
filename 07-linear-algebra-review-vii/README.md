@@ -211,7 +211,7 @@ One common use of NMF is for clustering "molecular profile" (e.g. gene expressio
 
 For example, we may wish to cluster samples based on their expression profiles:
 
-![NMF matrices for expression clustering](img/nmf-matrices.png)
+![NMF matrices for expression clustering](img/nmf_matrices.png)
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
