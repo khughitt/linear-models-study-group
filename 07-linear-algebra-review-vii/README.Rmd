@@ -220,14 +220,17 @@ different problems, e.g.:
 
 #### Definition
 
-Let $V$ be an $n \times p$ non-negative matrix. NMF attempts to find non-negative 
-matrices $W$ ($n \times r$) and $H$ ($r \times p$), whose product approximates $V$:
+Let $V$ be an $p \times n$ _non-negative_ matrix. NMF attempts to find
+_non-negative_ matrices $W$ ($p \times k$) and $H$ ($k \times n$), whose
+product _approximates_ $V$:
 
 $$
 V \approx WH
 $$
 
-Here, the information contained in $V$ is split into the $r$ columns of $W$.
+Here, the information contained in $V$ is split into the $k$ columns of $W$,
+or, in other words, the $k$ columns of $W$ represent _latent factors_ present
+in the original matrix $V$.
 
 ![](img/NMF.png)
 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization))
@@ -246,7 +249,7 @@ Here, the information contained in $V$ is split into the $r$ columns of $W$.
 > NMF basis is radically different: its images are localized features that
 > correspond better with intuitive notions of the parts of faces.
 
-(Source: `citep("10.1038/44565")`)
+(Source: `r citep("10.1038/44565")`)
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
@@ -255,6 +258,13 @@ by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and
 interpretive tool in computational biology".
 
 #### A. Clustering of expression data (Brunet et al. 2004)
+
+One common use of NMF is for clustering "molecular profile" (e.g. gene
+expression data).
+
+For example, we may wish to cluster samples based on their expression profiles:
+
+![NMF matrices for expression clustering](img/nmf-matrices.png)
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
