@@ -371,6 +371,37 @@ To see which algorithms are available, you can use the `nmfAlgorithm()` function
 
 ``` r
 library('NMF')
+```
+
+    ## Loading required package: pkgmaker
+
+    ## Loading required package: registry
+
+    ## 
+    ## Attaching package: 'pkgmaker'
+
+    ## The following object is masked from 'package:base':
+    ## 
+    ##     isNamespaceLoaded
+
+    ## Loading required package: rngtools
+
+    ## Loading required package: cluster
+
+    ## NMF - BioConductor layer [OK] | Shared memory capabilities [NO: bigmemory] | Cores 11/12
+
+    ##   To enable shared memory capabilities, try: install.extras('
+    ## NMF
+    ## ')
+
+    ## 
+    ## Attaching package: 'NMF'
+
+    ## The following object is masked from 'package:rmarkdown':
+    ## 
+    ##     run
+
+``` r
 nmfAlgorithm()
 ```
 
@@ -491,13 +522,13 @@ result
     ##  # Details:
     ##   algorithm:  brunet 
     ##   seed:  random 
-    ##   RNG: 403L, 198L, ..., -1693668582L [4d29980c11159d0623bf3188d07940c3]
+    ##   RNG: 403L, 2L, ..., -312440522L [7a89115b2dbe93aaef46012b2c40ae55]
     ##   distance metric:  'KL' 
-    ##   residuals:  13807040 
-    ##   Iterations: 490 
+    ##   residuals:  13806607 
+    ##   Iterations: 470 
     ##   Timing:
     ##      user  system elapsed 
-    ##     1.690   0.000   1.689
+    ##     1.724   0.000   1.725
 
 Use `fit()` to get the fitted model:
 
@@ -509,20 +540,6 @@ fit(result)
     ## features: 5000 
     ## basis/rank: 3 
     ## samples: 38
-
-and `fitted()` to get the approximated version of *V*:
-
-``` r
-v0 <- fitted(result)
-```
-
-Which is just the product *W**H*:
-
-``` r
-all(v0 == w %*% h)
-```
-
-    ## [1] FALSE
 
 Next, we can use `basis()` and `coef()` to get *W* and *H*, respectively:
 
@@ -540,20 +557,65 @@ dim(h)
 
     ## [1]  3 38
 
-Let's visualize each of these:
+The `fitted()` function can be used to get the approximated version of *V*:
+
+``` r
+v0 <- fitted(result)
+```
+
+Which is just the product *W**H*:
+
+``` r
+all(v0 == w %*% h)
+```
+
+    ## [1] TRUE
+
+Let's visualize *W* and *H*.
+
+First, it's worth noting that *W* is quite sparse:
+
+``` r
+plot(density(w))
+```
+
+<img src="img/w_density_plot-1.png" width="1080" />
+
+However, the values aren't exactly near zero:
+
+``` r
+quantile(w)
+```
+
+    ##           0%          25%          50%          75%         100% 
+    ## 2.220446e-16 2.858794e+03 8.711103e+03 2.569063e+04 2.047005e+06
 
 ``` r
 library('gplots')
+```
+
+    ## 
+    ## Attaching package: 'gplots'
+
+    ## The following object is masked from 'package:stats':
+    ## 
+    ##     lowess
+
+``` r
 library('viridis')
 
-# plot w (subsample rows to speed up)
-# allowing rows to be reordered to show major differences
-heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
+# plot w
+# data is subsampled to speed things up; 
+# rows are allowed to reorder to help highlight differences between metagenes
+# and data is logged to improve contrast
+heatmap.2(log1p(w[sample(1:nrow(w), 1000),]), Colv=FALSE, labRow=FALSE,
           dendrogram="none", main="W", col=viridis, trace="none",
           margins=c(5, 5))
 ```
 
 <img src="img/w-1.png" width="1080" />
+
+Next, let's plot H:
 
 ``` r
 # plot h
@@ -571,40 +633,69 @@ nmf_clusters
 ```
 
     ## ALL_19769_B-cell ALL_23953_B-cell ALL_28373_B-cell  ALL_9335_B-cell 
-    ##                3                3                3                3 
+    ##                1                1                1                1 
     ##  ALL_9692_B-cell ALL_14749_B-cell ALL_17281_B-cell ALL_19183_B-cell 
-    ##                3                3                3                3 
+    ##                1                2                1                1 
     ## ALL_20414_B-cell ALL_21302_B-cell   ALL_549_B-cell ALL_17929_B-cell 
-    ##                3                2                3                3 
+    ##                1                3                1                1 
     ## ALL_20185_B-cell ALL_11103_B-cell ALL_18239_B-cell  ALL_5982_B-cell 
-    ##                3                3                3                3 
+    ##                1                1                1                1 
     ##  ALL_7092_B-cell   ALL_R11_B-cell   ALL_R23_B-cell ALL_16415_T-cell 
-    ##                3                3                3                2 
+    ##                1                1                1                3 
     ## ALL_19881_T-cell  ALL_9186_T-cell  ALL_9723_T-cell ALL_17269_T-cell 
-    ##                2                2                2                2 
+    ##                3                3                3                3 
     ## ALL_14402_T-cell ALL_17638_T-cell ALL_22474_T-cell           AML_12 
-    ##                2                2                2                1 
+    ##                3                3                3                2 
     ##           AML_13           AML_14           AML_16           AML_20 
-    ##                1                1                1                1 
+    ##                2                2                2                2 
     ##            AML_1            AML_2            AML_3            AML_5 
-    ##                1                1                1                1 
+    ##                2                2                2                2 
     ##            AML_6            AML_7 
-    ##                1                1
+    ##                2                2
 
-To see how this compares with the PCA assignments, we can redo the PCA plot, but coloring samples according to their NMF clustering:
+Just looking at the plot of *H*, we can already see the major clusters quite readily. Let's see how things look when we do a scatter plot of the rows of *H* using two of the three columns (metagenes):
 
 ``` r
-df$cell <- factor(nmf_clusters)
+df <- data.frame(t(h))
+colnames(df) <- paste0('metagene', 1:3)
 
-ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
+df <- cbind(df, sample_id=colnames(esGolub), cluster=as.factor(nmf_clusters),
+            type=pData(esGolub)$ALL.AML)
+
+# metagene 1 vs. 2
+ggplot(df, aes(metagene1, metagene2, color=cluster, shape=type)) +
     geom_point(stat="identity",size=5) +
     geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
-    xlab('PC1') + ylab('PC2') +
-    ggtitle("PCA: esGolub") +
+    xlab('Metagene 1') + ylab('Metagene 2') +
+    ggtitle("NMF: esGolub (metagenes 1 vs. 2)") +
     theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
 ```
 
-<img src="img/pca_nmf_clusters-1.png" width="1080" />
+<img src="img/nmf_scatter_plot-1.png" width="1080" />
+
+``` r
+# metagene 1 vs. 3
+ggplot(df, aes(metagene1, metagene3, color=cluster, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('Metagene 1') + ylab('Metagene 3') +
+    ggtitle("NMF: esGolub (metagenes 1 vs. 3)") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
+
+<img src="img/nmf_scatter_plot-2.png" width="1080" />
+
+``` r
+# metagene 2 vs. 3
+ggplot(df, aes(metagene2, metagene3, color=cluster, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('Metagene 2') + ylab('Metagene 3') +
+    ggtitle("NMF: esGolub (metagenes 2 vs. 3)") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
+
+<img src="img/nmf_scatter_plot-3.png" width="1080" />
 
 A couple of the ALL B-cell samples are mislabeled, but all-in-all, not bad!
 

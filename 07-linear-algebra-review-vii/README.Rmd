@@ -541,7 +541,17 @@ Use `fit()` to get the fitted model:
 fit(result)
 ```
 
-and `fitted()` to get the approximated version of $V$:
+Next, we can use `basis()` and `coef()` to get $W$ and $H$, respectively:
+
+```{r}
+w <- basis(result)
+dim(w)
+
+h <- coef(result)
+dim(h)
+```
+
+The `fitted()` function can be used to get the approximated version of $V$:
 
 ```{r}
 v0 <- fitted(result)
@@ -553,28 +563,34 @@ Which is just the product $WH$:
 all(v0 == w %*% h)
 ```
 
-Next, we can use `basis()` and `coef()` to get $W$ and $H$, respectively:
+Let's visualize $W$ and $H$.
 
-```{r}
-w <- basis(result)
-dim(w)
+First, it's worth noting that $W$ is quite sparse:
 
-h <- coef(result)
-dim(h)
+```{r w_density_plot}
+plot(density(w))
 ```
 
-Let's visualize each of these:
+However, the values aren't exactly near zero:
+
+```{r}
+quantile(w)
+```
 
 ```{r w}
 library('gplots')
 library('viridis')
 
-# plot w (subsample rows to speed up)
-# allowing rows to be reordered to show major differences
-heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
+# plot w
+# data is subsampled to speed things up; 
+# rows are allowed to reorder to help highlight differences between metagenes
+# and data is logged to improve contrast
+heatmap.2(log1p(w[sample(1:nrow(w), 1000),]), Colv=FALSE, labRow=FALSE,
           dendrogram="none", main="W", col=viridis, trace="none",
           margins=c(5, 5))
 ```
+
+Next, let's plot H:
 
 ```{r h}
 # plot h
@@ -590,17 +606,39 @@ nmf_clusters <- apply(h, 2, which.max)
 nmf_clusters
 ```
 
-To see how this compares with the PCA assignments, we can redo the PCA plot,
-but coloring samples according to their NMF clustering:
+Just looking at the plot of $H$, we can already see the major clusters quite
+readily. Let's see how things look when we do a scatter plot of the rows of $H$
+using two of the three columns (metagenes):
 
-```{r pca_nmf_clusters}
-df$cell <- factor(nmf_clusters)
+```{r nmf_scatter_plot}
+df <- data.frame(t(h))
+colnames(df) <- paste0('metagene', 1:3)
 
-ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
+df <- cbind(df, sample_id=colnames(esGolub), cluster=as.factor(nmf_clusters),
+            type=pData(esGolub)$ALL.AML)
+
+# metagene 1 vs. 2
+ggplot(df, aes(metagene1, metagene2, color=cluster, shape=type)) +
     geom_point(stat="identity",size=5) +
     geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
-    xlab('PC1') + ylab('PC2') +
-    ggtitle("PCA: esGolub") +
+    xlab('Metagene 1') + ylab('Metagene 2') +
+    ggtitle("NMF: esGolub (metagenes 1 vs. 2)") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+
+# metagene 1 vs. 3
+ggplot(df, aes(metagene1, metagene3, color=cluster, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('Metagene 1') + ylab('Metagene 3') +
+    ggtitle("NMF: esGolub (metagenes 1 vs. 3)") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+
+# metagene 2 vs. 3
+ggplot(df, aes(metagene2, metagene3, color=cluster, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('Metagene 2') + ylab('Metagene 3') +
+    ggtitle("NMF: esGolub (metagenes 2 vs. 3)") +
     theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
 ```
 
