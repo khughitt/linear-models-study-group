@@ -11,7 +11,10 @@ output:
 ```{r include=FALSE}
 library(knitcitations)
 library(knitr)
-opts_chunk$set(fig.path='img/')
+opts_chunk$set(fig.path='img/',
+               fig.width=1080/120,
+               fig.height=1080/120,
+               dpi=120, fig.retina=2)
 ```
 
 <h1>Linear Algebra Review VII</h1>
@@ -196,7 +199,7 @@ we will revisit it later after we review eigenvectors and eigenvalues (chapter 5
 ![LU decomposition](img/lu-decomp.png)
 (source: [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition))
 
-### Aplications
+### Applications
 
 - Solving systems of equations
 - Matrix inversion
@@ -242,6 +245,58 @@ in the original matrix $V$.
 
 ![](img/NMF.png)
 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization))
+
+### Determining $W$ and $H$
+
+There are a number of different ways to find matrices $W$ and $H$ for which $V
+\approx WH$.
+
+#### Basic steps
+
+1. Select a factorization rank ($k$)
+2. Initialize matrices $W$ and $H$ using a specified seeding method (e.g.
+   random positive uniform distribution)
+3. Select a loss function to measure distance between $V$ and $WH$
+4. Iteratively update $W$ and $H$ to minimize the loss function selected above.
+
+#### Loss functions
+
+One of the key factors for performing NMF is the selection of an appropriate
+loss function.
+
+While we could choose something as simple as [euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance),
+a better result can be obtained using something like
+[Kullback Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence).
+
+KL divergence (aka "relative entropy" or "information gain") is a measure of
+the difference between two probability distributions (often, a true
+distribution and some estimate of it).
+
+For discrete distributions, the KL divergence between discrete distributions
+$P$ and $Q$ is defined as:
+
+$$
+D_{\mathrm{KL}}(P\|Q) = \sum_i P(i) \, \log\frac{P(i)}{Q(i)}
+$$
+
+(For continuous distributions, simply take the integral instead...)
+
+So, applied NMF, we get:
+
+$$
+KL(A||B) = \sum{V_{ij} log \frac{V_{ij}}{(WH)_{ij}} - V_{ij} + (WH)_{ij}}_{i,j}
+$$
+
+(I'm not exactly sure where the lass two terms of the summation came from?...
+they appear in all of the NMF KL divergence formulations, but are not part of
+the original definition of KL divergence; feel free to update if you know the
+answer...)
+
+#### Estimating factorization rank
+
+For clustering applications, when $k$ is not known in advance, their are
+methods for estimating the factorization rank (e.g. see section 2.6 of the
+`nmf` package vignette)
 
 ### NMF versus other matrix decomposition approaches
 
@@ -343,14 +398,18 @@ Where:
 **Interpretation**
 
 - $W_{ia}$ = The influence of the $a^{th}$ metagene expression pattern
-  ($h_{aj}$) on the gene expression of the $i^{th}$ sample.
-  - In other words, it's the contribute of metagene $a$ to the expression
-    profile for sample $i$.
+  ($h_{aj}$) on the gene expression of the $i^{th}$ sample, or,
+    - entries in columns($W$) -> relevance of genes to metagene
+    - entries in rows($H$) -> relevance of latent factors
+
+      - In other words, it's the contribution of metagene $a$ to the expression
+       profile for sample $i$.
 
 **Clustering samples vs. genes**
 
-Note that for the problem frame above, we are clustering _samples_. NMF can
-just as easily be used to _cluster_ the genes (just take the transpose of $V$).
+Note that the way the problem has been framed above, we are clustering
+_samples_. NMF can just as easily be used to _cluster_ the genes (just take the
+transpose of $V$).
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
@@ -450,7 +509,13 @@ fit(result)
 and `fitted()` to get the approximated version of $V$:
 
 ```{r}
-V0 <- fitted(result)
+v0 <- fitted(result)
+```
+
+Which is just the product $WH$:
+
+```{r}
+all(v0 == w %*% h)
 ```
 
 Next, we can use `basis()` and `coef()` to get $W$ and $H$, respectively:
@@ -472,7 +537,7 @@ library('viridis')
 # plot w (subsample rows to speed up)
 # allowing rows to be reordered to show major differences
 heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
-          dendrogram="none", main="H", col=viridis, trace="none",
+          dendrogram="none", main="W", col=viridis, trace="none",
           margins=c(5, 5))
 ```
 
@@ -481,6 +546,30 @@ heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
 heatmap.2(h, Rowv=FALSE, Colv=FALSE, dendrogram="none", main="H", col=viridis,
           trace="none", margins=c(8, 6))
 ```
+
+To use NMF for cluster the samples, we can take the max value for each column
+in $H$ and use the row of that value as a cluster assignment:
+
+```{r}
+nmf_clusters <- apply(h, 2, which.max)
+nmf_clusters
+```
+
+To see how this compares with the PCA assignments, we can redo the PCA plot,
+but coloring samples according to their NMF clustering:
+
+```{r pca_nmf_clusters}
+df$cell <- factor(nmf_clusters)
+
+ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
+    geom_point(stat="identity",size=5) +
+    geom_text(aes(label=sample_id), angle=45, size=4,vjust=2) +
+    xlab('PC1') + ylab('PC2') +
+    ggtitle("PCA: esGolub") +
+    theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
+
+A couple of the ALL B-cell samples are mislabeled, but all-in-all, not bad!
 
 References
 ==========
