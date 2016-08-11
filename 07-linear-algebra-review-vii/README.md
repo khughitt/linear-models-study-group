@@ -170,7 +170,9 @@ LU factorization
 
 ### Overview
 
-![Alan Turing](img/Alan_Turing_Aged_16.jpg) (source: [Wikipedia](https://en.wikipedia.org/wiki/Alan_Turing#/media/File:Alan_Turing_Aged_16.jpg))
+<img src='img/Alan_Turing_Aged_16.jpg' alt='Alan Turing Photo' width='300' />
+
+(source: [Wikipedia](https://en.wikipedia.org/wiki/Alan_Turing#/media/File:Alan_Turing_Aged_16.jpg))
 
 -   LU decomposition (factorization) involves the decomposition of a matrix into a lower triangular matrix (L) and and upper triangular matrix (U).
 -   The L and U matrices effectively "encode" the row reduction steps needed to solve a system of linear equations.
@@ -234,19 +236,22 @@ KL divergence (aka "relative entropy" or "information gain") is a measure of the
 
 For discrete distributions, the KL divergence between discrete distributions *P* and *Q* is defined as:
 
-$$
-D\_{\\mathrm{KL}}(P\\|Q) = \\sum\_i P(i) \\, \\log\\frac{P(i)}{Q(i)}
-$$
+<!--D_{\mathrm{KL}}(P\|Q) = \sum_i P(i) \, \log\frac{P(i)}{Q(i)}-->
+![](img/kl_divergence.png)
 
 (For continuous distributions, simply take the integral instead...)
 
 So, applied NMF, we get:
 
-$$
-KL(A||B) = \\sum{V\_{ij} log \\frac{V\_{ij}}{(WH)\_{ij}} - V\_{ij} + (WH)\_{ij}}\_{i,j}
-$$
+<!-- KL(V||WH) = \sum{V_{ij} log \frac{V_{ij}}{(WH)_{ij}} - V_{ij} + (WH)_{ij}}_{i,j}-->
+![](img/kl_divergence_nmf.png)
 
 (I'm not exactly sure where the lass two terms of the summation came from?... they appear in all of the NMF KL divergence formulations, but are not part of the original definition of KL divergence; feel free to update if you know the answer...)
+
+Further, to induce sparsity in *W* and *H*, thus helping to ensure a local parts-based factorization of *V*, it may be desirable to include a penalty term in the objective function, e.g.:
+
+<!-- \displaystyle \min_{W,H > 0} \big[ KL(V||WH) + \lambda \sum{H_{aj}}_{aj} \big] -->
+![](img/kl_divergence_nmf_regularized.png)
 
 #### Estimating factorization rank
 
@@ -294,9 +299,11 @@ This sparsity can be induces during the generation of the matrices *W* and *H* b
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
-The next few sections summarise some of the key ideas from a 2008 review paper by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and interpretive tool in computational biology".
+The next few sections describe some of the key ideas from a 2008 review paper by Karthik Devarajan, "Nonnegative matrix factorization: An analytical and interpretive tool in computational biology".
 
-#### A. Clustering of expression data (Brunet et al. 2004)
+While the review article discusses many different applications of NMF in biology, we will focus here on one of the main ones: NMF applied to expression data.
+
+#### Clustering of expression data (Brunet et al. 2004)
 
 One common use of NMF is for clustering "molecular profile" (e.g. gene expression data).
 
@@ -335,6 +342,15 @@ Where:
 Note that the way the problem has been framed above, we are clustering *samples*. NMF can just as easily be used to *cluster* the genes (just take the transpose of *V*).
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
+
+#### Strengths and weaknesses of NMF
+
+Some of the advantages of NMF include:
+
+-   Wide range of applications (dimension reduction, latent variable detection, clustering, etc.)
+-   Ability to detect local parts-based representation of a dataset
+-   Straight-forward interpreation
+-   Allows for detection of correlated latent factors (compare with PCA which detects strictly orthogonal variables).
 
 ### R package for NMF
 
@@ -466,13 +482,13 @@ result
     ##  # Details:
     ##   algorithm:  brunet 
     ##   seed:  random 
-    ##   RNG: 403L, 86L, ..., 509529855L [9a2fa7a44a6a28b8603de4a9defbd641]
+    ##   RNG: 403L, 184L, ..., 1368417369L [e942dd792ce1d90fb182aa76a595f339]
     ##   distance metric:  'KL' 
-    ##   residuals:  13806635 
-    ##   Iterations: 500 
+    ##   residuals:  13806625 
+    ##   Iterations: 520 
     ##   Timing:
     ##      user  system elapsed 
-    ##      1.72    0.00    1.72
+    ##     1.816   0.000   1.817
 
 Use `fit()` to get the fitted model:
 
@@ -548,7 +564,7 @@ nmf_clusters
     ## ALL_19769_B-cell ALL_23953_B-cell ALL_28373_B-cell  ALL_9335_B-cell 
     ##                2                2                2                2 
     ##  ALL_9692_B-cell ALL_14749_B-cell ALL_17281_B-cell ALL_19183_B-cell 
-    ##                2                2                2                2 
+    ##                2                3                2                2 
     ## ALL_20414_B-cell ALL_21302_B-cell   ALL_549_B-cell ALL_17929_B-cell 
     ##                2                1                2                2 
     ## ALL_20185_B-cell ALL_11103_B-cell ALL_18239_B-cell  ALL_5982_B-cell 
