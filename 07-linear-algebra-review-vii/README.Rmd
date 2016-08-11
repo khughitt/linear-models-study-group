@@ -10,6 +10,8 @@ output:
 
 ```{r include=FALSE}
 library(knitcitations)
+library(knitr)
+opts_chunk$set(fig.path='img/')
 ```
 
 <h1>Linear Algebra Review VII</h1>
@@ -413,7 +415,7 @@ table(pData(esGolub)$Cell)
 
 Let's first see how things look using PCA:
 
-```{r esGolub_PCA_plot, fig.path='img/'}
+```{r esGolub_PCA_plot}
 library('ggplot2')
 
 pca <- prcomp(t(exprs(esGolub)))
@@ -429,6 +431,55 @@ ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
     xlab('PC1') + ylab('PC2') +
     ggtitle("PCA: esGolub") +
     theme(axis.ticks=element_blank(), axis.text.x=element_text(angle=-90))
+```
+
+Next, let's perform NMF on the data using the default algorithm and seeding
+method with `rank=3`:
+
+```{r}
+result <- nmf(esGolub, 3)
+result
+```
+
+Use `fit()` to get the fitted model:
+
+```{r}
+fit(result)
+```
+
+and `fitted()` to get the approximated version of $V$:
+
+```{r}
+V0 <- fitted(result)
+```
+
+Next, we can use `basis()` and `coef()` to get $W$ and $H$, respectively:
+
+```{r}
+w <- basis(result)
+dim(w)
+
+h <- coef(result)
+dim(h)
+```
+
+Let's visualize each of these:
+
+```{r w}
+library('gplots')
+library('viridis')
+
+# plot w (subsample rows to speed up)
+# allowing rows to be reordered to show major differences
+heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
+          dendrogram="none", main="H", col=viridis, trace="none",
+          margins=c(5, 5))
+```
+
+```{r h}
+# plot h
+heatmap.2(h, Rowv=FALSE, Colv=FALSE, dendrogram="none", main="H", col=viridis,
+          trace="none", margins=c(8, 6))
 ```
 
 References

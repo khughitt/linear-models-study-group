@@ -2,7 +2,7 @@
     -   [Addition and Scalar multiplication](#addition-and-scalar-multiplication)
     -   [Multiplication of partitioned matrices](#multiplication-of-partitioned-matrices)
     -   [Views of matrix products](#views-of-matrix-products)
-    -   [The column-row expansion of *A**B*](#the-column-row-expansion-of-ab)
+    -   [The column-row expansion of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")](#the-column-row-expansion-of-ab)
     -   [Inverses of partitioned matrices](#inverses-of-partitioned-matrices)
 -   [Matrix Factorization](#matrix-factorization)
     -   [LU factorization](#lu-factorization)
@@ -22,7 +22,7 @@ Partitioned Matrices
 
 Matrix partitioning takes a single matrix and breaks it up into multiple submatrices.
 
-Example from Wikipedia: suppose we have a 4 × 4 matrix, *P*:
+Example from Wikipedia: suppose we have a ![4 \\times 4](http://chart.apis.google.com/chart?cht=tx&chl=4%20%5Ctimes%204 "4 \times 4") matrix, ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P"):
 
 ![](img/partitioned-matrices-1.png)
 
@@ -78,7 +78,7 @@ Addition and Scalar multiplication
 Multiplication of partitioned matrices
 --------------------------------------
 
-For partitioned matrices *A* and *B*, the matrix product *A**B* is defined if the column parition of *A* matches the row partition of *B*.
+For partitioned matrices ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B"), the matrix product ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") is defined if the column parition of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") matches the row partition of ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B").
 
 Such compatible paritionings are said to be **conformable** for block multiplication.
 
@@ -108,19 +108,19 @@ Views of matrix products
 
 So far, we have considered several different ways of viewing matrix-related products, using partitions:
 
-1.  The definition of *A***x** using the columns of *A*
-2.  The column definition of *A**B*
-3.  The row-column rule for computing *A**B*
-4.  The rows of *A**B* as the products of the rows of *A* and the matrix *B*
+1.  The definition of ![A\\mathbf{x}](http://chart.apis.google.com/chart?cht=tx&chl=A%5Cmathbf%7Bx%7D "A\mathbf{x}") using the columns of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A")
+2.  The column definition of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
+3.  The row-column rule for computing ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
+4.  The rows of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") as the products of the rows of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and the matrix ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B")
 
-Section 2.4 defines fifth way of viewing the matrix product *A**B* (columnr-row expansion), described below.
+Section 2.4 defines fifth way of viewing the matrix product ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB") (columnr-row expansion), described below.
 
-The column-row expansion of *A**B*
-----------------------------------
+The column-row expansion of ![AB](http://chart.apis.google.com/chart?cht=tx&chl=AB "AB")
+----------------------------------------------------------------------------------------
 
 **Theorem 10**
 
-If *A* is *m* × *n* and *B* is *n* × *p*,then:
+If ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is ![m \\times n](http://chart.apis.google.com/chart?cht=tx&chl=m%20%5Ctimes%20n "m \times n") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") is ![n \\times p](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20p "n \times p"),then:
 
 <!--
 $$
@@ -148,7 +148,7 @@ $$
 -->
 ![](img/partitioned-matrices-6.png)
 
-where *A*, *B*, *C* and *D* are matrix sub-blocks of arbitrary size.
+where ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B"), ![C](http://chart.apis.google.com/chart?cht=tx&chl=C "C") and ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D") are matrix sub-blocks of arbitrary size.
 
 Matrix Factorization
 ====================
@@ -183,7 +183,7 @@ LU factorization
 -   Solving systems of equations
 -   Matrix inversion
 -   Computing determinants
--   Especially useful when you want to solve multiple systems of equations involving the same Matrix-vector *A**x*.
+-   Especially useful when you want to solve multiple systems of equations involving the same Matrix-vector ![Ax](http://chart.apis.google.com/chart?cht=tx&chl=Ax "Ax").
     -   Up-front computational cost
     -   Much faster solutions for subsequent systems
     -   Used by many computational solvers.
@@ -205,11 +205,11 @@ One of the defining features of NMF compared with other similar techniques such 
 
 ### Definition
 
-Let *V* be an *p* × *n* *non-negative* matrix. NMF attempts to find *non-negative* matrices *W* (*p* × *k*) and *H* (*k* × *n*), whose product *approximates* *V*:
+Let ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") be an ![p \\times n](http://chart.apis.google.com/chart?cht=tx&chl=p%20%5Ctimes%20n "p \times n") *non-negative* matrix. NMF attempts to find *non-negative* matrices ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") (![p \\times k](http://chart.apis.google.com/chart?cht=tx&chl=p%20%5Ctimes%20k "p \times k")) and ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") (![k \\times n](http://chart.apis.google.com/chart?cht=tx&chl=k%20%5Ctimes%20n "k \times n")), whose product *approximates* ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V"):
 
 *V* ≈ *W**H*
 
-Here, the information contained in *V* is split into the *k* columns of *W*, or, in other words, the *k* columns of *W* represent *latent factors* present in the original matrix *V*.
+Here, the information contained in ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") is split into the ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") columns of ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"), or, in other words, the ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") columns of ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") represent *latent factors* present in the original matrix ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V").
 
 ![](img/NMF.png) (Source: [Wikipedia](https://en.wikipedia.org/wiki/Non-negative_matrix_factorization))
 
@@ -233,8 +233,8 @@ The main difference between the three approaches has to do with the constraints 
 
 #### Vector Quantization
 
--   Each column in *H* must be a unary vector (all zeros except for one position, set to 1).
--   Each face (column in *V*) is approximated by a single basis image (column in *W*)
+-   Each column in ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") must be a unary vector (all zeros except for one position, set to 1).
+-   Each face (column in ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V")) is approximated by a single basis image (column in ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"))
 
 #### Principal component analysis
 
@@ -245,13 +245,13 @@ The main difference between the three approaches has to do with the constraints 
 
 #### Non-negative matrix factorization
 
--   Similar to PCA in that *V* is approximated by a linear combination of the basis images, however,
+-   Similar to PCA in that ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") is approximated by a linear combination of the basis images, however,
 -   Basis images are required to be non-negative.
 -   Summing basis images (with corresponding weights), thus builds up the final approximated image "piece-by-piece"
 
-Finally, another notable property of NMF which differs it from both VQ and PCA is it's **sparsity** in both *W* *and* *H* (VQ is sparse in *H*, but is very dense in *W*). This is due to NMF's ability to capture *local* parts of a dataset.
+Finally, another notable property of NMF which differs it from both VQ and PCA is it's **sparsity** in both ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") *and* ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") (VQ is sparse in ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"), but is very dense in ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W")). This is due to NMF's ability to capture *local* parts of a dataset.
 
-This sparsity can be induces during the generation of the matrices *W* and *H* by adding a penalty component to the objective function to be minimized (i.e. regularization).
+This sparsity can be induces during the generation of the matrices ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") and ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") by adding a penalty component to the objective function to be minimized (i.e. regularization).
 
 ### Applications in Computational Biology (Devarajan, 2008)
 
@@ -267,30 +267,30 @@ For example, we may wish to cluster samples based on their expression profiles.
 
 In this case, we have matrices:
 
--   *V* (*p* × *n*)
--   *W* (*p* × *k*)
--   *H* (*k* × *n*)
+-   ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V") (![p \\times n](http://chart.apis.google.com/chart?cht=tx&chl=p%20%5Ctimes%20n "p \times n"))
+-   ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") (![p \\times k](http://chart.apis.google.com/chart?cht=tx&chl=p%20%5Ctimes%20k "p \times k"))
+-   ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H") (![k \\times n](http://chart.apis.google.com/chart?cht=tx&chl=k%20%5Ctimes%20n "k \times n"))
 
 Where:
 
--   *p* = \# genes
--   *n* = \# samples
--   *k* = \# *metagenes* (i.e. \# of latent factors to detect)
+-   ![p](http://chart.apis.google.com/chart?cht=tx&chl=p "p") = \# genes
+-   ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") = \# samples
+-   ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") = \# *metagenes* (i.e. \# of latent factors to detect)
 
 **Metagenes**
 
--   Metagenes are described as being 'non-negative linear combinations of *p* genes'
+-   Metagenes are described as being 'non-negative linear combinations of ![p](http://chart.apis.google.com/chart?cht=tx&chl=p "p") genes'
 -   Note that `len(metagene) == len(sample)`
     -   i.e. Each metagene is a ~10,000 long vector representing (hopefully) some specific subset of the samples.
 
 **Interpretation**
 
--   *W*<sub>*i**a*</sub> = The influence of the *a*<sup>*t**h*</sup> metagene expression pattern (*h*<sub>*a**j*</sub>) on the gene expression of the *i*<sup>*t**h*</sup> sample.
--   In other words, it's the contribute of metagene *a* to the expression profile for sample *i*.
+-   ![W\_{ia}](http://chart.apis.google.com/chart?cht=tx&chl=W_%7Bia%7D "W_{ia}") = The influence of the ![a^{th}](http://chart.apis.google.com/chart?cht=tx&chl=a%5E%7Bth%7D "a^{th}") metagene expression pattern (![h\_{aj}](http://chart.apis.google.com/chart?cht=tx&chl=h_%7Baj%7D "h_{aj}")) on the gene expression of the ![i^{th}](http://chart.apis.google.com/chart?cht=tx&chl=i%5E%7Bth%7D "i^{th}") sample.
+-   In other words, it's the contribute of metagene ![a](http://chart.apis.google.com/chart?cht=tx&chl=a "a") to the expression profile for sample ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i").
 
 **Clustering samples vs. genes**
 
-Note that for the problem frame above, we are clustering *samples*. NMF can just as easily be used to *cluster* the genes (just take the transpose of *V*).
+Note that for the problem frame above, we are clustering *samples*. NMF can just as easily be used to *cluster* the genes (just take the transpose of ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V")).
 
 ![Brunet et al. fig 1](img/Brunet_et_al_2004_fig1.jpg)
 
@@ -298,43 +298,12 @@ Note that for the problem frame above, we are clustering *samples*. NMF can just
 
 The [NMF package for R](https://cran.r-project.org/web/packages/NMF/index.html) (Gaujoux & Seoighe, 2010) provides implementations for several different algorithms for NMF, along with a general framework for implementing and testing new algorithms.
 
-Note that the notation for the dimensions of the matrix to be approximated, *X* (*V*) in the `NMF` vignette is precisely reversed from that used in the review text above (*n* × *p* in the former vs. *p* × *n* in the later).
+Note that the notation for the dimensions of the matrix to be approximated, ![X](http://chart.apis.google.com/chart?cht=tx&chl=X "X") (![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V")) in the `NMF` vignette is precisely reversed from that used in the review text above (![n \\times p](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20p "n \times p") in the former vs. ![p \\times n](http://chart.apis.google.com/chart?cht=tx&chl=p%20%5Ctimes%20n "p \times n") in the later).
 
 To see which algorithms are available, you can use the `nmfAlgorithm()` function:
 
 ``` r
 library('NMF')
-```
-
-    ## Loading required package: pkgmaker
-
-    ## Loading required package: registry
-
-    ## 
-    ## Attaching package: 'pkgmaker'
-
-    ## The following object is masked from 'package:base':
-    ## 
-    ##     isNamespaceLoaded
-
-    ## Loading required package: rngtools
-
-    ## Loading required package: cluster
-
-    ## NMF - BioConductor layer [OK] | Shared memory capabilities [NO: bigmemory] | Cores 11/12
-
-    ##   To enable shared memory capabilities, try: install.extras('
-    ## NMF
-    ## ')
-
-    ## 
-    ## Attaching package: 'NMF'
-
-    ## The following object is masked from 'package:rmarkdown':
-    ## 
-    ##     run
-
-``` r
 nmfAlgorithm()
 ```
 
@@ -368,7 +337,7 @@ args(nmf)
 
 `x` is our data, `rank` is the number of latent factors (metagenes) to detect, method is the algorithm we wish to use.
 
-Further, a `seed` parameter can also be used to specify a seeding method to use for *W* and *H*, which turns out to be quite important for NMF (see vignettes for details).
+Further, a `seed` parameter can also be used to specify a seeding method to use for ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") and ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"), which turns out to be quite important for NMF (see vignettes for details).
 
 Next, we will use NMF to cluster an example dataset containing expression profiles for 5000 genes across 38 leukemia samples of two different types:
 
@@ -439,6 +408,86 @@ ggplot(df, aes(pc1, pc2, color=cell, shape=type)) +
 
 ![](img/esGolub_PCA_plot-1.png)
 
+Next, let's perform NMF on the data using the default algorithm and seeding method with `rank=3`:
+
+``` r
+result <- nmf(esGolub, 3)
+result
+```
+
+    ## <Object of class: NMFfit>
+    ##  # Model:
+    ##   <Object of class:NMFstd>
+    ##   features: 5000 
+    ##   basis/rank: 3 
+    ##   samples: 38 
+    ##  # Details:
+    ##   algorithm:  brunet 
+    ##   seed:  random 
+    ##   RNG: 403L, 298L, ..., -995397077L [183bee22c3b61918c154cca3b4f0ee76]
+    ##   distance metric:  'KL' 
+    ##   residuals:  13806591 
+    ##   Iterations: 560 
+    ##   Timing:
+    ##      user  system elapsed 
+    ##     2.527   0.000   2.534
+
+Use `fit()` to get the fitted model:
+
+``` r
+fit(result)
+```
+
+    ## <Object of class:NMFstd>
+    ## features: 5000 
+    ## basis/rank: 3 
+    ## samples: 38
+
+and `fitted()` to get the approximated version of ![V](http://chart.apis.google.com/chart?cht=tx&chl=V "V"):
+
+``` r
+V0 <- fitted(result)
+```
+
+Next, we can use `basis()` and `coef()` to get ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W") and ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"), respectively:
+
+``` r
+w <- basis(result)
+dim(w)
+```
+
+    ## [1] 5000    3
+
+``` r
+h <- coef(result)
+dim(h)
+```
+
+    ## [1]  3 38
+
+Let's visualize each of these:
+
+``` r
+library('gplots')
+library('viridis')
+
+# plot w (subsample rows to speed up)
+# allowing rows to be reordered to show major differences
+heatmap.2(w[sample(1:nrow(w), 500),], Rowv=FALSE, labRow=FALSE,
+          dendrogram="none", main="H", col=viridis, trace="none",
+          margins=c(5, 5))
+```
+
+![](img/w-1.png)
+
+``` r
+# plot h
+heatmap.2(h, Rowv=FALSE, Colv=FALSE, dendrogram="none", main="H", col=viridis,
+          trace="none", margins=c(8, 6))
+```
+
+![](img/h-1.png)
+
 References
 ==========
 
@@ -482,6 +531,6 @@ if (opts_knit$get("rmarkdown.pandoc.to") == 'latex') {
 
 **attached base packages:** *parallel*, *stats*, *graphics*, *grDevices*, *utils*, *datasets*, *methods* and *base*
 
-**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13)*, *ggplot2(v.2.1.0)*, *NMF(v.0.20.6)*, *Biobase(v.2.32.0)*, *BiocGenerics(v.0.18.0)*, *cluster(v.2.0.4)*, *rngtools(v.1.2.4)*, *pkgmaker(v.0.22)*, *registry(v.0.3)*, *knitcitations(v.1.0.7.1)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-1)*
+**other attached packages:** *pander(v.0.6.0)*, *knitr(v.1.13.1)*, *viridis(v.0.3.4)*, *gplots(v.3.0.1)*, *ggplot2(v.2.1.0)*, *NMF(v.0.20.6)*, *Biobase(v.2.32.0)*, *BiocGenerics(v.0.18.0)*, *cluster(v.2.0.4)*, *rngtools(v.1.2.4)*, *pkgmaker(v.0.22)*, *registry(v.0.3)*, *knitcitations(v.1.0.7)*, *rmarkdown(v.1.0)*, *nvimcom(v.0.9-19)*, *setwidth(v.1.0-4)* and *colorout(v.1.1-0)*
 
-**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *formatR(v.1.4)*, *RColorBrewer(v.1.1-2)*, *plyr(v.1.8.4)*, *bitops(v.1.0-6)*, *iterators(v.1.0.8)*, *tools(v.3.3.1)*, *digest(v.0.6.10)*, *gtable(v.0.2.0)*, *lubridate(v.1.5.6)*, *evaluate(v.0.9)*, *gridBase(v.0.4-7)*, *bibtex(v.0.4.0)*, *foreach(v.1.4.3)*, *yaml(v.2.1.13)*, *RefManageR(v.0.10.17)*, *httr(v.1.2.1)*, *stringr(v.1.0.0)*, *grid(v.3.3.1)*, *R6(v.2.1.2)*, *XML(v.3.98-1.4)*, *RJSONIO(v.1.3-0)*, *reshape2(v.1.4.1)*, *magrittr(v.1.5)*, *scales(v.0.4.0)*, *codetools(v.0.2-14)*, *htmltools(v.0.3.5)*, *xtable(v.1.8-2)*, *colorspace(v.1.2-6)*, *labeling(v.0.3)*, *stringi(v.1.1.1)*, *munsell(v.0.4.3)*, *RCurl(v.1.95-4.8)* and *doParallel(v.1.0.10)*
+**loaded via a namespace (and not attached):** *Rcpp(v.0.12.6)*, *formatR(v.1.4)*, *RColorBrewer(v.1.1-2)*, *plyr(v.1.8.4)*, *bitops(v.1.0-6)*, *iterators(v.1.0.8)*, *tools(v.3.3.1)*, *digest(v.0.6.10)*, *gtable(v.0.2.0)*, *lubridate(v.1.5.6)*, *evaluate(v.0.9)*, *gridBase(v.0.4-7)*, *bibtex(v.0.4.0)*, *foreach(v.1.4.3)*, *yaml(v.2.1.13)*, *gridExtra(v.2.2.1)*, *RefManageR(v.0.10.13)*, *httr(v.1.2.1)*, *stringr(v.1.0.0)*, *caTools(v.1.17.1)*, *gtools(v.3.5.0)*, *grid(v.3.3.1)*, *R6(v.2.1.2)*, *XML(v.3.98-1.4)*, *RJSONIO(v.1.3-0)*, *gdata(v.2.17.0)*, *reshape2(v.1.4.1)*, *magrittr(v.1.5)*, *scales(v.0.4.0)*, *codetools(v.0.2-14)*, *htmltools(v.0.3.5)*, *xtable(v.1.8-2)*, *colorspace(v.1.2-6)*, *labeling(v.0.3)*, *KernSmooth(v.2.23-15)*, *stringi(v.1.1.1)*, *munsell(v.0.4.3)*, *RCurl(v.1.95-4.8)* and *doParallel(v.1.0.10)*
