@@ -301,6 +301,9 @@ in the objective function, e.g.:
 
 ![](img/kl_divergence_nmf_regularized.png)
 
+In this case, we are only imposing a penalty on the coefficents of $H$. We
+could just as easily penalize $W$, or both $H$ and $W$.
+
 #### Estimating factorization rank
 
 For clustering applications, when $k$ is not known in advance, their are
@@ -428,7 +431,7 @@ transpose of $V$).
 
 #### Strengths and weaknesses of NMF
 
-Some of the advantages of NMF include:
+##### Strengths
 
 - Wide range of applications (dimension reduction, latent variable detection,
   clustering, etc.)
@@ -436,6 +439,14 @@ Some of the advantages of NMF include:
 - Straight-forward interpreation
 - Allows for detection of correlated latent factors (compare with PCA which
   detects strictly orthogonal variables).
+- Able to detect similarities between samples (in the context of expression
+  data), even when the samples are only similar for subset of the genes.
+
+##### Limitations
+
+- Greather algorithmic complexity and computational demands (compared with SVD)
+- Stochastic (depends on choice of seeding)
+- Not yet known how normalization should be used in the context of NMF.
 
 ### R package for NMF
 

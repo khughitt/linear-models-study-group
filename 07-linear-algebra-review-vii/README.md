@@ -253,6 +253,8 @@ Further, to induce sparsity in *W* and *H*, thus helping to ensure a local parts
 <!-- \displaystyle \min_{W,H > 0} \big[ KL(V||WH) + \lambda \sum{H_{aj}}_{aj} \big] -->
 ![](img/kl_divergence_nmf_regularized.png)
 
+In this case, we are only imposing a penalty on the coefficents of *H*. We could just as easily penalize *W*, or both *H* and *W*.
+
 #### Estimating factorization rank
 
 For clustering applications, when *k* is not known in advance, their are methods for estimating the factorization rank (e.g. see section 2.6 of the `nmf` package vignette)
@@ -345,12 +347,19 @@ Note that the way the problem has been framed above, we are clustering *samples*
 
 #### Strengths and weaknesses of NMF
 
-Some of the advantages of NMF include:
+##### Strengths
 
 -   Wide range of applications (dimension reduction, latent variable detection, clustering, etc.)
 -   Ability to detect local parts-based representation of a dataset
 -   Straight-forward interpreation
 -   Allows for detection of correlated latent factors (compare with PCA which detects strictly orthogonal variables).
+-   Able to detect similarities between samples (in the context of expression data), even when the samples are only similar for subset of the genes.
+
+##### Limitations
+
+-   Greather algorithmic complexity and computational demands (compared with SVD)
+-   Stochastic (depends on choice of seeding)
+-   Not yet known how normalization should be used in the context of NMF.
 
 ### R package for NMF
 
@@ -482,13 +491,13 @@ result
     ##  # Details:
     ##   algorithm:  brunet 
     ##   seed:  random 
-    ##   RNG: 403L, 184L, ..., 1368417369L [e942dd792ce1d90fb182aa76a595f339]
+    ##   RNG: 403L, 198L, ..., -1693668582L [4d29980c11159d0623bf3188d07940c3]
     ##   distance metric:  'KL' 
-    ##   residuals:  13806625 
-    ##   Iterations: 520 
+    ##   residuals:  13807040 
+    ##   Iterations: 490 
     ##   Timing:
     ##      user  system elapsed 
-    ##     1.816   0.000   1.817
+    ##     1.690   0.000   1.689
 
 Use `fit()` to get the fitted model:
 
@@ -562,25 +571,25 @@ nmf_clusters
 ```
 
     ## ALL_19769_B-cell ALL_23953_B-cell ALL_28373_B-cell  ALL_9335_B-cell 
-    ##                2                2                2                2 
+    ##                3                3                3                3 
     ##  ALL_9692_B-cell ALL_14749_B-cell ALL_17281_B-cell ALL_19183_B-cell 
-    ##                2                3                2                2 
+    ##                3                3                3                3 
     ## ALL_20414_B-cell ALL_21302_B-cell   ALL_549_B-cell ALL_17929_B-cell 
-    ##                2                1                2                2 
+    ##                3                2                3                3 
     ## ALL_20185_B-cell ALL_11103_B-cell ALL_18239_B-cell  ALL_5982_B-cell 
-    ##                2                2                2                2 
+    ##                3                3                3                3 
     ##  ALL_7092_B-cell   ALL_R11_B-cell   ALL_R23_B-cell ALL_16415_T-cell 
-    ##                2                2                2                1 
+    ##                3                3                3                2 
     ## ALL_19881_T-cell  ALL_9186_T-cell  ALL_9723_T-cell ALL_17269_T-cell 
-    ##                1                1                1                1 
+    ##                2                2                2                2 
     ## ALL_14402_T-cell ALL_17638_T-cell ALL_22474_T-cell           AML_12 
-    ##                1                1                1                3 
+    ##                2                2                2                1 
     ##           AML_13           AML_14           AML_16           AML_20 
-    ##                3                3                3                3 
+    ##                1                1                1                1 
     ##            AML_1            AML_2            AML_3            AML_5 
-    ##                3                3                3                3 
+    ##                1                1                1                1 
     ##            AML_6            AML_7 
-    ##                3                3
+    ##                1                1
 
 To see how this compares with the PCA assignments, we can redo the PCA plot, but coloring samples according to their NMF clustering:
 
