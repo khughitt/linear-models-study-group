@@ -77,6 +77,9 @@ The geometric interpretation of partial correlation:
 <!--- (Show geometrical interpretation of partial correlation from https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion) -->
 ![https://upload.wikimedia.org/wikipedia/en/d/d5/PartialCorrelationGeometrically.jpg](https://upload.wikimedia.org/wikipedia/en/d/d5/PartialCorrelationGeometrically.jpg)
 
+### Positive definite
+A matrix is positive definite if it is symmetric and all of its eigenvalues are positive.
+
 
 ###Matrix inversion
 In ![](img/O_n3.png) we can calculate all partial correlations using matrix inversion. The only requirement is that the correlation matrix (or covariance matrix) must be positive definite (and therefore invertible)
