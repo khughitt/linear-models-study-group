@@ -22,15 +22,11 @@ The Letter N in this case is a collection of vertices connected by straight line
 
 ### Homogeneous Coordinates
 
-Each point (*x*,*y*) in 
-<!--- \mathbb{R}^2 -->
- ![](img/reals2.png) can be identified with the point (*x*,*y*,1) on the plane in 
- <!--- \mathbb{R}^3 -->
-  ![](img/reals3.png) that lies one unit above the *xy*-plane. Homogeneous coordinated are not added or multiplied by scalars, they can be transformed via multiplication by 3x3 matrices.
+Each point (*x*,*y*) in ![](img/reals2.png) can be identified with the point (*x*,*y*,1) on the plane in ![](img/reals3.png) that lies one unit above the *xy*-plane. Homogeneous coordinated are not added or multiplied by scalars, they can be transformed via multiplication by 3x3 matrices.
 
 #### 3D Coordinated
 
-In general (*X*,*Y*,*Z*,*H*) are homogeneous coordinates for (*x*,*y*,*z*) if <!--- H\neq0 --> ![](img/h_neq_0.png) and
+In general (*X*,*Y*,*Z*,*H*) are homogeneous coordinates for (*x*,*y*,*z*) if ![](img/h_neq_0.png) and
 
 <!--- x=\frac{X}{H},\ y=\frac{Y}{H},\ \text{and } z=\frac{Z}{H} -->
 ![](img/3d_coordinates.png)
@@ -73,9 +69,7 @@ A perspective projection maps each point (*x*,*y*,*z*) onto an image point (*x*\
 (Show geometrical interpretation of partial correlation from https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion)
 
 ###Matrix inversion
-In 
-<!--- \mathcal{O}(n^3) -->
- ![](img/O_n3.png) we can calculate all partial correlations using matrix inversion. The only requirement is that the correlation matrix (or covariance matrix) must be positive definite (and therefore invertible)
+In ![](img/O_n3.png) we can calculate all partial correlations using matrix inversion. The only requirement is that the correlation matrix (or covariance matrix) must be positive definite (and therefore invertible)
 
 <!--- \mathbf{P}=\mathbf{\Omega}^{-1} -->
 ![](img/P.png)
