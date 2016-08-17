@@ -8,21 +8,25 @@ Linear Algebra Review VII
 
 We can use mathematics to manipulate and display graphical images.
 
-(insert example of N here)
-(insert matrix of N)
+![](img/Regular_N.png)
+
+![](img/matrix_N.png)
 
 The Letter N in this case is a collection of vertices connected by straight line segments. We can transform N by using a matrix A.
 
-(insert matrix AN)
-(insert example of N transformed)
+![](img/matrix_A.png)
+
+![](img/matrix_AN.png)
+
+![](img/transformed_N.png)
 
 ### Homogeneous Coordinates
 
-Each point (*x*,*y*) in <!-- \mathbb{R}^2 --> ![](img/reals2.png) can be identified with the point (*x*,*y*,1) on the plane in \mathbb{R}^3 that lies one unit above the *xy*-plane. Homogeneous coordinated are not added or multiplied by scalars, they can be transformed via multiplication by 3x3 matrices.
+Each point (*x*,*y*) in <!-- \mathbb{R}^2 --> ![](img/reals2.png) can be identified with the point (*x*,*y*,1) on the plane in <!-- \mathbb{R}^3 --> ![](img/reals3.png) that lies one unit above the *xy*-plane. Homogeneous coordinated are not added or multiplied by scalars, they can be transformed via multiplication by 3x3 matrices.
 
 #### 3D Coordinated
 
-In general (*X*,*Y*,*Z*,*H*) are homogeneous coordinates for (*x*,*y*,*z*) if H\neq0 and
+In general (*X*,*Y*,*Z*,*H*) are homogeneous coordinates for (*x*,*y*,*z*) if <!-- H\neq0 --> ![](img/h_neq_0.png) and
 
 <!-- x=\frac{X}{H},\ y=\frac{Y}{H},\ \text{and } z=\frac{Z}{H} -->
 ![](img/3d_coordinates.png)
@@ -31,7 +35,9 @@ In general (*X*,*Y*,*Z*,*H*) are homogeneous coordinates for (*x*,*y*,*z*) if H\
 
 When moving an image you will probably require two or more transformations
 
-(insert triangle example)
+![](img/triangles.png)
+
+![](img/triangles_matrix.png)
 
 #### 3D Computer Graphics Applications
  - 3D protein visualization
@@ -42,7 +48,7 @@ When moving an image you will probably require two or more transformations
 A three-dimensional object is represented on the two-dimensional computer screen by projecting the object onto a viewing plane.
 A perspective projection maps each point (*x*,*y*,*z*) onto an image point (*x*\*,*y*\*,0) so that the two points and the eye position, called the center of projection (0,0,*d*) are on a line.
 
-(Insert projection example)
+![](img/projection_image.png)
 
 <!-- x*=\frac{x}{1-z/d} -->
 ![](img/x_star.png)
