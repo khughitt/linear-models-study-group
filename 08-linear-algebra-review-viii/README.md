@@ -83,5 +83,5 @@ In ![](img/O_n3.png) we can calculate all partial correlations using matrix inve
 <!--- \mathbf{P}=\mathbf{\Omega}^{-1} -->
 ![](img/P.png)
 
-### Positive definite
+#### Positive definite
 A matrix is positive definite if it is symmetric and all of its eigenvalues are positive.
