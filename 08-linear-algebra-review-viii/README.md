@@ -62,11 +62,15 @@ A perspective projection maps each point (*x*,*y*,*z*) onto an image point (*x*\
 ## Partial Correlation
 "Partial correlation measures the degree of association between two random variables, with the effect of a set of controlling random variables removed"
 
-(Show correlation matrix from http://www.statsdirect.com/help/default.htm#regression_and_correlation/partial_correlation.htm)
+<!--- (Show correlation matrix from http://www.statsdirect.com/help/default.htm#regression_and_correlation/partial_correlation.htm) -->
+![](img/corr_matrix.png)
 
-(Show partial of AB adjusted for C from Stats Help)
+<!--- (Show partial of AB adjusted for C from Stats Help) -->
+![](img/partial_corr_ab.png)
 
-(Show geometrical interpretation of partial correlation from https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion)
+<!--- (Show geometrical interpretation of partial correlation from https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion) -->
+![https://en.wikipedia.org/wiki/Partial_correlation#/media/File:PartialCorrelationGeometrically.jpg](https://en.wikipedia.org/wiki/Partial_correlation#/media/File:PartialCorrelationGeometrically.jpg)
+
 
 ###Matrix inversion
 In ![](img/O_n3.png) we can calculate all partial correlations using matrix inversion. The only requirement is that the correlation matrix (or covariance matrix) must be positive definite (and therefore invertible)
