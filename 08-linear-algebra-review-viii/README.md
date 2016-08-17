@@ -69,7 +69,7 @@ A perspective projection maps each point (*x*,*y*,*z*) onto an image point (*x*\
 ![](img/partial_corr_ab.png)
 
 <!--- (Show geometrical interpretation of partial correlation from https://en.wikipedia.org/wiki/Partial_correlation#Using_matrix_inversion) -->
-![https://en.wikipedia.org/wiki/Partial_correlation#/media/File:PartialCorrelationGeometrically.jpg](https://en.wikipedia.org/wiki/Partial_correlation#/media/File:PartialCorrelationGeometrically.jpg)
+![https://upload.wikimedia.org/wikipedia/en/d/d5/PartialCorrelationGeometrically.jpg](https://upload.wikimedia.org/wikipedia/en/d/d5/PartialCorrelationGeometrically.jpg)
 
 
 ###Matrix inversion
