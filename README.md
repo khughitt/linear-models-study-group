@@ -1,6 +1,8 @@
 Study Group: Linear models and GLMs
 ===================================
 
+## Overview
+
 This repository contains the notes for a study group held at the University of
 Maryland, College Park from June 2016 - ...
 
@@ -21,4 +23,12 @@ Once we have spent a bit of time reviewing important concepts there, the plan
 is to move onto other materials such as Coursera course on linear modeling, or
 a textbook on linear models / GLMs.
 
+## Reading list
 
+Some possible papers for discussion:
+
+--  
+
+[x] - Devarajan,K. (2008) Nonnegative matrix factorization: An analytical and interpretive tool in computational biology. PLoS Comput. Biol., 4.
+[ ] - Meng,C., Zeleznik,O.A., Thallinger,G.G., Kuster,B., Gholami,A.M. and Culhane,A.C. (2016) Dimension reduction techniques for the integrative analysis of multi-omics data. Brief. Bioinform., 17, bbv108.
+[ ] - Witten,D.M., Tibshirani,R. and Hastie,T. (2009) A penalized matrix decomposition, with applications to sparse principal components and canonical correlation analysis. Biostatistics, 10, 515–534.
