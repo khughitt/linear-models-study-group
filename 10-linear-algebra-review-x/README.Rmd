@@ -1,16 +1,16 @@
 ---
 output:
-  pdf_document:
+  html_document:
     toc: yes
-    toc_depth: '2'
   md_document:
     md_extensions: +tex_math_dollars
     pandoc_args: --webtex
     toc: yes
     toc_depth: 2
     variant: markdown_github
-  html_document:
+  pdf_document:
     toc: yes
+    toc_depth: '2'
 ---
 
 ```{r include=FALSE}
