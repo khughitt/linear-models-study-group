@@ -54,7 +54,7 @@ This <a href="https://en.wikipedia.org/wiki/Vector_images" class="extiw" title="
 _The eigenvalues of a triangular matrix are the entries on its main diagonal._  
 Key idea is that $(A- \lambda I)\mathbf{x}=0$, therefore at least one entry on the diagonal of $A-\lambda I$ is zero.
 
-![Lay p. 306](img/triangular_eigenvalues.tiff)
+![Lay p. 306](img/triangular_eigenvalues.png)
 
 ## Theorem 2
 If $\mathbf{v}_1, \dots, \mathbf{v}_r$ are eigenvectors that correspond to distince eigenvalues, $\lambda_1, \dots, \lambda_r$ of an $n \times n$ matrix $A$, then the set $\{\mathbf{v}_1, \dots, \mathbf{v}_r\}$ is linearly independent.
