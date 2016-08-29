@@ -2,9 +2,14 @@
     -   [Some geometric motivation](#some-geometric-motivation)
     -   [Other useful theorems we missed in chapter 3...](#other-useful-theorems-we-missed-in-chapter-3...)
 -   [The Characteristic Equation](#the-characteristic-equation)
--   [Another tangent: spectral analysis of covariance matrices](#another-tangent-spectral-analysis-of-covariance-matrices)
-    -   [3 variables (2 correlated)](#variables-2-correlated)
-    -   [4 variables (3 correlated)](#variables-3-correlated)
+    -   [Overview](#overview)
+    -   [Characteristic polynomials](#characteristic-polynomials)
+    -   [Similarity](#similarity)
+-   [Diagonalization](#diagonalization)
+    -   [Overview](#overview-1)
+    -   [The Diagonalization Theorem](#the-diagonalization-theorem)
+-   [Tangent: spectral analysis of covariance matrices](#tangent-spectral-analysis-of-covariance-matrices)
+    -   [Matrices with correlated features](#matrices-with-correlated-features)
 -   [References](#references)
 
 <h1>
@@ -16,9 +21,10 @@ Linear Algebra Review XI
 Determinants
 ============
 
-### Some geometric motivation
+Some geometric motivation
+-------------------------
 
-#### 2x2 matrices
+### 2x2 matrices
 
 A ![2 \\times 2](http://chart.apis.google.com/chart?cht=tx&chl=2%20%5Ctimes%202 "2 \times 2") matrix, ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), can be viewed as a **linear map** which transforms the **standard basis vectors** (unit vectors pointing in the direction of the coordinate exes, in this case ![e\_x = (1,0)](http://chart.apis.google.com/chart?cht=tx&chl=e_x%20%3D%20%281%2C0%29 "e_x = (1,0)") and ![e\_y = (0, 1)](http://chart.apis.google.com/chart?cht=tx&chl=e_y%20%3D%20%280%2C%201%29 "e_y = (0, 1)")) to the rows (or columns) of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A").
 
@@ -38,7 +44,7 @@ And:
 
 ![](img/determinant.png)
 
-#### 3x3 matrices
+### 3x3 matrices
 
 The same idea can be extended into higher dimensions, for example, the absolute value of the determinant of a ![3 \\times 3](http://chart.apis.google.com/chart?cht=tx&chl=3%20%5Ctimes%203 "3 \times 3") matrix is the volume of the **parallelepiped** bound by coordinates related to values from the original matrix.
 
@@ -48,13 +54,13 @@ The same idea can be extended into higher dimensions, for example, the absolute 
 
 Here, the parallelepiped represents the transformed **unit cube**.
 
-#### Related geometric interpretation
+### Related geometric interpretation
 
 Another useful way of thinking of the determinant geometrically:
 
 > You can derive the algebraic properties from this geometrical interpretation. For example, if two of the columns are linearly dependent, your box is missing a dimension and so it's been flattened to have zero volume. \[2\]
 
-#### Determinants of correlation matrices
+### Determinants of correlation matrices
 
 For example, suppose we are looking at *correlation matrices* for two variables.
 
@@ -86,7 +92,7 @@ plot(c(0, 2), c(0, 2), type = "n")
 polygon(c(0, a1, a1 + c1, c1), c(0, b1, b1 + d1, d1), col='#369bed')
 ```
 
-<img src="img/cor_mat2rix_determinant_a-1.png" width="1080" />
+<img src="img/cor_matrix_determinant_a-1.png" width="1080" />
 
 ``` r
 det(cor_mat1)
@@ -152,20 +158,21 @@ eigen(cor_mat2)
     ## [1,] -0.7071068 -0.7071068
     ## [2,]  0.7071068 -0.7071068
 
-<span style="color:red; font-weight: 700;">QUESTION:</span> *Why are the values of the eigenvectors so similar for the two examples?..*
+<span style="color:red;">**QUESTION**:</span> *Why are the values of the eigenvectors so similar for the two examples?..*
 
 The same basic trends hold true when applied to covariance matrices as well (correlated variables lead to closer values in the covariance matrix), however the exact values of the coordinates and the determinant change.
 
-### Other useful theorems we missed in chapter 3...
+Other useful theorems we missed in chapter 3...
+-----------------------------------------------
 
 -   **Theorem 2** If ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is a triangular matrix, then det ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is the product of the entries on the main diagonal of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A").
     -   This is easy to see for ![2 \\times 2](http://chart.apis.google.com/chart?cht=tx&chl=2%20%5Ctimes%202 "2 \times 2") example: second product includes something below the diagonal so it goes to zero, leaving only the product coming from the diagonal.
 -   **Theorem 3**: Determinant for one square matrix can be determined by following simple rules relating to row operations used to get from that matrix to a new one (see p192 for details).
 -   Relation to invertibility of a matrix:
-    1.  When ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is invertible: det ![A = (-1)^r \\times (\\text{product of pivots in} U)](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20%28-1%29%5Er%20%5Ctimes%20%28%5Ctext%7Bproduct%20of%20pivots%20in%7D%20U%29 "A = (-1)^r \times (\text{product of pivots in} U)")
+    1.  When ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is invertible: det ![A = (-1)^r \\times (\\text{product of pivots in } U)](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20%28-1%29%5Er%20%5Ctimes%20%28%5Ctext%7Bproduct%20of%20pivots%20in%20%7D%20U%29 "A = (-1)^r \times (\text{product of pivots in } U)")
     2.  When ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is *not* invertible, det ![A = 0](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%200 "A = 0")
--   **Theorem 4** A square matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is invertible iff det ![A \\neq 0](http://chart.apis.google.com/chart?cht=tx&chl=A%20%5Cneq%200 "A \neq 0")
-    -   The columns of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") are linearly dependent ![\\implies det A = 0](http://chart.apis.google.com/chart?cht=tx&chl=%5Cimplies%20det%20A%20%3D%200 "\implies det A = 0")
+-   **Theorem 4** A square matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is invertible if and only if det ![A \\neq 0](http://chart.apis.google.com/chart?cht=tx&chl=A%20%5Cneq%200 "A \neq 0")
+    -   The columns of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") are linearly dependent ![\\Rightarrow det A = 0](http://chart.apis.google.com/chart?cht=tx&chl=%5CRightarrow%20det%20A%20%3D%200 "\Rightarrow det A = 0")
         -   ...remember the geometric interpretation of this idea above.
     -   The rows of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") are linearly dependent ![\\implies det A = 0](http://chart.apis.google.com/chart?cht=tx&chl=%5Cimplies%20det%20A%20%3D%200 "\implies det A = 0")
         -   Rows of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") = columns of ![A^T](http://chart.apis.google.com/chart?cht=tx&chl=A%5ET "A^T").
@@ -178,6 +185,9 @@ Skipping 3.3 on Cramer's Rule, etc. (too much typing and not really needed below
 
 The Characteristic Equation
 ===========================
+
+Overview
+--------
 
 **Main idea:**
 
@@ -199,7 +209,7 @@ Therefore, another way to think about the above problem is to look for all ![\\l
 
 From Lay 3.2, theorem 4 states:
 
-> A square matrix A is invertible iff det A != 0
+> A square matrix A is invertible if and only if det A != 0
 
 Which leads us to the following way of determining the eigenvalues for ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"):
 
@@ -211,13 +221,63 @@ When we have a triangular matrix, we can just take the product each of the diago
 
 After expansion, this leaves us with a simple polynomial equation in a single variable!
 
+Characteristic polynomials
+--------------------------
+
 -   If ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is an ![n \\times n](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20n "n \times n") matrix, then det ( ![A - \\lambda I](http://chart.apis.google.com/chart?cht=tx&chl=A%20-%20%5Clambda%20I "A - \lambda I") )is a polynomial of degree ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") called the <b>characteristic polynomial</b> of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A").
 -   To find the eigenvalues for ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), we simply find the roots of its characteristic polynomial equation!
 
-Another tangent: spectral analysis of covariance matrices
-=========================================================
+Similarity
+----------
+
+Another key idea from 5.2 which leads us into the chapter on matrix diagonalization is *similarity*.
+
+-   If ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") are ![n \\times n](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20n "n \times n") matrices, then ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") *is similar to* ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") if there is an invertible matrix ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P") such that ![A = PBP^-1](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20PBP%5E-1 "A = PBP^-1").
+-   ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") *is similar to* ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") implies ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") *is similar to* ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A")
+-   Changing ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") into ![PBP^-1](http://chart.apis.google.com/chart?cht=tx&chl=PBP%5E-1 "PBP^-1") is called a **similarity transformation**
+
+If ![n \\times n](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20n "n \times n") matrices ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") and ![B](http://chart.apis.google.com/chart?cht=tx&chl=B "B") are similar, then they have the same characteristic polynomial and hence the same eigenvalues (with the same multiplicities).
+
+-note: *similarity* ![\\neq](http://chart.apis.google.com/chart?cht=tx&chl=%5Cneq "\neq") *row equivalence*.
+
+Diagonalization
+===============
+
+Overview
+--------
+
+**Main idea:**
+
+The eigenvalue-eigenvector information contained within a matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") can be displayed in a usefu factorization of the form ![A = PDP^-1](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20PDP%5E-1 "A = PDP^-1"), where:
+
+-   P -&gt; eigenvectors
+-   D -&gt; eigenvalues
+
+-   ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D") stands for *diagonal*
+-   Useful for computing ![A^k](http://chart.apis.google.com/chart?cht=tx&chl=A%5Ek "A^k") for large values of ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k")
+-   Aka "Eigendecomposition" or "spectral decomposition"
+-   [SVD](https://en.wikipedia.org/wiki/Singular_value_decomposition) extends this idea to rectangular matrices.
+
+The Diagonalization Theorem
+---------------------------
+
+-   A square matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is said to be **diagonalizable** if ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is similar to a diagonal matrix, i.e. if ![A = PDP^-1](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20PDP%5E-1 "A = PDP^-1") for some invertible matrix ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P") and some diagonal matrix ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D").
+
+**Theorem 5**
+
+> An ![n \\times n](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20n "n \times n") matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is diagonalizable if and only if ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") has ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") linearly indepdendent eigenvectors. In fact, ![A = PDP^-1](http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20PDP%5E-1 "A = PDP^-1"), with ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D") a diagonal matrix, if and only if the columns of ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P") are ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") linearly independent eigenvectors of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"). In this case, the diagonal entries of ![D](http://chart.apis.google.com/chart?cht=tx&chl=D "D") are eigenvalues of ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") that correspond, respectively, to the eigenvectors in ![P](http://chart.apis.google.com/chart?cht=tx&chl=P "P"). (Lay 5.3)
+
+In other words...
+
+-**![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is diagonalizable if and only if there are enough eigenvectors to form a basis of ![ℝ^n](http://chart.apis.google.com/chart?cht=tx&chl=%E2%84%9D%5En "ℝ^n"). - We call such a basis an **eigenvector basis\*\*.
+
+Tangent: spectral analysis of covariance matrices
+=================================================
 
 To get a better feel for what the eigenvalues and eigenvectors of covariance matrices look like, let's look at a couple examples using fake data.
+
+Matrices with correlated features
+---------------------------------
 
 ### 3 variables (2 correlated)
 
@@ -305,6 +365,6 @@ p.s. Nice quote from Lay in the opening of chapter 3:
 References
 ==========
 
-1.  <https://en.wikipedia.org/wiki/Determinant>
-
-2.  <http://math.stackexchange.com/questions/668/whats-an-intuitive-way-to-think-about-the-determinant>
+1.  *Lay* chapter 5.2 - 5.3
+2.  <https://en.wikipedia.org/wiki/Determinant>
+3.  <http://math.stackexchange.com/questions/668/whats-an-intuitive-way-to-think-about-the-determinant>
