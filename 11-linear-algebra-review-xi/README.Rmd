@@ -362,9 +362,48 @@ cor(dat2)
 eigen(cov(dat2), symmetric=TRUE)
 ```
 
-p.s. Nice quote from Lay in the opening of chapter 3:
+Misc
+====
+
+- Nice quote from Lay in the opening of chapter 3:
 
 > In Cauchy's day, when life was simple and matrices were small...
+
+- While attempting to search for "eigendecomposition" and accidentally
+searching for "eigendec" instead, this was the first hit that came up: 
+[eigendec.m](https://github.com/CamDavidsonPilon/The-Golden-Retrieber/blob/master/eigendec.m)
+from the project "The-Golden-Retrieber - A classification algorithm that classifies Justin
+  Bieber in Twitter display pictures." ...
+
+- Couple neat facts about eigenvalues and eigenvectors (via
+  [Wikipedia](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix)):
+    1. The sum of the eigenvalues of a matrix equals the sum of its diagonal (its "trace")
+
+```{r}
+sum(diag(cor_mat1))
+sum(eigen(cor_mat1)$values)
+```
+    2. The product of the eigenvalues of a matrix equals its determinant:
+
+```{r}
+prod(eigen(cor_mat1)$values)
+det(cor_mat1)
+```
+
+    3. The eigenvectors of $A^-1$ are the same as the eigenvectors of $A$
+
+- Finally, here is a nice animation taken from 
+  [Wikipedia](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) which
+  helps with some of the intuition between eigenvectors and eigenvalues:
+
+![](img/Eigenvectors.gif)
+
+System Info
+===========
+
+```{r}
+sessionInfo()
+```
 
 References
 ==========
@@ -372,3 +411,4 @@ References
 1. _Lay_ chapter 5.2 - 5.3
 2. https://en.wikipedia.org/wiki/Determinant
 3. http://math.stackexchange.com/questions/668/whats-an-intuitive-way-to-think-about-the-determinant
+4. https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix

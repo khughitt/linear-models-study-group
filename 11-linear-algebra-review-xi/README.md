@@ -10,6 +10,8 @@
     -   [The Diagonalization Theorem](#the-diagonalization-theorem)
 -   [Tangent: spectral analysis of covariance matrices](#tangent-spectral-analysis-of-covariance-matrices)
     -   [Matrices with correlated features](#matrices-with-correlated-features)
+-   [Misc](#misc)
+-   [System Info](#system-info)
 -   [References](#references)
 
 <h1>
@@ -366,9 +368,80 @@ eigen(cov(dat2), symmetric=TRUE)
     ## [3,]  0.40626587 -0.04018350 -8.933102e-02 -9.084896e-01
     ## [4,] -0.09842906 -0.99514407 -1.942890e-16 -2.463307e-16
 
-p.s. Nice quote from Lay in the opening of chapter 3:
+Misc
+====
+
+-   Nice quote from Lay in the opening of chapter 3:
 
 > In Cauchy's day, when life was simple and matrices were small...
+
+-   While attempting to search for "eigendecomposition" and accidentally searching for "eigendec" instead, this was the first hit that came up: [eigendec.m](https://github.com/CamDavidsonPilon/The-Golden-Retrieber/blob/master/eigendec.m) from the project "The-Golden-Retrieber - A classification algorithm that classifies Justin Bieber in Twitter display pictures." ...
+
+-   Couple neat facts about eigenvalues and eigenvectors (via [Wikipedia](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix)):
+    1.  The sum of the eigenvalues of a matrix equals the sum of its diagonal (its "trace")
+
+``` r
+sum(diag(cor_mat1))
+```
+
+    ## [1] 2
+
+``` r
+sum(eigen(cor_mat1)$values)
+```
+
+    ## [1] 2
+
+    2. The product of the eigenvalues of a matrix equals its determinant:
+
+``` r
+prod(eigen(cor_mat1)$values)
+```
+
+    ## [1] 0.1273151
+
+``` r
+det(cor_mat1)
+```
+
+    ## [1] 0.1273151
+
+    3. The eigenvectors of $A^-1$ are the same as the eigenvectors of $A$
+
+-   Finally, here is a nice animation taken from [Wikipedia](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) which helps with some of the intuition between eigenvectors and eigenvalues:
+
+![](img/Eigenvectors.gif)
+
+System Info
+===========
+
+``` r
+sessionInfo()
+```
+
+    ## R version 3.3.1 (2016-06-21)
+    ## Platform: x86_64-pc-linux-gnu (64-bit)
+    ## Running under: Arch Linux
+    ## 
+    ## locale:
+    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ## [1] psych_1.6.6    knitr_1.14     rmarkdown_1.0  nvimcom_0.9-21
+    ## [5] setwidth_1.0-4 colorout_1.1-0
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] Rcpp_0.12.6     digest_0.6.10   formatR_1.4     magrittr_1.5   
+    ##  [5] evaluate_0.9    stringi_1.1.1   tools_3.3.1     stringr_1.1.0  
+    ##  [9] yaml_2.1.13     parallel_3.3.1  mnormt_1.5-4    htmltools_0.3.5
 
 References
 ==========
@@ -376,3 +449,4 @@ References
 1.  *Lay* chapter 5.2 - 5.3
 2.  <https://en.wikipedia.org/wiki/Determinant>
 3.  <http://math.stackexchange.com/questions/668/whats-an-intuitive-way-to-think-about-the-determinant>
+4.  <https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix>
