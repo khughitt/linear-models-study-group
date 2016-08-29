@@ -293,12 +293,18 @@ The Diagonalization Theorem
 <div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
 In other words...
 
--**$A$ is diagonalizable if and only if there are enough eigenvectors to form a
-basis of $ℝ^n$.
-- We call such a basis an **eigenvector basis**.
+-<b>$A$ is diagonalizable if and only if there are enough eigenvectors to form a
+basis of $\mathbb{R}^n$</b>
+
+We call such a basis an **eigenvector basis**.
 </div>
 
+**Theorem 6**
 
+> An $n \times n$ matrix with $n$ distinct _eigenvalues_ is diagonalizable.
+
+- However, it's  still possible for $A$ to be diagonalizable even where there
+  are less than $n$ distince eigenvalues.
 
 Tangent: spectral analysis of covariance matrices
 =================================================

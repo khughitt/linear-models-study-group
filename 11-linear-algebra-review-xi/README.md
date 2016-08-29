@@ -269,7 +269,15 @@ The Diagonalization Theorem
 
 In other words...
 
--**![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is diagonalizable if and only if there are enough eigenvectors to form a basis of ![ℝ^n](http://chart.apis.google.com/chart?cht=tx&chl=%E2%84%9D%5En "ℝ^n"). - We call such a basis an **eigenvector basis\*\*.
+-<b>![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") is diagonalizable if and only if there are enough eigenvectors to form a basis of ![\\mathbb{R}^n](http://chart.apis.google.com/chart?cht=tx&chl=%5Cmathbb%7BR%7D%5En "\mathbb{R}^n")</b>
+
+We call such a basis an **eigenvector basis**.
+
+**Theorem 6**
+
+> An ![n \\times n](http://chart.apis.google.com/chart?cht=tx&chl=n%20%5Ctimes%20n "n \times n") matrix with ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") distinct *eigenvalues* is diagonalizable.
+
+-   However, it's still possible for ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A") to be diagonalizable even where there are less than ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") distince eigenvalues.
 
 Tangent: spectral analysis of covariance matrices
 =================================================
