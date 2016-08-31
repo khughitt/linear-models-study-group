@@ -19,7 +19,7 @@ The norm of a vector is the length of a vector
 
 ![](img/norm.png)
 
-![](img/norm_sqaured.png)
+![](img/norm_squared.png)
 
 ![](img/R2_norm.png)
 
