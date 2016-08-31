@@ -7,61 +7,61 @@
 
 ![](img/dot_product.png) is the inner product (or dot product)
 
-![](inner_product2.png)
+![](img/inner_product2.png)
 
 ### Theorem 1
 
-![](theorem1.png)
+![](img/theorem1.png)
 
 ## Norm
 
 The norm of a vector is the length of a vector
 
-![](norm.png)
+![](img/norm.png)
 
-![](norm_squared.png)
+![](img/norm_squared.png)
 
-![](R2_norm.png)
+![](img/R2_norm.png)
 
 ### Unit vector
 
 To create a unit vector divide a vector by its norm. The length of any unit vector is 1. Create unit vectors to normalize data.
 
-## Distances in ![](Rn.png)
+## Distances in ![](img/Rn.png)
 
-![](distance.png)
+![](img/distance.png)
 
-![](distance_R2.png)
+![](img/distance_R2.png)
 
 ## Orthogonal Vectors
 
-Two vectors are geometrically perpendicular iff ![](perpendicular.png)
+Two vectors are geometrically perpendicular iff ![](img/perpendicular.png)
 
-![](perpendicular_visual.png)
+![](img/perpendicular_visual.png)
 
 ### Definition
 
-Two vectors **u** and **v** in ![](Rn.png) are orthogonal (to each other) if ![](orthogonal.png)
+Two vectors **u** and **v** in ![](img/Rn.png) are orthogonal (to each other) if ![](img/orthogonal.png)
 
-**0** vector is orthogonal to every vector in ![](Rn.png)
+**0** vector is orthogonal to every vector in ![](img/Rn.png)
 
 ### Pythagorean Theorem
 
-Two vectors **u** and **v** are orthogonal iff ![](pythagorean.png)
+Two vectors **u** and **v** are orthogonal iff ![](img/pythagorean.png)
 
-![](pythagorean_R2.png)
+![](img/pythagorean_R2.png)
 
 ## Orthogonal Complements
 
-If a vector **z** is orthogonal to every vector in a subspace *W* of ![](Rn.png), then **z** is said to be orthogonal to *W*. The set of all vectors **z** that are orthogonal to *W* is called the orthogonal complement of *W* and is donated by ![](orthogonal_complement.png)
+If a vector **z** is orthogonal to every vector in a subspace *W* of ![](img/Rn.png), then **z** is said to be orthogonal to *W*. The set of all vectors **z** that are orthogonal to *W* is called the orthogonal complement of *W* and is donated by ![](img/orthogonal_complement.png)
 
-![](orthogonal_complement2.png)
+![](img/orthogonal_complement2.png)
 
-1) A vector **x** is in ![](orthogonal_complement.png) iff **x** is orthogonal to every vector in a set that spans *W*.
-2) ![](orthogonal_complement.png) is a subspace of ![](Rn.png)
+1) A vector **x** is in ![](img/orthogonal_complement.png) iff **x** is orthogonal to every vector in a set that spans *W*.
+2) ![](img/orthogonal_complement.png) is a subspace of ![](img/Rn.png)
 
 ### Theorem 3
 
-![](theorem3.png)
+![](img/theorem3.png)
 
-![](theorem3_visual.png)
+![](img/theorem3_visual.png)
