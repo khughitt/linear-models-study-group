@@ -2,81 +2,67 @@
 Linear Algebra Review IX
 </h1>
 -   Jonathan Goodson
--   August 23, 2016
+-   September 12, 2016
 
-## 2.8 Subspaces of ℝ<sup>n</sup> 
+## 6.2 Orthogonal Sets</sup> 
 
-### Subspaces
+### Orthogonal sets
 
-Apparently this is an important section that covers most of chapters 3 and 4. I'm sorry for what is about to happen.
+A set of vectors are an **orthogonal set** if each pair of distint vectors in the set is orthogonal. **u**<sub>i</sub>•**u**<sub>y</sub>=0 whenever *i*≠*j*.
 
-First, the definition of a **subspace**.
+Theorem 4:
 
-A **subspace** of ℝ<sup>n</sup>  is any set *H* in ℝ<sup>n</sup> that has three properties:
+If *S* = {**u**<sub>1</sub>m ..., **u**<sub>p</sub>} is an orthogonal set of nonzero vectors in ℝ<sup>n</sup>, then *S* is linearly independent and hence is a basis for the subspace spanned by *S*.
 
-* The zero vector is in *H*.
-* For each **u** and **v** in *H*, the sum **u** + **v** is in *H*.
-* For each **u** in *H* and each scalar *c*, the vectur *c* **u** is in *H*.
+An **orthogonal basis** for a subspace *W* of ℝ<sup>n</sup> is a basis for *W* that is also an orthogonal set.
 
-As a trivial example, the span of two vectors in ℝ<sup>n</sup> is a subspace of ℝ<sup>n</sup>. Subspaces may be as simple as a the zero vector or a  line through the origin, or more complicated such as a plane or higher dimensional shapes through the origin.
+Theorem 5:
 
-Additional concepts in subspaces:
+Let {**u**<sub>1</sub>m ..., **u**<sub>p</sub>} be an orthogonal basis for a subspace *W* of ℝ<sup>n</sup>. For each **y** in *W*, the weights in the linear combination
 
-The **column space** of a matrix is the set of all linear combinations of the columns of the matrix. (Conceptually the same as the span of all vectors included in the matrix) This allows one to check if a vector **b** is in the column space of the matrix by asking if it is a solution to the matrix equation *A***x**=**b**.
+	**y** = *c*<sub>1</sub>**u**<sub>1</sub> + ... + *c*<sub>p</sub>**u**<sub>p</sub>
+	
+are given by
 
-The **null space** of a matrix is the set of all solutions to the equation *A***x**=**0**.
+	*c*<sub>j</sub> = **y**•**u**<sub>j</sub> / **u**<sub>j</sub>•**u**<sub>j</sub>
+	where *j* = 1, ..., *p*
+	
+This allows one to easily calculate the weights for an arbitrary vector in the subspace spanned by the orthogonal set as a linear combination of the orthogonal vectors without having to solve the complete system of equations.
 
-### Basis for a subspace
+### An Orthogonal Projection
 
-Subspaces contain an infinite number of vectors (except the zero subspace, and maybe something else?), and infinity is inconvenient.
+An orthogonal projection involves decomposing a vector **y** into two orthogonal vectors, one of which is a multiple of **y**.
 
-A **basis** for a subspace is a set of linearly independent vectors that span the subspace. (The minimal number of vectors required to span the subspace)
+	**y** = **ŷ** + **z**
+	
+	where **ŷ** = α**u** and **z** is orthogonal to **u**
+	
+The vector **ŷ** is the **orthogonal projection of y onto u** and the vector **z** is the **component of y orthogonal to u**.
 
-The columns of the identity matrix *I*<sub>n</sub> are the basis of ℝ<sup>n</sup>.
+Sometimes **ŷ** is represented by proj<sub>L</sub>**y** and called the **orthogonal projection of y onto** *L*, where *L* is the line spanned by **y**.
 
-Basis of a null space:
+**ŷ** is the point on *L* that is *closest* to **y**. 
 
-Solving the equation *A***x**=**0** and writing the solution set in parametric vector form results in vectors who span the null space.
+![Orthogonal Projection](orth_proj.png)
 
-Basis of the column space of a matrix:
+![Least-squares representation](least_squares_proj.png)
 
-The pivot columns of a matrix form the basis! Easy! **HOWEVER** the pivot columns of the matrix are the basis, NOT the columns of an echelon form. (Honestly I haven't figured out this part yet someone help me.)
+### Orthonormal sets
 
-## 2.9 Dimension and Rank
+An **orthonormal set** is an orthogonal set where all vectors are of unit length. If *W* is the subspace spanned by this set, this the set is an **orthonormal basis** for the subspace *W*.
 
-This section introduces the concept of a *dimension* defining a coordinate system. 
+An **orthogonal set** can be made into an **orthonormal set** by *normalizing* the vector lengths, and the set remains orthogonal.
 
-Definitions:
+Theorem 6:
 
-Given a set of vectors which are a basis of a subspace *H*, for any vector **x** in *H*, the **coordinates of x relative to the basis* as the scalar weights such that **x** = *c*<sub>1</sub>**b**<sub>1</sub> + ... + *c*<sub>p</sub>**b**<sub>p</sub>.
+An *m* x *n* matrix *U* has orthonormal columns if and only if *U*<sup>T</sup>*U* = *I*.
 
-Given the same set of vectors making up the basis. 
+This is proved by doing the matrix multiplication and utilizing the definition of an orthogonal set.
 
-![coordinate vector](basis_vector.png)
+Theorem 7:
 
-is the **coordinate vector of x** relative to the basis.
+Let *U* be an *m* x *n* matrix with orthonormal columns, and let *x* and *y* be in ℝ<sup>n</sup>. Then
 
-I really like the following visualization.
-
-![visualization of coordinate system](coordinate_system.png)
-
-The coordinate vector represents the position on each vector making up the basis which is required to generate the vector at those coordinates. The coordinate vector must be of the same length as the number of vectors making up the subspace (the number of dimensions).
-
-The **dimension* of a nonzero subspace *H*, is the number of vectors in a basis for *H*.
-
-Extra terms, the **rank** of a matrix is the dimension of the column space of the matrix.
-
-Extra theorem: If a matrix has *n* columns, then rank + dimension of the null space = *n*. This occurs because the rank is the number of pivot columns, and the dimension of the null space corresponds to the number of free variables in the solution.
-
-Extra theorem: If *H* is a *p*-dimensional subspace, then all linearly independent sets of *p* elements in *H* are a basis for *H*. Correspondingly, any set of *p* elements that span *H* are a basis.
-
-Additions to the invertible matrix theorem:
-
-If *A* is an *n* x *n* matrix, all the following are equivalent to saying *A* is invertible:
-
-* The columns of *A* form a basis of ℝ<sup>n</sup> 
-* Col *A* = ℝ<sup>n</sup> 
-* dim Col *A* = *n*
-* rank *A* = *n*
-* Nul *A* = {**0**}
-* dim Nul *A* = 0
+	a. ||*U***x**|| = ||**x**||
+	b. (*U***x**)•(*U***y**) = **x**•**y**
+	c. (*U***x**)•(*U***y**) = 0 if and only if **x**•**y** = 0
