@@ -47,7 +47,7 @@ This <a href="https://en.wikipedia.org/wiki/Vector_images" class="extiw" title="
 ## Finding Eigenvalues, Eigenvectors, and Eigenspace
 
 - Vector $\mathbf{x}$ is an eigenvector of $\mathbf{A}$ if the resulting vector is a scalar multiple of $\mathbf{x}$. The scalar $\lambda$ is the eigenvalue.  
-- $\lambda$ is an eigenvalue of $\mathbf{A}$ if the columns in $(A -\lambda I)$ are linearly dependent, e.g. has a nontrivial solution.  
+- $\lambda$ is an eigenvalue of $\mathbf{A}$ if the columns in $(A -\lambda I)$ are linearly dependent and has to have a nontrivial solution.  
 - Basis of an eigenspace is $(A - 2 I)\mathbf{x}=\mathbf{0}$, find by row reduction of the augmented matrix.
 
 ## Theorem 1
@@ -72,3 +72,24 @@ from [Wikipedia](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors)
 # References
 [Lay - Linear Algebra and its
 Applications](http://www.laylinalgebra.com/)
+
+
+```{r}
+mat <- matrix(rnorm(20),nrow = 5, byrow = TRUE)
+mat <- cbind(mat, mat[,2]*2)
+mat
+
+```
+
+```{r}
+prcomp(mat)
+```
+
+```{r}
+princomp(mat)
+```
+
+```{r}
+eigen(mat)
+```
+
