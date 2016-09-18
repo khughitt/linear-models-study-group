@@ -1,0 +1,107 @@
+---
+output:
+  html_document:
+    toc: true
+  md_document:
+    variant: markdown_github
+    md_extensions: +tex_math_dollars
+    pandoc_args: ['--webtex']
+    toc: true
+    toc_depth: 2
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(fig.path='img/',
+               fig.width=1080/120,
+               fig.height=1080/120,
+               dpi=120, fig.retina=2)
+```
+
+<h1>Linear Algebra Review XIV</h1>
+
+- Keith Hughitt
+- Sept 19, 2016
+
+Least-squares Problems
+======================
+
+Overview
+--------
+
+So far, much of the linear algebra discussion has been focused on matrices
+which could be used to represent _consistent_ systems of linear equations, i.e.
+ones which have solutions.
+
+In these cases, there exists one or more values for $x$ such that $Ax = b$.
+
+Here, we discuss how to deal with systems for which there is _no valid
+solutions_ to the matrix equation $Ax = b$. Instead, we will seek to find an
+$x$ that is "close" to a solution, in fact, one that is as close as we can get.
+
+In this scenario, $Ax$ can be thought of as an _approximation_ to $b$.
+
+### General least-squares problem
+
+The **General least-squares problem** is to find an $x$ that makes $||b - Ax||$
+as small as possible. [1]
+
+Recall that the **norm** of a vector, $||v||$ is defined as:
+
+![](../12-linear-algebra-review-xii/img/norm.png)
+
+The "squares" in "least-squares" refers to the square root of the sum of
+squares above.
+
+#### Definition
+
+_From Lay 6.5:_
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+If $A$ is $m \times n$ and $\textbf{b}$ is in $ℝ^m$, a **least-squares
+solution** of $Ax = \textbf{b}$ is $\hat{x}$ in $ℝ^n$ such that:
+
+$$
+||\textbf{b} - A\hat{x}|| \leq || \textbf{b} - Ax||
+$$
+
+for all $\textbf{x}$ in $ℝ^n$.
+</div>
+
+In the context of a data matrix:
+
+- $A$ = observed data values
+- $\textbf{x}$ = coefficient weights 
+- $\textbf{b}$ = response / depdendent variable
+
+And $A\textbf{x}$ gives us our estimate of the response variables for each row.
+
+**Relation to Col A** (6.5, fig 1)
+
+- All possible $A\textbf{x}$'s will be in the column space of $A$
+- Therefor we aim to find an $\textbf{x}$ such that $A\textbf{x}$ is the
+  closest point in Col A to $\textbf{b}$.
+
+### Solutions of the general least-squares problem
+
+Using the _Best Approximate Theorem_ from 6.3 (which basically says that the
+closest point in a subspace $W$ to a given point in $ℝ^n$ is the projection
+from that point to $W$), we have:
+
+$$
+\hat{\textbf{b}} = \text{proj}_{\text{Col}A} \textbf{b}
+$$
+
+- $A\textbf{x} = \textbf{b}$ is consistent
+- Therefore, there is an $\textbf{\hat{x}}$ in $ℝ^n$ such that $A\textbf{\hat{x}} = \textbf{\hat{b}}$
+- The vector $\textbf{\hat{x}}$ is the least-squares solution to $A\textbf{x} = \textbf{b}$!
+
+**Note**: If there are free variables, then there will be many solutions to
+this equation!
+
+
+References
+==========
+
+1. _Lay_ chapter 6.5-6.6
+
