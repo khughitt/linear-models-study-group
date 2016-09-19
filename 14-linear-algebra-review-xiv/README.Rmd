@@ -84,24 +84,66 @@ And $A\textbf{x}$ gives us our estimate of the response variables for each row.
 
 ### Solutions of the general least-squares problem
 
+#### Background
+
 Using the _Best Approximate Theorem_ from 6.3 (which basically says that the
 closest point in a subspace $W$ to a given point in $ℝ^n$ is the projection
 from that point to $W$), we have:
 
 $$
-\hat{\textbf{b}} = \text{proj}_{\text{Col}A} \textbf{b}
+\hat{b} = \text{proj}_{\text{Col}A} \textbf{b}
 $$
 
+![](img/640px-OLS_geometric_interpretation.svg.png)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/Ordinary_least_squares#/media/File:OLS_geometric_interpretation.svg))
+
 - $A\textbf{x} = \textbf{b}$ is consistent
-- Therefore, there is an $\textbf{\hat{x}}$ in $ℝ^n$ such that $A\textbf{\hat{x}} = \textbf{\hat{b}}$
-- The vector $\textbf{\hat{x}}$ is the least-squares solution to $A\textbf{x} = \textbf{b}$!
+- Therefore, there is an $\hat{x}$ in $ℝ^n$ such that $A\hat{x} = \hat{b}$
+- The vector $\hat{x}$ is the least-squares solution to $A\textbf{x} = \textbf{b}$!
+
+In other words:
+
+**The least-squares solution is the projection of $\textbf{b}$ onto Col A.**
 
 **Note**: If there are free variables, then there will be many solutions to
 this equation!
+
+#### A simpler formulation
+
+- Suppose $\hat{x}$ satisfies $A\hat{x} = \hat{b}$
+- Then by the Orthogonal Decomposition Theorem (section 6.3), we know that
+  $\textbf{b} - \hat{b} \perp \text{Col} A$
+	- Therefore, $\textbf{b} - A \hat{x}$ is orthogonal to Col $A$
+	  (which also means it is orthogonal to each column in $A$)
+	- ODT: Each $y$ in $ℝ^n$ can be written uniquely as a sum of two vectors:
+		1. linear combination of some set of vectors in a subspace of $ℝ^n$ ($W$), and,
+		2. linear combination of some set of vectors orthogonal to $W$.
+	- Note: Compare figures 6.3 fig2 & 6.5 fig2...
+- Next, since the dot product of two orthogonal vectors equals zero, for any 
+  column $a_j$ in $A$, we have $a_j \cdot (\textbf{b} - A \hat{x}) = 0$, and
+- **DISCUSS** $a_j^T \cdot (\textbf{b} - A \hat{x}) = 0$
+- Since each $a_j^T$ is a row in $A^T$,
+
+$$
+A^T(\textbf{b} - A\hat{x}) = 0
+$$
+
+which leads to:
+
+$$
+A^T\textbf{b} - A^TA\hat{x} = 0
+A^TA\hat{x} = A^T\textbf{b}
+$$
+
+So each least-squares solution thus satisfies:
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+A^TA\textbf{x} = A^T\textbf{b}
+</div>
 
 
 References
 ==========
 
 1. _Lay_ chapter 6.5-6.6
-
+2. https://en.wikipedia.org/wiki/Ordinary_least_squares
