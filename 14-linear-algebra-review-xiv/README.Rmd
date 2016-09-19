@@ -137,10 +137,51 @@ $$
 
 So each least-squares solution thus satisfies:
 
-<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+$$
 A^TA\textbf{x} = A^T\textbf{b}
+$$
+
+This equation represents a system of equations called the **normal equations**
+for $Ax = b$, and solutions to this are often written as $\hat{x}$.
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+**Theorem 13**
+
+The set of least-squares solution of $Ax = b$ coincides with the nonempty set
+of solutions of the normal equations $A^TA\textbf{x} = A^T\textbf{b}$.
 </div>
 
+- Example 1 goes over a simple example of finding $\hat{x}$...
+- Steps:
+    - find $A^TA$
+    - find $A^T \textbf{b}$
+    - substitute parts back into _normal equations_ formula above.
+    - To find $x$, can use row reduction, however, in this example they use
+      matrix inversion instead:
+        - **Section 2.2 Thm 4** (formula for finding $A^{-1}$ for 2x2 matrices
+          using the determinant of $A$)
+        - **Section 2.2 Thm 5** (for invertible matrices, $\textbf{x} = A^{-1}\textbf{b}$)
+
+**NOTE**: $A$ need not be invertible! Example 2 provides a problem where this
+is not the case.
+
+The final formulation of the general least-squares problem is the one that we
+are probably most familiar with, having worked with linear models previously:
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+**Theorem 14**
+
+The matrix $A^TA$ is invertible _if and only if_ the columns of $A$ are
+linearly independent. In this case, the equation $Ax = b$ has only _one_
+least-squares solution $\hat{x}$, and it is given by:
+
+$$
+\hat{x} = (A^TA)^{-1}A^T \textbf{b}
+$$
+</div>
+
+The distance from $\textbf{b}$ to $A\hat{x}$ is called the **least-squares
+error**.
 
 References
 ==========

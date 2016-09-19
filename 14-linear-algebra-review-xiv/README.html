@@ -192,7 +192,7 @@ Linear Algebra Review XIV
 <li>The vector <span class="math inline">\(\hat{x}\)</span> is the least-squares solution to <span class="math inline">\(A\textbf{x} = \textbf{b}\)</span>!</li>
 </ul>
 <p>In other words:</p>
-<p><strong>The least-squares solution is the projection of <span class="math inline">\(\text{bf}\)</span> onto Col A.</strong></p>
+<p><strong>The least-squares solution is the projection of <span class="math inline">\(\textbf{b}\)</span> onto Col A.</strong></p>
 <p><strong>Note</strong>: If there are free variables, then there will be many solutions to this equation!</p>
 </div>
 <div id="a-simpler-formulation" class="section level4">
@@ -209,8 +209,51 @@ Linear Algebra Review XIV
 </ol></li>
 <li>Note: Compare figures 6.3 fig2 &amp; 6.5 fig2…</li>
 </ul></li>
-<li>Next, since the dot product of two orthogonal vectors equals zero, for any column <span class="math inline">\(a_j\)</span> in <span class="math inline">\(A\)</span>, we have <span class="math inline">\(a_j \cdot (\textbf{b} - A \hat{x}) = 0\)</span></li>
+<li>Next, since the dot product of two orthogonal vectors equals zero, for any column <span class="math inline">\(a_j\)</span> in <span class="math inline">\(A\)</span>, we have <span class="math inline">\(a_j \cdot (\textbf{b} - A \hat{x}) = 0\)</span>, and</li>
+<li><strong>DISCUSS</strong> <span class="math inline">\(a_j^T \cdot (\textbf{b} - A \hat{x}) = 0\)</span></li>
+<li>Since each <span class="math inline">\(a_j^T\)</span> is a row in <span class="math inline">\(A^T\)</span>,</li>
 </ul>
+<p><span class="math display">\[
+A^T(\textbf{b} - A\hat{x}) = 0
+\]</span></p>
+<p>which leads to:</p>
+<p><span class="math display">\[
+A^T\textbf{b} - A^TA\hat{x} = 0
+A^TA\hat{x} = A^T\textbf{b}
+\]</span></p>
+<p>So each least-squares solution thus satisfies:</p>
+<p><span class="math display">\[
+A^TA\textbf{x} = A^T\textbf{b}
+\]</span></p>
+<p>This equation represents a system of equations called the <strong>normal equations</strong> for <span class="math inline">\(Ax = b\)</span>, and solutions to this are often written as <span class="math inline">\(\hat{x}\)</span>.</p>
+<div style="background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;">
+<p><strong>Theorem 13</strong></p>
+<p>The set of least-squares solution of <span class="math inline">\(Ax = b\)</span> coincides with the nonempty set of solutions of the normal equations <span class="math inline">\(A^TA\textbf{x} = A^T\textbf{b}\)</span>.</p>
+</div>
+<ul>
+<li>Example 1 goes over a simple example of finding <span class="math inline">\(\hat{x}\)</span>…</li>
+<li>Steps:
+<ul>
+<li>find <span class="math inline">\(A^TA\)</span></li>
+<li>find <span class="math inline">\(A^T \textbf{b}\)</span></li>
+<li>substitute parts back into <em>normal equations</em> formula above.</li>
+<li>To find <span class="math inline">\(x\)</span>, can use row reduction, however, in this example they use matrix inversion instead:
+<ul>
+<li><strong>Section 2.2 Thm 4</strong> (formula for finding <span class="math inline">\(A^{-1}\)</span> for 2x2 matrices using the determinant of <span class="math inline">\(A\)</span>)</li>
+<li><strong>Section 2.2 Thm 5</strong> (for invertible matrices, <span class="math inline">\(\textbf{x} = A^{-1}\textbf{b}\)</span>)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>NOTE</strong>: <span class="math inline">\(A\)</span> need not be invertible! Example 2 provides a problem where this is not the case.</p>
+<p>The final formulation of the general least-squares problem is the one that we are probably most familiar with, having worked with linear models previously:</p>
+<div style="background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;">
+<p><strong>Theorem 14</strong></p>
+<p>The matrix <span class="math inline">\(A^TA\)</span> is invertible <em>if and only if</em> the columns of <span class="math inline">\(A\)</span> are linearly independent. In this case, the equation <span class="math inline">\(Ax = b\)</span> has only <em>one</em> least-squares solution <span class="math inline">\(\hat{x}\)</span>, and it is given by:</p>
+<p><span class="math display">\[
+\hat{x} = (A^TA)^{-1}A^T \textbf{b}
+\]</span></p>
+</div>
+<p>The distance from <span class="math inline">\(\textbf{b}\)</span> to <span class="math inline">\(A\hat{x}\)</span> is called the <strong>least-squares error</strong>.</p>
 </div>
 </div>
 </div>
