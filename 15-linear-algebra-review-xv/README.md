@@ -28,8 +28,6 @@ A residual vector is introduced:
 
 Any equation of this form is called a linear model. Once you know X and **y** the goal is to minimize the residual vector. This is the same as finding a least squares solution.
 
-How do we come up with the design matrix X?
-
 ### Least-Sqaures Fitting of Other Curves
 
 When your experimental data points do not lie on a straight line you can try to fit another functional relationship between *x* and *y*.
