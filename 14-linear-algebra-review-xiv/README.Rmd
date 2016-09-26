@@ -1,0 +1,190 @@
+---
+output:
+  html_document:
+    toc: true
+  md_document:
+    variant: markdown_github
+    md_extensions: +tex_math_dollars
+    pandoc_args: ['--webtex']
+    toc: true
+    toc_depth: 2
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(fig.path='img/',
+               fig.width=1080/120,
+               fig.height=1080/120,
+               dpi=120, fig.retina=2)
+```
+
+<h1>Linear Algebra Review XIV</h1>
+
+- Keith Hughitt
+- Sept 19, 2016
+
+Least-squares Problems
+======================
+
+Overview
+--------
+
+So far, much of the linear algebra discussion has been focused on matrices
+which could be used to represent _consistent_ systems of linear equations, i.e.
+ones which have solutions.
+
+In these cases, there exists one or more values for $x$ such that $Ax = b$.
+
+Here, we discuss how to deal with systems for which there is _no valid
+solutions_ to the matrix equation $Ax = b$. Instead, we will seek to find an
+$x$ that is "close" to a solution, in fact, one that is as close as we can get.
+
+In this scenario, $Ax$ can be thought of as an _approximation_ to $b$.
+
+### General least-squares problem
+
+The **General least-squares problem** is to find an $x$ that makes $||b - Ax||$
+as small as possible. [1]
+
+Recall that the **norm** of a vector, $||v||$ is defined as:
+
+![](../12-linear-algebra-review-xii/img/norm.png)
+
+The "squares" in "least-squares" refers to the square root of the sum of
+squares above.
+
+#### Definition
+
+_From Lay 6.5:_
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+If $A$ is $m \times n$ and $\textbf{b}$ is in $ℝ^m$, a **least-squares
+solution** of $Ax = \textbf{b}$ is $\hat{x}$ in $ℝ^n$ such that:
+
+$$
+||\textbf{b} - A\hat{x}|| \leq || \textbf{b} - Ax||
+$$
+
+for all $\textbf{x}$ in $ℝ^n$.
+</div>
+
+In the context of a data matrix:
+
+- $A$ = observed data values
+- $\textbf{x}$ = coefficient weights 
+- $\textbf{b}$ = response / depdendent variable
+
+And $A\textbf{x}$ gives us our estimate of the response variables for each row.
+
+**Relation to Col A** (6.5, fig 1)
+
+- All possible $A\textbf{x}$'s will be in the column space of $A$
+- Therefor we aim to find an $\textbf{x}$ such that $A\textbf{x}$ is the
+  closest point in Col A to $\textbf{b}$.
+
+### Solutions of the general least-squares problem
+
+#### Background
+
+Using the _Best Approximate Theorem_ from 6.3 (which basically says that the
+closest point in a subspace $W$ to a given point in $ℝ^n$ is the projection
+from that point to $W$), we have:
+
+$$
+\hat{b} = \text{proj}_{\text{Col}A} \textbf{b}
+$$
+
+![](img/640px-OLS_geometric_interpretation.svg.png)
+(source: [Wikipedia](https://en.wikipedia.org/wiki/Ordinary_least_squares#/media/File:OLS_geometric_interpretation.svg))
+
+- $A\textbf{x} = \textbf{b}$ is consistent
+- Therefore, there is an $\hat{x}$ in $ℝ^n$ such that $A\hat{x} = \hat{b}$
+- The vector $\hat{x}$ is the least-squares solution to $A\textbf{x} = \textbf{b}$!
+
+In other words:
+
+**The least-squares solution is the projection of $\textbf{b}$ onto Col A.**
+
+**Note**: If there are free variables, then there will be many solutions to
+this equation!
+
+#### A simpler formulation
+
+- Suppose $\hat{x}$ satisfies $A\hat{x} = \hat{b}$
+- Then by the Orthogonal Decomposition Theorem (section 6.3), we know that
+  $\textbf{b} - \hat{b} \perp \text{Col} A$
+	- Therefore, $\textbf{b} - A \hat{x}$ is orthogonal to Col $A$
+	  (which also means it is orthogonal to each column in $A$)
+	- ODT: Each $y$ in $ℝ^n$ can be written uniquely as a sum of two vectors:
+		1. linear combination of some set of vectors in a subspace of $ℝ^n$ ($W$), and,
+		2. linear combination of some set of vectors orthogonal to $W$.
+	- Note: Compare figures 6.3 fig2 & 6.5 fig2...
+- Next, since the dot product of two orthogonal vectors equals zero, for any 
+  column $a_j$ in $A$, we have $a_j \cdot (\textbf{b} - A \hat{x}) = 0$, and
+- **DISCUSS** $a_j^T \cdot (\textbf{b} - A \hat{x}) = 0$
+- Since each $a_j^T$ is a row in $A^T$,
+
+$$
+A^T(\textbf{b} - A\hat{x}) = 0
+$$
+
+which leads to:
+
+$$
+A^T\textbf{b} - A^TA\hat{x} = 0
+A^TA\hat{x} = A^T\textbf{b}
+$$
+
+So each least-squares solution thus satisfies:
+
+$$
+A^TA\textbf{x} = A^T\textbf{b}
+$$
+
+This equation represents a system of equations called the **normal equations**
+for $Ax = b$, and solutions to this are often written as $\hat{x}$.
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+**Theorem 13**
+
+The set of least-squares solution of $Ax = b$ coincides with the nonempty set
+of solutions of the normal equations $A^TA\textbf{x} = A^T\textbf{b}$.
+</div>
+
+- Example 1 goes over a simple example of finding $\hat{x}$...
+- Steps:
+    - find $A^TA$
+    - find $A^T \textbf{b}$
+    - substitute parts back into _normal equations_ formula above.
+    - To find $x$, can use row reduction, however, in this example they use
+      matrix inversion instead:
+        - **Section 2.2 Thm 4** (formula for finding $A^{-1}$ for 2x2 matrices
+          using the determinant of $A$)
+        - **Section 2.2 Thm 5** (for invertible matrices, $\textbf{x} = A^{-1}\textbf{b}$)
+
+**NOTE**: $A$ need not be invertible! Example 2 provides a problem where this
+is not the case.
+
+The final formulation of the general least-squares problem is the one that we
+are probably most familiar with, having worked with linear models previously:
+
+<div style='background-color: #ebffd4; padding: 10px; border: 1px solid #ccc;'>
+**Theorem 14**
+
+The matrix $A^TA$ is invertible _if and only if_ the columns of $A$ are
+linearly independent. In this case, the equation $Ax = b$ has only _one_
+least-squares solution $\hat{x}$, and it is given by:
+
+$$
+\hat{x} = (A^TA)^{-1}A^T \textbf{b}
+$$
+</div>
+
+The distance from $\textbf{b}$ to $A\hat{x}$ is called the **least-squares
+error**.
+
+References
+==========
+
+1. _Lay_ chapter 6.5-6.6
+2. https://en.wikipedia.org/wiki/Ordinary_least_squares
