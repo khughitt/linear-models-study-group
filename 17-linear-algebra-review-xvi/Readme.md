@@ -8,7 +8,7 @@ Linear Algebra Review IX
 
 Quadratic forms are *functions* defined in ℝ<sup>n</sup> at single vector values in ℝ<sup>n</sup>, by the equation:
 
-	**Q** = *x*<sup>**T**</sup>**A***x*
+**Q** = *x*<sup>**T**</sup>**A***x*
 	
 Where **A** is a *symmetric* matrix, referred to as the *matrix of the quadratic form*.
 
@@ -28,11 +28,11 @@ the compensating matrix may be a diagonal matrix.
 
 First, we can more carefully define our change of variable (P of course must be invertible):
 
-	*x* =  **P***y*    and    *y* = **P**<sup>-1</sup>*x*
+*x* =  **P***y*    and    *y* = **P**<sup>-1</sup>*x*
 	
 Next, simply sub *y* in for *x* and simplify.
 
-	*x*<sup>T</sup>**A***x* = (**Py***y*)<sup>T</sup>**A**(**P***y*) = *y*<sup>T</sup>**P**<sup>T</sup>**AP***y* = *y*<sup>T</sup>(**P**<sup>T</sup>**AP**)*y*
+*x*<sup>T</sup>**A***x* = (**Py***y*)<sup>T</sup>**A**(**P***y*) = *y*<sup>T</sup>**P**<sup>T</sup>**AP***y* = *y*<sup>T</sup>(**P**<sup>T</sup>**AP**)*y*
 	
 Putting to use theorem 2 from last week, since **A** is symmetric, there must be
 a **P** such that **P**<sup>T</sup>**AP** is diagonal. (By computing the eigenvalues and using
@@ -45,7 +45,7 @@ For details, see working of 7.2 Example 4
 
 This is summarized by *The Principal Axes Theorem*:
 
-	Let **A** be an **n** x **n** symmetric matrix. Then there is an orthogonal change of variable, *x* = **P***y*, that transforms the quadratic form *x*<sup>T</sup>**A***x* into a quadratic form *y*<sup>T</sup>**D***y* with no cross-product term.
+Let **A** be an **n** x **n** symmetric matrix. Then there is an orthogonal change of variable, *x* = **P***y*, that transforms the quadratic form *x*<sup>T</sup>**A***x* into a quadratic form *y*<sup>T</sup>**D***y* with no cross-product term.
 	
 ### A Geometric View of Principal Axes
 
