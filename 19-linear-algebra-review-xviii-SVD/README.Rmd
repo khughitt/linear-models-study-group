@@ -1,0 +1,90 @@
+---
+output:
+  md_document:
+    md_extensions: +tex_math_dollars
+    pandoc_args: --webtex
+    toc: yes
+    toc_depth: 2
+    variant: markdown_github
+  html_document:
+    toc: yes
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(fig.path='img/',
+               fig.width=1080/120,
+               fig.height=1080/120,
+               dpi=120, fig.retina=2)
+library(purrr)
+```
+
+<h1>Linear Algebra Review XVIII SVD</h1>
+
+- Nate Olson
+- October 25, 2016
+
+__Singular value decomposition__ - matrix factorization that can be applied to rectangular matricies.
+
+
+__Singlular Value Decomposition__
+
+$$A = U\Sigma V^T$$
+
+- $\textbf{A}$ is a $m \times n$ matrix with rank $r$  
+- __$\Sigma$__ is a $m \times n$ matrix that includes a diagonal matrix of size $r \times r$, where $r$ is the rank of the factorized matrix.  
+  - the diagonal values in the matrix are the singular values in decreasing order  
+- $\textbf{U}$__ - left singular values  
+- $\textbf{V}$ - right singular values  
+
+### Steps to performing SVD
+1. Find an orthogonal diagonalization of __$A^{T}A$__ - eigenvalues of $A^TA$ and corresponding orthonormal eigenvectors.  
+2. Set up __$V$__ and __$\Sigma$__ based on the ordered eigenvalues  
+3. Construct __$U$__ - composed of the normalized vectors from __$Av_i$__ 
+
+
+Good youtube video on SVD https://youtu.be/P5mlg91as1c 
+
+### SVD in R
+Matrix from example 3 in book
+
+```{r}
+(a <- matrix(c(4,11,14,8,7,-2),ncol=3, byrow = TRUE))
+```
+
+R has a command for calculating SVD
+http://ugrad.stat.ubc.ca/R/library/base/html/svd.html
+```{r}
+svd(a,nv = 3)
+```
+
+#### Stepwise
+1. Find an orthogonal diagonalization of __$A^{T}A$__ - eigenvalues of $A^TA$ and corresponding orthonormal eigenvectors.  
+
+```{r}
+(a_eigen <- eigen(t(a) %*% a))
+```
+
+2. Set up __$V$__ and __$\Sigma$__ based on the ordered eigenvalues  
+
+```{r}
+(sigma <- diag(sqrt(a_eigen$values)))
+```
+
+
+```{r}
+(V <- a_eigen$vectors)
+
+```
+
+3. Construct __$U$__ - composed of the normalized vectors from __$\frac{1}{\sigma_i} Av_i$__ 
+```{r}
+e1 <- V[,1] %>% as.matrix()
+e2 <- V[,2] %>% as.matrix()
+
+u1 <- a %*% e1 * 1/sigma[1,1]
+u2 <- a %*% e2 * 1/sigma[2,2]
+
+(U <- cbind(u1,u2))
+```
+
