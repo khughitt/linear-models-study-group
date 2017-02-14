@@ -1,0 +1,74 @@
+---
+title: "Linear Models Week Three Quiz"
+author: "Nate Olson"
+date: "2/12/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Linear Regression Quiz
+1. 
+Consider linear regression for a response, Y and predictor, X. Let $e=Y−β^0−β^1X$ be the residuals. The residuals must satisfy $<e,h(X)>=0$ for any function $h:ℝn→ℝn$.
+
+False
+
+This can't be true this generally. Let h(x)=(1 0 0 … 0). Then this would imply that the first residual must be zero. You could repeat that and get this rule to imply that all residuals must be zero. Since we know this isn't the case, it must be false.
+
+
+2. 
+Consider linear regression for a response, $Y$ and predictor, $X$. Let $e=Y−β0−β^1X$ be the residuals. The residuals must satisfy $<e,X> = <e,J_n>=0$
+
+True
+
+The residuals are always orthogonal to the columns of the design matrix.  
+
+3. 
+Let $X_i$ be a predictor and $Y_i$ be a response. Let $\tilde{X}_i=(X_i−\bar{X})/S_x$ and $\tilde{Y}_i=(Y_i−\bar{Y})/S_y$ where $S_X$ is the standard deviation of the $X_i$ and $S_Y$ is the standard deviation of the $Y_i$. Consider fitting a linear model where $\tilde{Y}_i=β_0+β_1\tilde{X}_i+ϵ_i$. What can be said about the estimates of $β_0$ and $β_1$? (Check all that apply.) 
+
+- The fitted line, ($β^0$,$β^1$) will pass through $(\bar{X},\bar{Y})$. 
+
+Remember, were' fitting the model to the centered and scaled data. It has to pass through (0, 0).
+
+- __X__ The estimate of $β_1$ will be the correlation between the $X_i$ and $Y_i$
+
+For centered and scaled dat the variances are 1
+
+- The fitted slope will be the correlation of the $X_i$ and $Y_i$ times $S_Y/S_X$.
+
+- __X__ The estimate of $β_0$ will be 0. 
+
+4. 
+Take the mtcars data set and fit a model with hp as the outcome and wt as the predictor in a linear regression model. Predict the hp for a 3,000 pound car.  
+  
+```{r}
+fit <- lm(hp ~ wt, data = mtcars)
+```
+
+
+
+Not 136.66
+
+5. 
+Consider two vectors, Y and X. The standard deviation of Y is twice that of X. Consider dividing the linear regression estimate treating Y as a response and X as a predictor by the one with X as a response and Y as a predictor. What would that value be?
+
+- 0.5  
+
+Y as the outcome we get $\rho \sigma_y/\sigma_x = \rho_2$. With X as the outcome we get $\rho \sigma_x/\sigma_y = \rho 0.5$. 
+
+- It can not be determined from the information given  
+- 2  
+- __X__ 4  
+- 0.25  
+
+6. 
+Suppose vectors $X$ and $Y$ have been scaled to have standard deviations 1. (However, they have not been mean centered). Imagine further that $<X,Y> =0$. What is the linear regression slope estimate?  
+
+- $-n\bar{X}\bar{Y}/(n-1)$  
+
+The slope is $<X−\bar{X}J_n,Y−\bar{Y}J_n>/||X−\bar{X}J_n||^2$. Because of the unit SD, $||X−\bar{X}J_n||^2=(n−1)SD(X)=(n−1)$. Furthermore, $<X−\bar{X}J_n,Y−\bar{Y}J_n> = <X,Y>−n\bar{X}\bar{Y}=n\bar{X}\bar{Y}$.
+
+- 0  
+- It can't be ascertained from the information given

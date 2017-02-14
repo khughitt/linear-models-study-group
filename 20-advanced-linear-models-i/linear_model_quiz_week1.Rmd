@@ -1,0 +1,64 @@
+---
+title: "Linear Models Week 1 Quiz"
+author: "Nate Olson"
+date: "2/13/2017"
+output: html_document
+---
+
+1. 
+The derivative (expressed as a column vector) with respect to X of AX+b, where A is an k×p matrix, X is a p×1 vector and b is a k×1 vector is? (Use a superscript t for transpose if needed).
+
+X
+
+b
+
+At
+
+2. 
+The derivative (expressed as a column vector) with respect to X of (X−b)tA(X−b) where X and b are p×1 vectors and A is a p×p symmetric matrix is?
+
+2(X−b)
+
+A
+
+2A(X−b)
+
+3. 
+Let X be an n×p matrix. The matrix (I−1nJn,n)X(I−1pJp,p) has all row and column means equal to zero.
+
+True
+
+False
+
+4. 
+Let X be an n×p matrix. The elements of 1n−1Xt(I−1nJn,n)X are what? (Jn,n is an n×n matrix of ones.)
+
+The empirical means of the columns of X.
+
+The empirical variances and covariances of the rows of X.
+
+The empirical variances and covariances of the columns of X.
+
+The empirical means of the rows of X.
+
+5. 
+Let X be an n×p matrix with p×p variance/covariance matrix S. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix XD−1 has what property?
+
+All of its column means are 0.
+
+All of its row means are 0.
+
+All of its row variances are 1.
+
+All of its column variances are 1.
+
+6. 
+Let X be an n×p matrix with p×p variance/covariance matrix S. Let X~=(1−1nJn,n)X. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix 1n−1D−1X~tX~D−1 has what properties?
+
+Entries have the units of the columns of the X matrix squared.
+
+Entries have the units of the columns of the X matrix.
+
+Has ones on its diagonals.
+
+Has empirical correlations in the off diagonals

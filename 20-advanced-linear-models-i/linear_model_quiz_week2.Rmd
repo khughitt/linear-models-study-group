@@ -1,0 +1,56 @@
+---
+title: "Linear Models Week 2 Quiz"
+author: "Nate Olson"
+date: "2/13/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. 
+Consider regression through the origin of two vectors: (outcome) $\tilde{Y}=(I−1_nJ_{n,n})Y$ and (predictor) $\tilde{X}=(I−1_nJ_{n,n})X$ for $n×1$ vectors $X$ and $Y$ and $J_{n,n}$ an $n×n$ matrix of ones. $\tilde{Y}$ (outcome)? Check all that apply.
+
+- The correlation between X and Y times the ratio of the standard deviations (sd(Y) / sd(X)).
+
+- $<X,Y>/<X,X>$
+
+- $<\tilde{X},\tilde{Y}>/<\tilde{X},\tilde{X}>$
+
+
+2. 
+Imagine that I mean center and divide equal length vectors $X$ and $Y$ by their standard deviations. Let $\tilde{X}$ and $\tilde{Y}$ be the centered and scaled versions of $X$ and $Y$. The regression through the origin slope is the same regardless of whether $\tilde{X}$ or $\tilde{Y}$ is the outcome or predictor?
+
+- True
+
+- False
+
+3. 
+Consider regression through the origin of a response Y on a predictor X that is not constant. The residuals $(e=Y−X\frac{<Y,X>}{<X,X>})$ must sum to zero?
+
+- True
+
+- False
+
+4. 
+Consider regression through the origin of a response Y on a predictor X. $<e,X> =0$ where $e$ is the residual $(e=Y−X\frac{<Y,X>}{<X,X>})$?
+
+- True
+
+- False
+
+5. 
+Let
+```{r}
+X = c(-1.45, 2.28, -1.41, 1.05, -0.61)
+Y = c(-1.52, 3.83, -1.90, 1.79, -0.42)
+```
+
+what is the regression through the origin slope estimate with Y as the outcome and X as the predictor?
+
+- 0.3971
+
+- 1.463
+
+- 1.469
