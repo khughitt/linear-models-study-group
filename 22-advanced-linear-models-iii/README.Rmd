@@ -33,8 +33,12 @@ introduced from a couple different sources:
 1. A linear algebra textbook (Lay)
 2. A GLM textbook (Dobson & Barnett)
 
-Lay 6.5 - 6.6
-=============
+Interestingly, in the Lay formulation of the least-squares solution, we are
+able to arrive at the familiar expression for the solution using only the tools
+of basic linear algebra (i.e. no differentiation.)
+
+Lay 6.5
+=======
 
 ## 6.5 Least-squares problems
 
@@ -69,7 +73,13 @@ We can use this theorem to find the closest point in Col$A$ to $b$.
 Let:
 
 $$
-\hat{b} = \text{proj}_ColA b
+\hat{b} = \text{proj}_{ColA} b
+$$
+
+Recall, from Lay 6.2, an **orthogonal projection** is defined as:
+
+$$
+\hat{y}{  = \text{proj}_L y = \frac{y \cdot u}{u \cdot u} u
 $$
 
 Because $\hat{b}$ is in the column space of $A$, we know that $Ax = \hat{b}$ is
@@ -82,7 +92,9 @@ $$
 Since $\hat{b}$ is the closest point in ColA to $b$, the vector $\hat{x}$ is 
 a least-squares solution of $Ax = b$.
 
-_So how do we find $\hat{x}$?_
+### Finding $\hat{x}$
+
+Going back to the definition of orthogonal projections, we have:
 
 **Orthogonal Decomposition Theorem** (Lay 6.3)
 
@@ -102,7 +114,49 @@ $$
 
 and $z = y - \hat{y}$
 
+- The vector $\hat{y}$ is called the **orthogonal projection of y onto W**, and
+  often is written as $\text{proj}_W y$.
+- _See Lay 6.2 on orthogonal sets and bases_
 
+![Lay 6.5, figure 2](img/lay65fig2.png)
+
+By ODT, the projection $\hat{b}$ has the property that $b - \hat{b}$ is
+orthogonal to $ColA$, so $b - A\hat{x}$ is orthogonal to each column of A.
+
+If $a_j$ is any column of A, then $a_j \cdot (b-A\hat{x}) = 0$, and 
+$a_j^T(b - A\hat{x}) = 0$. Since each $a_j^T$ is a row of $A^T$:
+
+$$
+A^T(b - A\hat{x}) = 0
+$$
+
+Thus:
+
+$$
+A^Tb - A^TA\hat{x} = 0
+$$
+
+$$
+A^TA\hat{x} = A^Tb
+$$
+
+So the least-squares solution of $Ax = b$ satisfies the equation:
+
+$$
+A^TAx = A^Tb
+$$.
+
+(Work through example 1...)
+
+**Theorem 14**
+
+The matrix $A^TA$ is invertible _if and only if_ the columns of $A$ are
+linearly independent. In this case, the equation $Ax = b$ has only one
+least-squares solution, $\hat{x}$, and it is given by:
+
+$$
+\hat{x} = (A^TA)^{-1}A^Tb
+$$
 
 
 Dobson & Barnett Chapter 6: Normal Linear Models
@@ -142,7 +196,7 @@ least squares estimators are the same..)
 References
 ==========
 
-1. Lay Chapters 6.5 - 6.6
+1. Lay Chapters 6.5
 2. Dobson, A. J., & Barnett, A. (2008). An introduction to generalized linear
    models. CRC press. (Chapter 6)
 

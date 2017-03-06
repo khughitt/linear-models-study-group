@@ -1,5 +1,5 @@
 -   [Overview](#overview)
--   [Lay 6.5 - 6.6](#lay-6.5---6.6)
+-   [Lay 6.5](#lay-6.5)
     -   [6.5 Least-squares problems](#least-squares-problems)
 -   [Dobson & Barnett Chapter 6: Normal Linear Models](#dobson-barnett-chapter-6-normal-linear-models)
 -   [References](#references)
@@ -20,8 +20,10 @@ Instead, this week I will review the basic of linear models as they are introduc
 1.  A linear algebra textbook (Lay)
 2.  A GLM textbook (Dobson & Barnett)
 
-Lay 6.5 - 6.6
-=============
+Interestingly, in the Lay formulation of the least-squares solution, we are able to arrive at the familiar expression for the solution using only the tools of basic linear algebra (i.e. no differentiation.)
+
+Lay 6.5
+=======
 
 6.5 Least-squares problems
 --------------------------
@@ -53,9 +55,17 @@ We can use this theorem to find the closest point in Col![A](https://latex.codec
 Let:
 
 ![
-\\hat{b} = \\text{proj}\_ColA b
-](https://latex.codecogs.com/png.latex?%0A%5Chat%7Bb%7D%20%3D%20%5Ctext%7Bproj%7D_ColA%20b%0A "
-\hat{b} = \text{proj}_ColA b
+\\hat{b} = \\text{proj}\_{ColA} b
+](https://latex.codecogs.com/png.latex?%0A%5Chat%7Bb%7D%20%3D%20%5Ctext%7Bproj%7D_%7BColA%7D%20b%0A "
+\hat{b} = \text{proj}_{ColA} b
+")
+
+Recall, from Lay 6.2, an **orthogonal projection** is defined as:
+
+![
+\\hat{y}{  = \\text{proj}\_L y = \\frac{y \\cdot u}{u \\cdot u} u
+](https://latex.codecogs.com/png.latex?%0A%5Chat%7By%7D%7B%20%20%3D%20%5Ctext%7Bproj%7D_L%20y%20%3D%20%5Cfrac%7By%20%5Ccdot%20u%7D%7Bu%20%5Ccdot%20u%7D%20u%0A "
+\hat{y}{  = \text{proj}_L y = \frac{y \cdot u}{u \cdot u} u
 ")
 
 Because ![\\hat{b}](https://latex.codecogs.com/png.latex?%5Chat%7Bb%7D "\hat{b}") is in the column space of ![A](https://latex.codecogs.com/png.latex?A "A"), we know that ![Ax = \\hat{b}](https://latex.codecogs.com/png.latex?Ax%20%3D%20%5Chat%7Bb%7D "Ax = \hat{b}") is consistent and there is an ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}") in ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n") such that:
@@ -68,7 +78,9 @@ A\hat{x} = \hat{b}
 
 Since ![\\hat{b}](https://latex.codecogs.com/png.latex?%5Chat%7Bb%7D "\hat{b}") is the closest point in ColA to ![b](https://latex.codecogs.com/png.latex?b "b"), the vector ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}") is a least-squares solution of ![Ax = b](https://latex.codecogs.com/png.latex?Ax%20%3D%20b "Ax = b").
 
-*So how do we find ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}")?*
+### Finding ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}")
+
+Going back to the definition of orthogonal projections, we have:
 
 **Orthogonal Decomposition Theorem** (Lay 6.3)
 
@@ -89,6 +101,57 @@ Where ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}") 
 ")
 
 and ![z = y - \\hat{y}](https://latex.codecogs.com/png.latex?z%20%3D%20y%20-%20%5Chat%7By%7D "z = y - \hat{y}")
+
+-   The vector ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}") is called the **orthogonal projection of y onto W**, and often is written as ![\\text{proj}\_W y](https://latex.codecogs.com/png.latex?%5Ctext%7Bproj%7D_W%20y "\text{proj}_W y").
+-   *See Lay 6.2 on orthogonal sets and bases*
+
+![Lay 6.5, figure 2](img/lay65fig2.png)
+
+By ODT, the projection ![\\hat{b}](https://latex.codecogs.com/png.latex?%5Chat%7Bb%7D "\hat{b}") has the property that ![b - \\hat{b}](https://latex.codecogs.com/png.latex?b%20-%20%5Chat%7Bb%7D "b - \hat{b}") is orthogonal to ![ColA](https://latex.codecogs.com/png.latex?ColA "ColA"), so ![b - A\\hat{x}](https://latex.codecogs.com/png.latex?b%20-%20A%5Chat%7Bx%7D "b - A\hat{x}") is orthogonal to each column of A.
+
+If ![a\_j](https://latex.codecogs.com/png.latex?a_j "a_j") is any column of A, then ![a\_j \\cdot (b-A\\hat{x}) = 0](https://latex.codecogs.com/png.latex?a_j%20%5Ccdot%20%28b-A%5Chat%7Bx%7D%29%20%3D%200 "a_j \cdot (b-A\hat{x}) = 0"), and ![a\_j^T(b - A\\hat{x}) = 0](https://latex.codecogs.com/png.latex?a_j%5ET%28b%20-%20A%5Chat%7Bx%7D%29%20%3D%200 "a_j^T(b - A\hat{x}) = 0"). Since each ![a\_j^T](https://latex.codecogs.com/png.latex?a_j%5ET "a_j^T") is a row of ![A^T](https://latex.codecogs.com/png.latex?A%5ET "A^T"):
+
+![
+A^T(b - A\\hat{x}) = 0
+](https://latex.codecogs.com/png.latex?%0AA%5ET%28b%20-%20A%5Chat%7Bx%7D%29%20%3D%200%0A "
+A^T(b - A\hat{x}) = 0
+")
+
+Thus:
+
+![
+A^Tb - A^TA\\hat{x} = 0
+](https://latex.codecogs.com/png.latex?%0AA%5ETb%20-%20A%5ETA%5Chat%7Bx%7D%20%3D%200%0A "
+A^Tb - A^TA\hat{x} = 0
+")
+
+![
+A^TA\\hat{x} = A^Tb
+](https://latex.codecogs.com/png.latex?%0AA%5ETA%5Chat%7Bx%7D%20%3D%20A%5ETb%0A "
+A^TA\hat{x} = A^Tb
+")
+
+So the least-squares solution of ![Ax = b](https://latex.codecogs.com/png.latex?Ax%20%3D%20b "Ax = b") satisfies the equation:
+
+![
+A^TAx = A^Tb
+](https://latex.codecogs.com/png.latex?%0AA%5ETAx%20%3D%20A%5ETb%0A "
+A^TAx = A^Tb
+")
+
+.
+
+(Work through example 1...)
+
+**Theorem 14**
+
+The matrix ![A^TA](https://latex.codecogs.com/png.latex?A%5ETA "A^TA") is invertible *if and only if* the columns of ![A](https://latex.codecogs.com/png.latex?A "A") are linearly independent. In this case, the equation ![Ax = b](https://latex.codecogs.com/png.latex?Ax%20%3D%20b "Ax = b") has only one least-squares solution, ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}"), and it is given by:
+
+![
+\\hat{x} = (A^TA)^{-1}A^Tb
+](https://latex.codecogs.com/png.latex?%0A%5Chat%7Bx%7D%20%3D%20%28A%5ETA%29%5E%7B-1%7DA%5ETb%0A "
+\hat{x} = (A^TA)^{-1}A^Tb
+")
 
 Dobson & Barnett Chapter 6: Normal Linear Models
 ================================================
@@ -127,5 +190,5 @@ Models of this form are called **general linear models** and include:
 References
 ==========
 
-1.  Lay Chapters 6.5 - 6.6
+1.  Lay Chapters 6.5
 2.  Dobson, A. J., & Barnett, A. (2008). An introduction to generalized linear models. CRC press. (Chapter 6)
