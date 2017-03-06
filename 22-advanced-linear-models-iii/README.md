@@ -36,7 +36,7 @@ Lay 6.5 - 6.6
 
 ### Solution of the General Least-Squares Problem
 
-**Best Approximation Theorem**
+**Best Approximation Theorem** (Lay 6.3)
 
 Let ![W](https://latex.codecogs.com/png.latex?W "W") be a subspace of ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n"), ![y](https://latex.codecogs.com/png.latex?y "y") any vector in ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n"), and ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}") the orthogonal projection of ![y](https://latex.codecogs.com/png.latex?y "y") onto ![W](https://latex.codecogs.com/png.latex?W "W"). Then ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}") is the closest point in ![W](https://latex.codecogs.com/png.latex?W "W") to ![y](https://latex.codecogs.com/png.latex?y "y") in the sense that:
 
@@ -47,6 +47,48 @@ Let ![W](https://latex.codecogs.com/png.latex?W "W") be a subspace of ![ℝ^n](h
 ")
 
 for all ![v](https://latex.codecogs.com/png.latex?v "v") in ![W](https://latex.codecogs.com/png.latex?W "W") from ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}").
+
+We can use this theorem to find the closest point in Col![A](https://latex.codecogs.com/png.latex?A "A") to ![b](https://latex.codecogs.com/png.latex?b "b").
+
+Let:
+
+![
+\\hat{b} = \\text{proj}\_ColA b
+](https://latex.codecogs.com/png.latex?%0A%5Chat%7Bb%7D%20%3D%20%5Ctext%7Bproj%7D_ColA%20b%0A "
+\hat{b} = \text{proj}_ColA b
+")
+
+Because ![\\hat{b}](https://latex.codecogs.com/png.latex?%5Chat%7Bb%7D "\hat{b}") is in the column space of ![A](https://latex.codecogs.com/png.latex?A "A"), we know that ![Ax = \\hat{b}](https://latex.codecogs.com/png.latex?Ax%20%3D%20%5Chat%7Bb%7D "Ax = \hat{b}") is consistent and there is an ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}") in ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n") such that:
+
+![
+A\\hat{x} = \\hat{b}
+](https://latex.codecogs.com/png.latex?%0AA%5Chat%7Bx%7D%20%3D%20%5Chat%7Bb%7D%0A "
+A\hat{x} = \hat{b}
+")
+
+Since ![\\hat{b}](https://latex.codecogs.com/png.latex?%5Chat%7Bb%7D "\hat{b}") is the closest point in ColA to ![b](https://latex.codecogs.com/png.latex?b "b"), the vector ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}") is a least-squares solution of ![Ax = b](https://latex.codecogs.com/png.latex?Ax%20%3D%20b "Ax = b").
+
+*So how do we find ![\\hat{x}](https://latex.codecogs.com/png.latex?%5Chat%7Bx%7D "\hat{x}")?*
+
+**Orthogonal Decomposition Theorem** (Lay 6.3)
+
+Let ![W](https://latex.codecogs.com/png.latex?W "W") be a subspace of ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n"). Then each ![y](https://latex.codecogs.com/png.latex?y "y") in ![ℝ^n](https://latex.codecogs.com/png.latex?%E2%84%9D%5En "ℝ^n") can be written uniquely in the form:
+
+![
+y = \\hat{y} + z
+](https://latex.codecogs.com/png.latex?%0Ay%20%3D%20%5Chat%7By%7D%20%2B%20z%0A "
+y = \hat{y} + z
+")
+
+Where ![\\hat{y}](https://latex.codecogs.com/png.latex?%5Chat%7By%7D "\hat{y}") is in ![W](https://latex.codecogs.com/png.latex?W "W") and ![z](https://latex.codecogs.com/png.latex?z "z") in in ![W^\\perp](https://latex.codecogs.com/png.latex?W%5E%5Cperp "W^\perp"). In fact, if ![\\{u\_1,...,u\_p\\}](https://latex.codecogs.com/png.latex?%5C%7Bu_1%2C...%2Cu_p%5C%7D "\{u_1,...,u_p\}") is any orthogonal basis of ![W](https://latex.codecogs.com/png.latex?W "W"), then:
+
+![
+\\hat{y} = \\frac{y \\cdot u\_1}{u\_1 \\cdot u\_1} u\_1 + ... + \\frac{y \\cdot u\_p}{u\_p \\cdot u\_p} u\_p
+](https://latex.codecogs.com/png.latex?%0A%5Chat%7By%7D%20%3D%20%5Cfrac%7By%20%5Ccdot%20u_1%7D%7Bu_1%20%5Ccdot%20u_1%7D%20u_1%20%2B%20...%20%2B%20%5Cfrac%7By%20%5Ccdot%20u_p%7D%7Bu_p%20%5Ccdot%20u_p%7D%20u_p%0A "
+\hat{y} = \frac{y \cdot u_1}{u_1 \cdot u_1} u_1 + ... + \frac{y \cdot u_p}{u_p \cdot u_p} u_p
+")
+
+and ![z = y - \\hat{y}](https://latex.codecogs.com/png.latex?z%20%3D%20y%20-%20%5Chat%7By%7D "z = y - \hat{y}")
 
 Dobson & Barnett Chapter 6: Normal Linear Models
 ================================================
