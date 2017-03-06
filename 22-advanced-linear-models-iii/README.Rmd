@@ -1,0 +1,108 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+    md_extensions: +tex_math_dollars
+    pandoc_args: ['--webtex']
+    toc: true
+    toc_depth: 2
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(fig.path='img/',
+               fig.width=1080/120,
+               fig.height=1080/120,
+               dpi=120, fig.retina=2)
+```
+
+<h1>Advanced Linear Models III</h1>
+
+- Keith Hughitt
+- March 06, 2017
+
+Overview
+========
+
+This week will be a brief digression from the current series of notes which
+follow the Advanced Linear Models Coursera course.
+
+Instead, this week I will review the basic of linear models as they are
+introduced from a couple different sources:
+
+1. A linear algebra textbook (Lay)
+2. A GLM textbook (Dobson & Barnett)
+
+Lay 6.5 - 6.6
+=============
+
+## 6.5 Least-squares problems
+
+### Overview
+
+- When a sytem represented by $Ax = b$ has no solution, it is _inconsistent_
+- In this case, the best you can do is find an $x$ that makes $Ax$ as close to
+  $b$ as possible.
+- The **general least-squares problem** is to find an $x$ that makes $||b - Ax||$
+  as small as possible.
+- _No matter what x we select, the vector Ax will necessarily be in the column
+  space, ColA_.
+- So the solution, $x$ is the vector which makes $Ax$ the closest point in
+  Col$A$ to $b$.
+
+### Solution of the General Least-Squares Problem
+
+**Best Approximation Theorem**
+
+Let $W$ be a subspace of $ℝ^n$, $y$ any vector in $ℝ^n$, and $\hat{y}$ the
+orthogonal projection of $y$ onto $W$. Then $\hat{y}$ is the closest point in
+$W$ to $y$ in the sense that:
+
+$$
+||y - \hat{y}|| < ||y - v||
+$$
+
+for all $v$ in $W$ from $\hat{y}$.
+
+
+Dobson & Barnett Chapter 6: Normal Linear Models
+================================================
+
+In this text, models of the form:
+
+$$
+\text{E}(Y_i) = \mu_i = \textbf{x}_i^T \beta; Y_i \sim \text{N}(\mu_i, \sigma^2)
+$$
+
+Where:
+
+- $Y_1,...,Y_N$ are independent random variables
+- The link function is the identity function, $g(\mu_i) = \mu_i$
+
+This model is often written as:
+
+$$
+\textbf{y} = \textbf{X} \beta + \textbf{e}
+$$
+
+Where the $e_i$'s are IID random variables with $e_i \sim \textbf{N}(0, \sigma^2)$
+
+Models of this form are called **general linear models** and include:
+
+- multiple linear regression
+- ANOVA
+- ANCOVA
+
+(Text goes on to show that for these models, maximum likelihood estimators and
+least squares estimators are the same..)
+
+
+
+
+References
+==========
+
+1. Lay Chapters 6.5 - 6.6
+2. Dobson, A. J., & Barnett, A. (2008). An introduction to generalized linear
+   models. CRC press. (Chapter 6)
+
