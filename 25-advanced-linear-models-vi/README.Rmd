@@ -32,7 +32,7 @@ Covering a couple of left-over sections from weeks 3-4:
 Week 3: Generalizations
 =======================
 
-So far, we have been considering linear regression in Euclidean space (ℝ^n). It
+So far, we have been considering linear regression in Euclidean space ($ℝ^n$). It
 turns out, however, that many of the same approaches readily apply to other
 more general vector spaces.
 
@@ -56,7 +56,7 @@ integrable functions.
 - Define the inner product as:
 
 $$
-\langle f,g \rangle = \int_{0}^{1} f(t)g(t) dt
+\langle f,g \rangle = \int_0^1 f(t)g(t) \mathrm{d}t
 $$
 
 - In this case, we want to find the best approximation to y in x.
@@ -64,7 +64,7 @@ $$
   numbers:
 
 $$
-\hat{\beta} = \over{\langle y,x \rangle}{\langle x,x \rangle}
+\hat{\beta} = \frac{\langle y,x \rangle}{\langle x,x \rangle}
 $$
 
 - Textbook/video demonstrate the above and also extend the example to include
@@ -77,6 +77,7 @@ approximate with a linear function:
 
 $$
 y(t) = t + 2t^2
+\newline
 x(t) = t
 $$
 
@@ -94,10 +95,81 @@ lm(y ~ x - 1)
 
 *Note: what's the "-1" in the model equation above for?
 
+Week 4: Projections
+===================
 
+## Projection matrix
 
+Thinking of least squares in terms of projections.
 
+Suppose you have:
 
+$$
+y in ℝ^3
+\newline
+x = 3x2 matrix
+$$
+
+Want to minimize:
+
+$$
+|| y - x\beta ||^2
+$$
+
+- y is a vector in $ℝ^3$
+- the solution space for $\beta$ ($\gamma$) in the notes is a 2-dimensional
+  subspace in $ℝ^3$
+- The solution to the above ($\hat{y}$) is the point in $\gamma$ that is the
+  minimum distance from $y$
+
+An interesting result of this:
+
+- Adding a redundant column to $x$ (example used: $x_1 + x_2$), doesn't change
+  the solution space: 
+    - Even with this new column, the rank of the matrix is the same, and, 
+    - the space spanned (all possible linear columns of $x_1 \text{and} x_2$) 
+      and the solution $\hat{y}$ are the same.
+- This also means that we don't need an invertible matrix to find a solution
+- We just need the space defined by the linearly indepedent _subset_ of the
+  columns of $X$.
+- Also, different design matrices (video uses examples of matrices with all 1's
+  and 0's organized in different ways, ~5:45) also span the same $\gamma$.
+
+Next, recall:
+
+$$
+\hat{\beta} = (x^Tx)^{-1}x^Ty
+$$
+
+That is the projection of $y$ on to the space defined by the linear
+combinations of the columns of $x$.
+
+The solution, $\hat{\beta}$ is the particular vector in $ℝ^2$ that converts
+projects $x$ onto $\gamma$.
+
+So the _projection_ is:
+
+$$
+\hat{\beta} = H_xy = x(x^Tx)^{-1}x^Ty
+$$
+
+The matrix $H_x$ (the "projection matrix" or "hat matrix") is the linear
+operator that projects a vector in $ℝ^n$ onto the 2-dimensional space spanned by the
+columns of $X$.
+
+## Residuals
+
+Residuals:
+
+$$
+e = y - \hat{y} = y - x(x^Tx)^{-1}x^Ty
+\newline
+  = (I - H_x)y
+$$
+
+- $e$ is orthogonal to any point in $\gamma$
+- $e$ is orthogonal to any column of $X$
+- The sum of the residuals equals 0.
 
 
 References
