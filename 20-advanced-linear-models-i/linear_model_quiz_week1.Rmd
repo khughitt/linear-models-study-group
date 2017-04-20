@@ -5,60 +5,187 @@ date: "2/13/2017"
 output: html_document
 ---
 
+```{r}
+library(tidyverse)
+```
+
 1. 
-The derivative (expressed as a column vector) with respect to X of AX+b, where A is an k×p matrix, X is a p×1 vector and b is a k×1 vector is? (Use a superscript t for transpose if needed).
+The derivative (expressed as a column vector) with respect to X of AX+b, where A is an k×p matrix, X is a p×1 vector and b is a k×1 vector is? (Use a superscript t for transpose if needed).  
 
-X
+* X  
 
-b
+* $b$  
 
-At
+* Correct Answer: $A^t$  
+
 
 2. 
-The derivative (expressed as a column vector) with respect to X of (X−b)tA(X−b) where X and b are p×1 vectors and A is a p×p symmetric matrix is?
+The derivative (expressed as a column vector) with respect to X of (X−b)tA(X−b) where X and b are p×1 vectors and A is a p×p symmetric matrix is?  
 
-2(X−b)
+* 2(X−b)  
 
-A
+* A  
 
-2A(X−b)
+* Correct Answer: $2A(X-b)$  
 
 3. 
-Let X be an n×p matrix. The matrix (I−1nJn,n)X(I−1pJp,p) has all row and column means equal to zero.
+Let X be an n×p matrix. The matrix $(I-\frac{1}{n}J_{n,n})X(I−\frac{1}{p}J_{p,p})$ has all row and column means equal to zero.
 
-True
+* Correct Answer: True
 
-False
+* False
+
+Verifying in R. Also in notes, formula used to calculate row and column means.
+
+```{r}
+X <- matrix(sample(1:100, size = 12),4,3)
+n <- 4
+In <- diag(n)
+Jnn <- matrix(1,n,n)
+p <- 3
+Ip <- diag(p)
+Jpp <- matrix(1,p,p)
+```
+
+```{r}
+X
+```
+
+```{r}
+In
+```
+
+```{r}
+Jnn
+```
+
+```{r}
+Ip
+```
+
+```{r}
+Jpp
+```
+
+ $(I−1_nJ_{n,n})X(I−1_pJ_{p,p})$
+```{r}
+1/n * Jnn
+```
+
+```{r}
+In - 1/n * Jnn
+```
+
+```{r}
+Ip - 1/p * Jpp
+```
+
+```{r}
+(In - 1/n * Jnn) %*% X
+```
+
+```{r}
+X %*% (Ip - 1/p * Jpp)
+```
+
+```{r}
+ans <- (In - 1/n * Jnn) %*% X %*% (Ip - 1/p * Jpp)
+```
+
+```{r}
+colMeans(ans)
+```
+```{r}
+rowMeans(ans)
+```
 
 4. 
-Let X be an n×p matrix. The elements of 1n−1Xt(I−1nJn,n)X are what? (Jn,n is an n×n matrix of ones.)
+Let X be an n×p matrix. The elements of $\frac{1}{n−1} X^t (I−\frac{1}{n} J_{n,n})X$ are what? ($J_{n,n}$ is an n×n matrix of ones.)
+__Not sure why row and not columns, think has to do with ordering.__
 
-The empirical means of the columns of X.
+* The empirical means of the columns of X.
 
-The empirical variances and covariances of the rows of X.
+* The empirical variances and covariances of the rows of X.
 
-The empirical variances and covariances of the columns of X.
+* Correct Answer: The empirical variances and covariances of the columns of X.
 
-The empirical means of the rows of X.
+* The empirical means of the rows of X.
+
+```{r}
+t(X)
+```
+
+```{r}
+1/(3-1) * t(X) %*% (In - 1/n*Jnn) %*% X
+```
 
 5. 
-Let X be an n×p matrix with p×p variance/covariance matrix S. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix XD−1 has what property?
+Let X be an n×p matrix with p×p variance/covariance matrix S. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix $XD^{−1}$ has what property?
 
-All of its column means are 0.
+```{r}
+# X is a n x p matrix
+X <- matrix(sample(1:100, 12), 4, 3)
+S <- cov(X)
+D <- S %>% diag() %>% diag() %>% sqrt()
+x1 <- X %*% solve(D)
+```
 
-All of its row means are 0.
 
-All of its row variances are 1.
+- All of its column means are 0.
+```{r}
+x1[, 1] %>% mean()
+x1[, 2] %>% mean()
+x1[, 3] %>% mean()
+```
 
-All of its column variances are 1.
+- All of its row means are 0.
+```{r}
+x1[1, ] %>% mean()
+x1[2, ] %>% mean()
+x1[3, ] %>% mean()
+```
+
+
+- All of its row variances are 1.
+```{r}
+x1[1, ] %>% var()
+x1[2, ] %>% var()
+x1[3, ] %>% var()
+```
+
+
+- __X__ All of its column variances are 1.
+```{r}
+x1[, 1] %>% var()
+x1[, 2] %>% var()
+x1[, 3] %>% var()
+```
+
 
 6. 
-Let X be an n×p matrix with p×p variance/covariance matrix S. Let X~=(1−1nJn,n)X. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix 1n−1D−1X~tX~D−1 has what properties?
+Let X be an n×p matrix with p×p variance/covariance matrix S. Let $\tilde{X} = (1−\frac{1}{n}J_{n,n})X$. Let D be the p×p diagonal matrix of the square root of the diagonal entries of S. The matrix $\frac{1}{n−1}D^{−1}\tilde{X}^t\tilde{X}D^{−1}$ has what properties?
 
-Entries have the units of the columns of the X matrix squared.
+```{r}
+tildeX <- 1 - 1/(n-1) * Jnn %*% X
+```
 
-Entries have the units of the columns of the X matrix.
+```{r}
+x2 <- 1/(1/n) * solve(D) %*% t(tildeX) %*% tildeX %*% solve(D)
+```
 
-Has ones on its diagonals.
+```{r}
+x2
+```
 
-Has empirical correlations in the off diagonals
+* Entries have the units of the columns of the X matrix squared.
+
+* Entries have the units of the columns of the X matrix.
+
+Entries are unitless
+
+
+* Correct Answer: Has ones on its diagonals.
+
+* Correct Answer: Has empirical correlations in the off diagonals
+
+$\frac{1}{n - 1}D ^{ -1}\tilde{X}^t\tilde{X}D^{ -1} = D^{ -1} S D^{ -1}$. The purpose of this problem is to show how to convert a variance/ covariance matrix into a correlation matrix via matrix multiplication.
