@@ -19,9 +19,15 @@ Applications](http://www.laylinalgebra.com/).
 
 ![Lay 3e](01-linear-algebra-review-i/img/lay3e.jpg)
 
-Once we have spent a bit of time reviewing important concepts there, the plan
-is to move onto other materials such as Coursera course on linear modeling, or
-a textbook on linear models / GLMs.
+To review standard linear models we worked through the "Advanced Linear Models for Data Science 1: Least Squares" Coursera course, https://www.coursera.org/learn/linear-models/home/welcome.   
+
+We used the following textbook, "An Introduction to Generalized Linear Models, Third Edition" by Annette J. Dobson, Adrian Barnett to cover generalized linear models. An Introduction to Generalized Linear Models, Third Edition
+Annette J. Dobson, Annette J. Dobson, to cover generlized linear models.   
+
+![Dobson and Barnett 3e](27-Intro-to-GLM/img/dobson_and_barnett3e.jpg)  
+
+
+
 
 ## Reading list
 
