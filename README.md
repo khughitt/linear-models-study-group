@@ -24,7 +24,7 @@ To review standard linear models we worked through the "Advanced Linear Models f
 We used the following textbook, "An Introduction to Generalized Linear Models, Third Edition" by Annette J. Dobson, Adrian Barnett to cover generalized linear models. An Introduction to Generalized Linear Models, Third Edition
 Annette J. Dobson, Annette J. Dobson, to cover generlized linear models.   
 
-![Dobson and Barnett 3e](27-Intro-to-GLM/img/dobson_and_barnett3e.jpg)  
+![Dobson and Barnett 3e](27-Intro-to-GLM-ii/img/dobson_and_barnett3e.jpg)  
 
 
 
